@@ -1,4 +1,4 @@
-1. Mapa
+1. MAPA
 - top down
   http://4.bp.blogspot.com/-g_ylvCw3a4E/T2sG2MSjnvI/AAAAAAAACfs/NE2IU1krfxA/s1600/Warlock's+Gauntlet+Linux+game.jpg
 
@@ -12,3 +12,15 @@
 
 - a'la Tibia
   http://rampantgames.com/blogimages/U7T2D.jpg
+
+
+
+2. SIEÆ
+- cpp netlib (wygl¹da b. ciekawie i sa przyk³ady w dokumentacji)
+  http://cpp-netlib.org/
+
+- Enet (podobno bardzo fajna)
+  http://enet.bespin.org/
+
+
+http://qa.warsztat.gd/1706/c-network-library
