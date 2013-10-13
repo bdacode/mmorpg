@@ -31,18 +31,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
-			<Add directory="../allegro-5.0.10-mingw-4.7.0/include" />
+			<Add directory="../../allegro-5.0.10-mingw-4.7.0/include" />
 		</Compiler>
 		<Linker>
-			<Add library="..\allegro-5.0.10-mingw-4.7.0\lib\liballegro_acodec-5.0.10-mt.a" />
-			<Add library="..\allegro-5.0.10-mingw-4.7.0\lib\liballegro_audio-5.0.10-mt.a" />
+			<Add library="liballegro_acodec-5.0.10-mt.a" />
+			<Add library="liballegro_audio-5.0.10-mt.a" />
 			<Add library="..\allegro-5.0.10-mingw-4.7.0\lib\liballegro_color-5.0.10-mt.a" />
-			<Add library="..\allegro-5.0.10-mingw-4.7.0\lib\liballegro_font-5.0.10-mt.a" />
-			<Add library="..\allegro-5.0.10-mingw-4.7.0\lib\liballegro_image-5.0.10-mt.a" />
-			<Add library="..\allegro-5.0.10-mingw-4.7.0\lib\liballegro_primitives-5.0.10-mt.a" />
-			<Add library="..\allegro-5.0.10-mingw-4.7.0\lib\liballegro_ttf-5.0.10-mt.a" />
-			<Add library="..\allegro-5.0.10-mingw-4.7.0\lib\liballegro-5.0.10-mt.a" />
-			<Add directory="../allegro-5.0.10-mingw-4.7.0/lib" />
+			<Add library="liballegro_font-5.0.10-mt.a" />
+			<Add library="liballegro_image-5.0.10-mt.a" />
+			<Add library="liballegro_primitives-5.0.10-mt.a" />
+			<Add library="liballegro_ttf-5.0.10-mt.a" />
+			<Add library="liballegro-5.0.10-mt.a" />
+			<Add directory="../../allegro-5.0.10-mingw-4.7.0/lib" />
 		</Linker>
 		<Unit filename="CMain.h" />
 		<Unit filename="bitmap.cpp" />
