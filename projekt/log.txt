@@ -1,0 +1,13 @@
+
+LOAD: allegro5
+INIT: allegro5
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+START: Allegro5
+START: Game Loop
