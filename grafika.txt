@@ -1,0 +1,40 @@
+1) W przypadku grafiki izometrycznej mo¿na wykorzystaæ np takie cacko:
+http://kenney.nl/post/isometric-road-tiles-water-expansion#
+http://kenney.nl/post/isometric-road-tiles-nova#
+http://kenney.nl/post/isometric-road-tiles#
+
+
+2) Jednak ja bym u¿y³ widoku takiego:
+
+- taka pseudo izometria:
+http://www.allacrost.org/media/screenshots/screen_03a.jpg
+
+- lub top-down:
+http://4.bp.blogspot.com/-g_ylvCw3a4E/T2sG2MSjnvI/AAAAAAAACfs/NE2IU1krfxA/s1600/Warlock's+Gauntlet+Linux+game.jpg
+
+
+3) Fajna grafika pseudo-izo na CC-BY 3
+http://opengameart.org/content/whispers-of-avalon-grassland-tileset
+http://opengameart.org/content/consolidated-hard-vacuum-terrain-tilesets
+http://opengameart.org/content/cobblestone-tileset
+
+
+4) Super grafika interfejsu na CC-BY 3
+http://opengameart.org/content/moderna-graphical-interface
+
+
+5) Inne
+http://opengameart.org/content/vertigo-textures
+http://opengameart.org/content/spell-icon-collection-part-4
+http://opengameart.org/content/spell-icon-collection-part-3
+http://opengameart.org/content/spell-icon-collection-part-2
+http://opengameart.org/content/spell-icon-collection-part-1
+http://opengameart.org/content/98-pixel-art-rpg-icons
+http://opengameart.org/content/sideview-characters-cartoony
+http://opengameart.org/content/fantasy-rpg-consumable-item-icons
+http://opengameart.org/content/ui-icons
+http://opengameart.org/content/undead-king
+http://opengameart.org/content/basic-gems-icon-set
+http://opengameart.org/content/basic-gems-icon-set-remix
+http://opengameart.org/content/basic-rpg-item-icons-free
+http://opengameart.org/content/epic-rpg-equipment
