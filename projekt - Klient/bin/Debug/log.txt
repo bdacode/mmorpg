@@ -1,0 +1,13 @@
+
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop

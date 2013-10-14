@@ -31,7 +31,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="../../enet-1.3.9/include" />
 		</Compiler>
+		<Linker>
+			<Add library="libenet.a" />
+			<Add directory="../../enet-1.3.9/bin/Release" />
+		</Linker>
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

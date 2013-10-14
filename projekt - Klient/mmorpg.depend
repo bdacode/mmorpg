@@ -538,3 +538,81 @@
 	"allegro5/allegro.h"
 	"allegro5/allegro_audio.h"
 
+1363441951 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\bitmap.cpp
+	"bitmap.h"
+
+1381760274 c:\users\jakub\documents\github\mmorpg\projekt - klient\bitmap.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_color.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<enet/enet.h>
+	<vector>
+	<cstdio>
+	<iostream>
+	<time.h>
+	<math.h>
+	<fstream>
+	"logger.h"
+
+1363291095 c:\users\jakub\documents\github\mmorpg\projekt - klient\logger.h
+	<iostream>
+	<time.h>
+	<fstream>
+
+1342710764 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\input.cpp
+	"input.h"
+
+1352646668 c:\users\jakub\documents\github\mmorpg\projekt - klient\input.h
+	"main.h"
+
+1374233469 c:\users\jakub\documents\github\mmorpg\projekt - klient\main.h
+	"CMain.h"
+	"bitmap.h"
+
+1354637761 c:\users\jakub\documents\github\mmorpg\projekt - klient\cmain.h
+
+1363441998 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\logger.cpp
+	"logger.h"
+
+1381764234 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\main.cpp
+	"main.h"
+	"input.h"
+	"logger.h"
+
+1376885136 c:\users\jakub\documents\github\enet-1.3.9\include\enet\enet.h
+	<stdlib.h>
+	"enet/win32.h"
+	"enet/unix.h"
+	"enet/types.h"
+	"enet/protocol.h"
+	"enet/list.h"
+	"enet/callbacks.h"
+
+1376885136 c:\users\jakub\documents\github\enet-1.3.9\include\enet\win32.h
+	<stdlib.h>
+	<winsock2.h>
+
+1376885136 c:\users\jakub\documents\github\enet-1.3.9\include\enet\unix.h
+	<stdlib.h>
+	<sys/time.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<unistd.h>
+
+1376605990 c:\users\jakub\documents\github\enet-1.3.9\include\enet\types.h
+
+1376605990 c:\users\jakub\documents\github\enet-1.3.9\include\enet\protocol.h
+	"enet/types.h"
+
+1376605990 c:\users\jakub\documents\github\enet-1.3.9\include\enet\list.h
+	<stdlib.h>
+
+1376605990 c:\users\jakub\documents\github\enet-1.3.9\include\enet\callbacks.h
+	<stdlib.h>
+

@@ -10,6 +10,8 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 
+#include <enet/enet.h>
+
 #include <vector>
 #include <cstdio>
 

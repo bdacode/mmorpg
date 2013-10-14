@@ -32,17 +32,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 			<Add directory="../../allegro-5.0.10-mingw-4.7.0/include" />
+			<Add directory="../../enet-1.3.9/include" />
 		</Compiler>
 		<Linker>
 			<Add library="liballegro_acodec-5.0.10-mt.a" />
 			<Add library="liballegro_audio-5.0.10-mt.a" />
-			<Add library="..\allegro-5.0.10-mingw-4.7.0\lib\liballegro_color-5.0.10-mt.a" />
+			<Add library="liballegro_color-5.0.10-mt.a" />
 			<Add library="liballegro_font-5.0.10-mt.a" />
 			<Add library="liballegro_image-5.0.10-mt.a" />
 			<Add library="liballegro_primitives-5.0.10-mt.a" />
 			<Add library="liballegro_ttf-5.0.10-mt.a" />
 			<Add library="liballegro-5.0.10-mt.a" />
+			<Add library="libenet.a" />
 			<Add directory="../../allegro-5.0.10-mingw-4.7.0/lib" />
+			<Add directory="../../enet-1.3.9/bin/Release" />
 		</Linker>
 		<Unit filename="CMain.h" />
 		<Unit filename="bitmap.cpp" />

@@ -15,3 +15,188 @@ LOAD: allegro5
 INIT: allegro5
 START: Allegro5
 START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+ERROR: Nie mozna polaczyc sie z serwerem.
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+ERROR: Nie mozna polaczyc sie z serwerem.
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+ERROR: Nie mozna polaczyc sie z serwerem.
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+ERROR: Nie mozna polaczyc sie z serwerem.
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ localhost ]
+START: Allegro5
+START: Game Loop
