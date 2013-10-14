@@ -24,3 +24,12 @@
 
 
 http://qa.warsztat.gd/1706/c-network-library
+
+
+
+3. SPOSÓB PRZESY£U DANYCH
+- UDP / TCP
+  http://pl.wikipedia.org/wiki/User_Datagram_Protocol
+  http://pl.wikipedia.org/wiki/TCP_(protok%C3%B3%C5%82)
+  http://www.cyberciti.biz/faq/key-differences-between-tcp-and-udp-protocols/
+  http://math.uni.lodz.pl/~skowroa/sem/pytania/084_090materak.pdf
