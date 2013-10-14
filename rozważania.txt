@@ -1,10 +1,23 @@
 1) RZUT KAMERY
-- ja by³bym za pseudo-izo
+- pseudo-izo
   http://www.allacrost.org/media/screenshots/screen_03a.jpg
-
-- ewentualnie za top-down
-  http://4.bp.blogspot.com/-g_ylvCw3a4E/T2sG2MSjnvI/AAAAAAAACfs/NE2IU1krfxA/s1600/Warlock's+Gauntlet+Linux+game.jpg
 
 
 2) STYL GRY
-- Œredniowiecze? Fantasy? Trzeba to wszystko omówiæ i spisaæ.
+- œredniowiecze
+- fantasy
+- dynamika
+- du¿y, otwarty, interaktywny œwiat
+- tworzenie w³asnej postaci
+- du¿o przedmiotów
+- sklepy? Gracz móg³by otworzyæ sklep i sprzedawaæ przedmioty innym
+- ...lub sklepy NPC
+- ... lub brak sklepów :D
+- du¿o questów (trzeba zrobiæ user-friendly system qestów)
+
+- blablala...
+
+
+3) INFO
+
+http://warsztat.gd/wiki/Projektowanie+gry+RPG
