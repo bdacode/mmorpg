@@ -1,0 +1,42 @@
+###### 1) ZMIENNE LOKALNE
+
+int liczba;
+string ciagZnakow;
+
+
+
+###### 2) ZMIENNE GLOBALNE
+
+int g_liczba;
+string g_ciagZnakow;
+
+
+
+###### 3) KLASY
+
+class CKlasaJakas {
+   int prywatnaLiczba;
+   
+   public:
+   int publicznaLiczba;
+};
+
+
+
+###### 4) FUNKCJE
+
+void funkcjaJakas() {
+}
+
+
+
+###### 5) KONTENERY
+
+vector <foo> v_foo;
+
+
+
+###### 6) WCIÊCIA
+
+if(foo) {
+}
