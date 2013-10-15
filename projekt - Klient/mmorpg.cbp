@@ -7,8 +7,8 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/mmorpg" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option output="bin\Debug\mmorpg" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -16,8 +16,8 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/mmorpg" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+				<Option output="bin\Release\mmorpg" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -31,8 +31,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
-			<Add directory="../../allegro-5.0.10-mingw-4.7.0/include" />
-			<Add directory="../../enet-1.3.9/include" />
+			<Add directory="..\..\allegro-5.0.10-mingw-4.7.0\include" />
+			<Add directory="..\..\enet-1.3.9\include" />
 		</Compiler>
 		<Linker>
 			<Add library="liballegro_acodec-5.0.10-mt.a" />
@@ -44,12 +44,14 @@
 			<Add library="liballegro_ttf-5.0.10-mt.a" />
 			<Add library="liballegro-5.0.10-mt.a" />
 			<Add library="libenet.a" />
-			<Add directory="../../allegro-5.0.10-mingw-4.7.0/lib" />
-			<Add directory="../../enet-1.3.9/bin/Release" />
+			<Add directory="..\..\allegro-5.0.10-mingw-4.7.0\lib" />
+			<Add directory="..\..\enet-1.3.9\bin\Release" />
 		</Linker>
 		<Unit filename="CMain.h" />
 		<Unit filename="bitmap.cpp" />
 		<Unit filename="bitmap.h" />
+		<Unit filename="gui.cpp" />
+		<Unit filename="gui.hpp" />
 		<Unit filename="input.cpp" />
 		<Unit filename="input.h" />
 		<Unit filename="logger.cpp" />

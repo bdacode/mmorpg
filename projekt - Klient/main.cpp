@@ -3,6 +3,8 @@
 #include "input.h"
 #include "logger.h"
 
+#include "gui.hpp"
+
 CKeyboard key;
 CMouse mouse;
 
@@ -69,6 +71,9 @@ int main(int argc, char * argv[]){
     ENetHost * client;
     ENetEvent event;
     ENetAddress address;
+
+    /*variables game*/
+    cButton test(100, 50, "Wyslij");
 
     /***over variables***/
 
@@ -167,6 +172,9 @@ int main(int argc, char * argv[]){
             }
 
             if(GameMode==gm_gameplay){
+                /***UPDATE***/
+                test.update();
+
                 /***PLAYER_INSTRUCTION***/
                 if(key.Press(ALLEGRO_KEY_UP)){
                     message="UP";
@@ -179,9 +187,20 @@ int main(int argc, char * argv[]){
 
                     cout << "\nWYSLANO 'UP'";
                 }
+                if(test.get_click()){
+                    message="CLICK";
+                    ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                    enet_peer_send(peer, 0, p);
+                    //serviceResult = enet_host_service(client, &event, 1000);
+                    enet_host_flush(client);
+
+                    serviceResult = enet_host_service(client, &event, 1000);
+
+                    cout << "\nWYSLANO KLIKNIÊCIE BUTTONA TEST!";
+                }
             }
             /***DRAW***/
-
+            test.draw();
 
             al_flip_display();
 
