@@ -36,7 +36,10 @@ vector <foo> v_foo;
 
 
 
-###### 6) WCIÊCIA
+###### 6) INSTRUKCJE WARUNKOWE
 
 if(foo) {
+}
+
+if(!foo) {
 }
