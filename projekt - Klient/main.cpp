@@ -12,7 +12,9 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-string serverIP = "25.193.13.94";
+string serverIP = "25.56.234.57";
+    ///25.56.234.57 - Rhagui
+    ///25.193.13.94 - SeaMonster131
 
 /*
 wysylanie np:
@@ -62,7 +64,7 @@ int main(int argc, char * argv[]){
     }
     /***variables***/
     int serviceResult=1;
-    char* message="Witaj serwerze ! :)";
+    char* message="Hello server! :)";
 
     ENetHost * client;
     ENetEvent event;
@@ -138,7 +140,7 @@ int main(int argc, char * argv[]){
                     break;
 
                 case ENET_EVENT_TYPE_RECEIVE:
-                    printf("A packet of length %u containing '%s' was received from %s on channel %u.\n",
+                    printf("\nA packet of length %u containing '%s' was received from %s on channel %u.\n",
                         event.packet -> dataLength,
                         event.packet -> data,
                         event.peer -> data,

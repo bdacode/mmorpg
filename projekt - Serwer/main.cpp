@@ -12,7 +12,6 @@ bool receive(enet_uint8* wiad, char* wiad2) {
     for(int i = 0; i < strlen(wiad2); ++i)
         if(wiad[i] != wiad2[i])
             return false;
-
     return true;
 }
 
@@ -27,6 +26,7 @@ int main(int argc, char ** argv){
     /***variables***/
     ENetEvent event;
     int serviceResult = 1;
+    int ID=1;
 
     ENetAddress address;
     ENetHost * server;
@@ -42,19 +42,11 @@ int main(int argc, char ** argv){
     }
     printf("\nSERVER START\n");
 
-    int ID = 1;
     while(1){
-        serviceResult = 1;
+        serviceResult=1;
 
         while(serviceResult>0){
             serviceResult = enet_host_service(server, &event, 1000); //1000 milisekund
-
-            /*if(serviceResult <= 0)
-            {
-                puts("Error with servicing the server");
-                exit(EXIT_FAILURE);
-            }*/
-
             switch (event.type){
                 case ENET_EVENT_TYPE_CONNECT:{
                     printf ("\nA new client connected from %x:%u.\n", event.peer -> address.host, event.peer -> address.port);
@@ -62,10 +54,6 @@ int main(int argc, char ** argv){
                     //event.peer->data = (void*)ID;
 
                     //++ID;
-
-                    //message = "Hello my friend :D";
-                    //ENetPacket *packet = enet_packet_create (message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                    //enet_peer_send(event.peer, 0, packet);
                 }
                 break;
 
@@ -73,32 +61,13 @@ int main(int argc, char ** argv){
                     printf ("\nDOSTANO: '%s', client [%s], kanal [%u].", //event.packet -> dataLength,
                             event.packet -> data, event.peer -> data, event.channelID);
 
-                    //event.packet->data
-
-                    //if(event.packet->data[0] == 'U' && event.packet->data[1] == 'P') std::cout << "HAAAAAAAAAAAAAA!";
-
                     if(receive(event.packet->data, "UP")) {
-                        char message[] = "Klient nacisnal UP";
+                        char message[] = "Klient nacisnal klawisz 'UP'!\n";
                         ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                        //enet_peer_send(peer, 0, p);
-                        //enet_host_flush(client);
 
                         enet_host_broadcast(server, 0, p);
-                        //enet_host_flush(server);
                         cout << "\nWYSLANO";
                     }
-
-                    /*ENetAddress add;
-                    add.host = event.peer->address.host;
-                    add.port = event.peer->address.port;
-
-                    ENetPeer* peer = enet_host_connect(server, &add, 2, 0);
-
-                    char mess[] = "elo";
-                    ENetPacket *packet = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
-                    enet_peer_send(peer, 0, packet);
-
-                    enet_host_flush (server);*/
 
                     /// wiadomosc do wszystkich:
                     //enet_host_broadcast(server, 0, event.packet);

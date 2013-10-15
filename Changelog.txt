@@ -1,0 +1,13 @@
+13.10.13 (Bez wersji):
+ - Za³o¿enie projektu.
+ - Pierwsze pomys³y.
+
+14.10.13 (Alpha 0.1):
+ - Dalsze dyskusje i pomys³y.
+ - Udostêpnienie aplikacji na Github.
+ - Stworzenie zal¹¿ków Servera i Klienta.
+ - Wysy³anie danych Klient->Server.
+
+15.10.13 (Alpha 0.1):
+ - Poprawki w kodzie i jego segregacja.
+ - Wysy³anie danych Klient<->Server.
