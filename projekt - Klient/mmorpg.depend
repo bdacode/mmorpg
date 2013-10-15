@@ -936,3 +936,17 @@
 1381860845 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\bitmap.cpp
 	"bitmap.h"
 
+1381866687 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.cpp
+	"gui.hpp"
+
+1381866437 c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.hpp
+	"main.h"
+	"bitmap.h"
+	"input.h"
+
+1381866279 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\main.cpp
+	"main.h"
+	"input.h"
+	"logger.h"
+	"gui.hpp"
+
