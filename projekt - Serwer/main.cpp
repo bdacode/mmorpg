@@ -69,6 +69,14 @@ int main(int argc, char ** argv){
                         cout << "\nWYSLANO";
                     }
 
+                    if(receive(event.packet->data, "sendMeMap")) {
+                        char message[] = "5x10";
+                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+
+                        enet_host_broadcast(server, 0, p);
+                        cout << "\nWYSLANO MAPE";
+                    }
+
                     /// wiadomosc do wszystkich:
                     //enet_host_broadcast(server, 0, event.packet);
 

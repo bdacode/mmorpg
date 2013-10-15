@@ -4,6 +4,7 @@
 #include "logger.h"
 
 #include "gui.hpp"
+#include "map.h"
 
 CKeyboard key;
 CMouse mouse;
@@ -14,9 +15,9 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-string serverIP = "25.56.234.57";
-    ///25.56.234.57 - Rhagui
-    ///25.193.13.94 - SeaMonster131
+//string serverIP = "25.56.234.57"; // Rhagui
+//string serverIP = "25.193.13.94"; // SeaMonster131
+string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /*
 wysylanie np:
@@ -118,12 +119,55 @@ int main(int argc, char * argv[]){
 
     al_start_timer(timer);
 
-    logger << "START: Game Loop";
+    logger << "INIT: map";
 
+    /**
+    message = "sendMeMap";
     ENetPacket *packet = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
     enet_peer_send(peer, 0, packet);
 
     serviceResult = enet_host_service(client, &event, 1000);
+
+    string map_w="", map_h="";
+    int end = 0;
+    if(event.type == ENET_EVENT_TYPE_RECEIVE)
+    {
+        bool byloX = false;
+        for(int i = 0; i < event.packet->dataLength; ++i)
+        {
+            if(event.packet->data[i] == ' ')
+            {
+                end = i;
+                break;
+            }
+
+            if(event.packet->data[i] != 'x')
+            {
+                if(!byloX) {
+                    map_w.resize(1);
+                    map_w[i] = event.packet->data[i];
+                }
+                else {
+                    map_h.resize(1);
+                    map_h[i] = event.packet->data[i];
+                }
+            }
+            else
+                byloX = true;
+        }
+    }
+
+    int map_wInt, map_hInt;
+    cout << "\n### MAPA: " << map_w << "x" << map_h;
+
+    //itoa(map_wInt, map_w, 10);
+    //itoa(map_hInt, map_h, 10);
+
+    //CMap* map = new CMap(map_wInt, map_hInt);
+
+    **/
+
+    logger << "START: Game Loop";
 
     GameMode = gm_gameplay;
     while(1)

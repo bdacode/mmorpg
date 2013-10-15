@@ -579,10 +579,12 @@
 1363441998 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\logger.cpp
 	"logger.h"
 
-1381860442 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\main.cpp
+1381871654 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\main.cpp
 	"main.h"
 	"input.h"
 	"logger.h"
+	"gui.hpp"
+	"map.h"
 
 1376885136 c:\users\jakub\documents\github\enet-1.3.9\include\enet\enet.h
 	<stdlib.h>
@@ -949,4 +951,26 @@
 	"input.h"
 	"logger.h"
 	"gui.hpp"
+
+1381868438 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\gui.cpp
+	"gui.hpp"
+
+1381868438 c:\users\jakub\documents\github\mmorpg\projekt - klient\gui.hpp
+	"main.h"
+	"bitmap.h"
+	"input.h"
+
+1381869276 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\tile.cpp
+	"tile.h"
+
+1381869395 c:\users\jakub\documents\github\mmorpg\projekt - klient\tile.h
+
+1381869733 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\map.cpp
+	"map.h"
+
+1381870462 c:\users\jakub\documents\github\mmorpg\projekt - klient\map.h
+	"main.h"
+	"bitmap.h"
+	"input.h"
+	"tile.h"
 
