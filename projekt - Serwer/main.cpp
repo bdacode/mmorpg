@@ -6,6 +6,16 @@
 #define PORT 1234
 #define MAX_CLIENTS 32
 
+using namespace std;
+
+bool receive(enet_uint8* wiad, char* wiad2) {
+    for(int i = 0; i < strlen(wiad2); ++i)
+        if(wiad[i] != wiad2[i])
+            return false;
+
+    return true;
+}
+
 int main(int argc, char ** argv){
     system("title SERWER");
 
@@ -31,6 +41,8 @@ int main(int argc, char ** argv){
         exit(EXIT_FAILURE);
     }
     printf("\nSERVER START\n");
+
+    int ID = 1;
     while(1){
         serviceResult = 1;
 
@@ -47,6 +59,9 @@ int main(int argc, char ** argv){
                 case ENET_EVENT_TYPE_CONNECT:{
                     printf ("\nA new client connected from %x:%u.\n", event.peer -> address.host, event.peer -> address.port);
                     event.peer -> data = (void*)"Client information";
+                    //event.peer->data = (void*)ID;
+
+                    //++ID;
 
                     //message = "Hello my friend :D";
                     //ENetPacket *packet = enet_packet_create (message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
@@ -58,16 +73,32 @@ int main(int argc, char ** argv){
                     printf ("\nDOSTANO: '%s', client [%s], kanal [%u].", //event.packet -> dataLength,
                             event.packet -> data, event.peer -> data, event.channelID);
 
-                    //if(event.packet->data == (char*)"KLAWISZ_UP") {
-                    //if(strcmp((char*)event.packet->data, "KLAWISZ_UP"))
-                    //    std::cout << "\nKLIENT nacisnal UP";
-                    //int l;
-                    //std::string data;
-                    //sscanf((char*)event.packet->data, "%d %s", &l, data);
+                    //event.packet->data
 
-                    //if(data == "KLAWISZ_UP")
-                    //    std::cout << "\nKLIENT nacisnal klawisz up";
+                    //if(event.packet->data[0] == 'U' && event.packet->data[1] == 'P') std::cout << "HAAAAAAAAAAAAAA!";
 
+                    if(receive(event.packet->data, "UP")) {
+                        char message[] = "Klient nacisnal UP";
+                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                        //enet_peer_send(peer, 0, p);
+                        //enet_host_flush(client);
+
+                        enet_host_broadcast(server, 0, p);
+                        //enet_host_flush(server);
+                        cout << "\nWYSLANO";
+                    }
+
+                    /*ENetAddress add;
+                    add.host = event.peer->address.host;
+                    add.port = event.peer->address.port;
+
+                    ENetPeer* peer = enet_host_connect(server, &add, 2, 0);
+
+                    char mess[] = "elo";
+                    ENetPacket *packet = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
+                    enet_peer_send(peer, 0, packet);
+
+                    enet_host_flush (server);*/
 
                     /// wiadomosc do wszystkich:
                     //enet_host_broadcast(server, 0, event.packet);

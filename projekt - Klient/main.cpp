@@ -12,7 +12,7 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-string serverIP = "localhost";
+string serverIP = "25.193.13.94";
 
 /*
 wysylanie np:
@@ -85,7 +85,7 @@ int main(int argc, char * argv[]){
         exit(EXIT_FAILURE);
     }
 
-    if(enet_host_service(client, &event, 5000)>0 && event.type == ENET_EVENT_TYPE_CONNECT){
+    if(enet_host_service(client, &event, 5000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT){
         string mes = "Polaczono do serwera [ "+serverIP+" ]";
         logger << mes;
     }else{
@@ -144,6 +144,8 @@ int main(int argc, char * argv[]){
                         event.peer -> data,
                         event.channelID);
 
+                    serviceResult = 0;
+
                     enet_packet_destroy (event.packet);
                     break;
 
@@ -165,13 +167,15 @@ int main(int argc, char * argv[]){
             if(GameMode==gm_gameplay){
                 /***PLAYER_INSTRUCTION***/
                 if(key.Press(ALLEGRO_KEY_UP)){
-                    message="KLAWISZ_UP";
-                    ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                    message="UP";
+                    ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
                     enet_peer_send(peer, 0, p);
                     //serviceResult = enet_host_service(client, &event, 1000);
                     enet_host_flush(client);
 
-                    cout << "\nWYSLANO 'KLAWISZ_UP'";
+                    serviceResult = enet_host_service(client, &event, 1000);
+
+                    cout << "\nWYSLANO 'UP'";
                 }
             }
             /***DRAW***/
