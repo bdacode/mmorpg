@@ -11,6 +11,7 @@ class CTile {
     inline int getX() { return x; }
     inline int getY() { return y; }
     inline int getID() { return ID; }
+    inline void setID(int id) { ID=id; }
 };
 
 

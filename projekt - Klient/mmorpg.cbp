@@ -60,6 +60,8 @@
 		<Unit filename="main.h" />
 		<Unit filename="map.cpp" />
 		<Unit filename="map.h" />
+		<Unit filename="player.cpp" />
+		<Unit filename="player.h" />
 		<Unit filename="tile.cpp" />
 		<Unit filename="tile.h" />
 		<Extensions>
