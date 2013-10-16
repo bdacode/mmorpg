@@ -12,7 +12,7 @@ class cButton{
     public:
         cButton(int, int, string);
 
-        bool get_click(){return click;}
+        inline bool get_click(){return click;}
 
         void update();
         void draw();

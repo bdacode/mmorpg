@@ -1,12 +1,11 @@
 #ifndef TILE_H_INCLUDED
 #define TILE_H_INCLUDED
 
-class CTile
-{
+class CTile{
     int x,y, ID;
     bool isCollide;
 
-public:
+    public:
     CTile();
 
     inline int getX() { return x; }

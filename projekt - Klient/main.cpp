@@ -15,9 +15,9 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-//string serverIP = "25.56.234.57"; // Rhagui
+string serverIP = "25.56.234.57"; // Rhagui
 //string serverIP = "25.193.13.94"; // SeaMonster131
-string serverIP = "192.168.0.102"; // SeaMonster131 (2)
+//string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /*
 wysylanie np:
@@ -220,11 +220,13 @@ int main(int argc, char * argv[]){
                 test.update();
 
                 /***PLAYER_INSTRUCTION***/
+                if(key.Press(ALLEGRO_KEY_ESCAPE))
+                    break;
+
                 if(key.Press(ALLEGRO_KEY_UP)){
                     message="UP";
                     ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
                     enet_peer_send(peer, 0, p);
-                    //serviceResult = enet_host_service(client, &event, 1000);
                     enet_host_flush(client);
 
                     serviceResult = enet_host_service(client, &event, 1000);
@@ -235,7 +237,6 @@ int main(int argc, char * argv[]){
                     message="CLICK";
                     ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
                     enet_peer_send(peer, 0, p);
-                    //serviceResult = enet_host_service(client, &event, 1000);
                     enet_host_flush(client);
 
                     serviceResult = enet_host_service(client, &event, 1000);
@@ -247,9 +248,6 @@ int main(int argc, char * argv[]){
             test.draw();
 
             al_flip_display();
-
-            if(key.Press(ALLEGRO_KEY_ESCAPE))
-                break;
         }
         else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
             break;

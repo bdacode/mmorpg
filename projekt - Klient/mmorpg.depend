@@ -938,19 +938,20 @@
 1381860845 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\bitmap.cpp
 	"bitmap.h"
 
-1381866687 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.cpp
+1381867859 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.cpp
 	"gui.hpp"
 
-1381866437 c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.hpp
+1381931460 c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.hpp
 	"main.h"
 	"bitmap.h"
 	"input.h"
 
-1381866279 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\main.cpp
+1381933020 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\main.cpp
 	"main.h"
 	"input.h"
 	"logger.h"
 	"gui.hpp"
+	"map.h"
 
 1381868438 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\gui.cpp
 	"gui.hpp"
@@ -972,5 +973,19 @@
 	"main.h"
 	"bitmap.h"
 	"input.h"
+	"tile.h"
+
+1381931780 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\map.cpp
+	"map.h"
+
+1381931789 c:\users\marcin\documents\github\mmorpg\projekt - klient\map.h
+	"main.h"
+	"bitmap.h"
+	"input.h"
+	"tile.h"
+
+1381931735 c:\users\marcin\documents\github\mmorpg\projekt - klient\tile.h
+
+1381931725 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\tile.cpp
 	"tile.h"
 

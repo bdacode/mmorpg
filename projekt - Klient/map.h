@@ -6,12 +6,11 @@
 #include "input.h"
 #include "tile.h"
 
-class CMap
-{
+class CMap{
     int w, h;
     CTile** map;
 
-public:
+    public:
     CMap();
     CMap(int,int);
     ~CMap();
