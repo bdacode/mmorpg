@@ -1,6 +1,6 @@
 #include "tile.h"
 
-CTile::CTile(){
+CTile::CTile() {
     x = y = ID = 0;
     isCollide = false;
 }

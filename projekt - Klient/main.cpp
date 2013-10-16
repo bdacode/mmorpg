@@ -15,9 +15,9 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-string serverIP = "25.56.234.57"; // Rhagui
+//string serverIP = "25.56.234.57"; // Rhagui
 //string serverIP = "25.193.13.94"; // SeaMonster131
-//string serverIP = "192.168.0.102"; // SeaMonster131 (2)
+string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /*
 wysylanie np:
@@ -121,7 +121,6 @@ int main(int argc, char * argv[]){
 
     logger << "INIT: map";
 
-    /**
     message = "sendMeMap";
     ENetPacket *packet = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
     enet_peer_send(peer, 0, packet);
@@ -130,10 +129,11 @@ int main(int argc, char * argv[]){
 
     string map_w="", map_h="";
     int end = 0;
+    int index = 0;
     if(event.type == ENET_EVENT_TYPE_RECEIVE)
     {
         bool byloX = false;
-        for(int i = 0; i < event.packet->dataLength; ++i)
+        for(int i = 0; i < event.packet->dataLength-1; ++i)
         {
             if(event.packet->data[i] == ' ')
             {
@@ -144,28 +144,29 @@ int main(int argc, char * argv[]){
             if(event.packet->data[i] != 'x')
             {
                 if(!byloX) {
-                    map_w.resize(1);
-                    map_w[i] = event.packet->data[i];
+                    map_w.resize(map_w.size()+1);
+                    map_w[index] = event.packet->data[i];
+                    ++index;
                 }
                 else {
-                    map_h.resize(1);
-                    map_h[i] = event.packet->data[i];
+                    map_h.resize(map_h.size()+1);
+                    map_h[index] = event.packet->data[i];
+                    ++index;
                 }
             }
-            else
+            else {
+                index = 0;
                 byloX = true;
+            }
         }
     }
 
-    int map_wInt, map_hInt;
-    cout << "\n### MAPA: " << map_w << "x" << map_h;
+    int map_wInt = atoi(map_w.c_str()),
+        map_hInt = atoi(map_h.c_str());
 
-    //itoa(map_wInt, map_w, 10);
-    //itoa(map_hInt, map_h, 10);
+    CMap* map = new CMap(map_wInt, map_hInt);
 
-    //CMap* map = new CMap(map_wInt, map_hInt);
-
-    **/
+    map->load();
 
     logger << "START: Game Loop";
 
@@ -217,6 +218,8 @@ int main(int argc, char * argv[]){
 
             if(GameMode==gm_gameplay){
                 /***UPDATE***/
+                map->render();
+
                 test.update();
 
                 /***PLAYER_INSTRUCTION***/
@@ -229,7 +232,7 @@ int main(int argc, char * argv[]){
                     enet_peer_send(peer, 0, p);
                     enet_host_flush(client);
 
-                    serviceResult = enet_host_service(client, &event, 1000);
+                    serviceResult = enet_host_service(client, &event, 100);
 
                     cout << "\nWYSLANO 'UP'";
                 }
@@ -239,7 +242,7 @@ int main(int argc, char * argv[]){
                     enet_peer_send(peer, 0, p);
                     enet_host_flush(client);
 
-                    serviceResult = enet_host_service(client, &event, 1000);
+                    serviceResult = enet_host_service(client, &event, 100);
 
                     cout << "\nWYSLANO KLIKNIÊCIE BUTTONA TEST!";
                 }

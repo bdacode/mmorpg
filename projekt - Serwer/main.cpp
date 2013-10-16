@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdio>
 #include <enet/enet.h>
+#include <fstream>
 
 #define PORT 1234
 #define MAX_CLIENTS 32
@@ -30,6 +31,25 @@ int main(int argc, char ** argv){
 
     ENetAddress address;
     ENetHost * server;
+
+    string mapa;
+
+    fstream file("map.txt", ios::in);
+    if(!file.good())
+        cout << "\nI can't find map!";
+    else {
+        /*string size_map="", size_w, size_h;
+        file >> size_map;
+        size_t pos = size_map.find('x');
+        if(pos != string::npos) {
+            size_w = size_map.substr(0, pos);
+            size_h = size_map.substr(pos);
+        }
+        pos = size_map.find(' ');
+        mapa = size_map.substr(pos);*/
+
+        getline(file, mapa);
+    }
 
     /***over variables***/
 
@@ -70,8 +90,8 @@ int main(int argc, char ** argv){
                     }
 
                     if(receive(event.packet->data, "sendMeMap")) {
-                        char message[] = "5x10";
-                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                        //char message[mapa.size()] = mapa.c_str();
+                        ENetPacket *p = enet_packet_create(mapa.c_str(), mapa.size()+1, ENET_PACKET_FLAG_RELIABLE);
 
                         enet_host_broadcast(server, 0, p);
                         cout << "\nWYSLANO MAPE";
