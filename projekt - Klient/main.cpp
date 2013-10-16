@@ -15,9 +15,9 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-//string serverIP = "25.56.234.57"; // Rhagui
+string serverIP = "25.56.234.57"; // Rhagui
 //string serverIP = "25.193.13.94"; // SeaMonster131
-string serverIP = "192.168.0.102"; // SeaMonster131 (2)
+//string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /*
 wysylanie np:

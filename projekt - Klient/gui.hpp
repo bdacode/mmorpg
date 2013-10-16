@@ -23,6 +23,7 @@ class cButton{
         string name;
 
         bool orWait; int waiting;
+        bool pressed;
 
         ALLEGRO_FONT* font_button;
 };

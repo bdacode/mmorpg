@@ -17,7 +17,7 @@ class CMap {
 
     inline int getWidth() { return w; }
     inline int getHeight() { return h; }
-    inline int getTileID(int x,int y) { return map[x][y].getID(); }
+    inline int getTileID(int x, int y) { return map[x][y].getID(); }
 
     void load();
     void render();
