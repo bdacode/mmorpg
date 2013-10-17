@@ -26,6 +26,11 @@ CMap::~CMap() {
     delete[] map;
 }
 
+void CMap::getMap(string file)
+{
+    cout << "\nFILE: " << file;
+}
+
 ALLEGRO_BITMAP* TILE_terrain[2];
 
 void CMap::load() {

@@ -15,8 +15,8 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-string serverIP = "25.56.234.57"; // Rhagui
-//string serverIP = "25.193.13.94"; // SeaMonster131
+//string serverIP = "25.56.234.57"; // Rhagui
+string serverIP = "25.193.13.94"; // SeaMonster131
 //string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /*
@@ -166,6 +166,13 @@ int main(int argc, char * argv[]){
 
     CMap* map = new CMap(map_wInt, map_hInt);
 
+    string map_file = "";
+
+    for(int i = end; i < event.packet->dataLength-1; ++i) {
+        map_file.resize(map_file.size()+1);
+        map_file[i-end] = event.packet->data[i];
+    }
+    map->getMap(map_file);
     map->load();
 
     logger << "START: Game Loop";
