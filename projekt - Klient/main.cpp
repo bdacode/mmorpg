@@ -5,6 +5,7 @@
 
 #include "gui.hpp"
 #include "map.h"
+#include "player.h"
 
 CKeyboard key;
 CMouse mouse;
@@ -45,6 +46,29 @@ if(strlen(message) > 0) {
                              0);          // user data supplied to the receiving host //
 */
 
+
+/// globalne funkcje, zebym nie musial ich dawac jako argumenty funkcji sendToServer()
+int serviceResult=1;
+//char* message="Hello server! :)";
+
+ENetHost * client;
+ENetEvent event;
+ENetPeer* peer;
+
+void sendToServer(char* message) {
+    ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+    enet_peer_send(peer, 0, p);
+    enet_host_flush(client);
+    serviceResult = enet_host_service(client, &event, 100);
+}
+
+bool receive(enet_uint8* wiad, char* wiad2) {
+    for(int i = 0; i < strlen(wiad2); ++i)
+        if(wiad[i] != wiad2[i])
+            return false;
+    return true;
+}
+
 void updateFPS(bool);
 enum gameMode{gm_gameplay = 0, gm_menu = 1} GameMode;
 
@@ -66,11 +90,6 @@ int main(int argc, char * argv[]){
         return EXIT_FAILURE;
     }
     /***variables***/
-    int serviceResult=1;
-    char* message="Hello server! :)";
-
-    ENetHost * client;
-    ENetEvent event;
     ENetAddress address;
 
     /*variables game*/
@@ -87,7 +106,7 @@ int main(int argc, char * argv[]){
     enet_address_set_host(&address, serverIP.c_str());
     address.port = PORT;
 
-    ENetPeer* peer = enet_host_connect(client, &address, 2, 0);
+    peer = enet_host_connect(client, &address, 2, 0);
     if(peer==NULL){
         logger << "ERROR: Nie ma dostepnego polaczenia do serwera.";
         exit(EXIT_FAILURE);
@@ -121,11 +140,7 @@ int main(int argc, char * argv[]){
 
     logger << "INIT: map";
 
-    message = "sendMeMap";
-    ENetPacket *packet = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-    enet_peer_send(peer, 0, packet);
-
-    serviceResult = enet_host_service(client, &event, 1000);
+    sendToServer("sendMeMap");
 
     string map_w="", map_h="";
     int end = 0;
@@ -175,6 +190,8 @@ int main(int argc, char * argv[]){
     map->getMapFromString(map_file);
     map->load();
 
+    CPlayer player;
+
     logger << "START: Game Loop";
 
     GameMode = gm_gameplay;
@@ -197,11 +214,16 @@ int main(int argc, char * argv[]){
                     break;
 
                 case ENET_EVENT_TYPE_RECEIVE:
-                    printf("\nA packet of length %u containing '%s' was received from %s on channel %u.\n",
-                        event.packet -> dataLength,
-                        event.packet -> data,
-                        event.peer -> data,
-                        event.channelID);
+                    //printf("\nA packet of length %u containing '%s' was received from %s on channel %u.\n",
+                    //    event.packet -> dataLength,
+                    //    event.packet -> data,
+                    //    event.peer -> data,
+                    //    event.channelID);
+
+                    if(receive(event.packet->data, "can_go_up")) player.pos.y--;
+                    if(receive(event.packet->data, "can_go_down")) player.pos.y++;
+                    if(receive(event.packet->data, "can_go_left")) player.pos.x--;
+                    if(receive(event.packet->data, "can_go_right")) player.pos.x++;
 
                     serviceResult = 0;
 
@@ -226,6 +248,7 @@ int main(int argc, char * argv[]){
             if(GameMode==gm_gameplay){
                 /***UPDATE***/
                 map->render();
+                player.render();
 
                 test.update();
 
@@ -233,25 +256,20 @@ int main(int argc, char * argv[]){
                 if(key.Press(ALLEGRO_KEY_ESCAPE))
                     break;
 
-                if(key.Press(ALLEGRO_KEY_UP)){
-                    message="UP";
-                    ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                    enet_peer_send(peer, 0, p);
-                    enet_host_flush(client);
+                if(key.Press(ALLEGRO_KEY_W)) sendToServer("key_W");
+                if(key.Press(ALLEGRO_KEY_S)) sendToServer("key_S");
+                if(key.Press(ALLEGRO_KEY_A)) sendToServer("key_A");
+                if(key.Press(ALLEGRO_KEY_D)) sendToServer("key_D");
 
-                    serviceResult = enet_host_service(client, &event, 100);
 
-                    cout << "\nWYSLANO 'UP'";
-                }
                 if(test.get_click()){
-                    message="CLICK";
+                    /*message="CLICK";
                     ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
                     enet_peer_send(peer, 0, p);
                     enet_host_flush(client);
 
-                    serviceResult = enet_host_service(client, &event, 100);
-
-                    cout << "\nWYSLANO KLIKNIÊCIE BUTTONA TEST!";
+                    serviceResult = enet_host_service(client, &event, 100);*/
+                    sendToServer("klikniecie buttona");
                 }
             }
             /***DRAW***/

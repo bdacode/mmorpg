@@ -1,6 +1,8 @@
 #ifndef PLAYER_H_INCLUDED
 #define PLAYER_H_INCLUDED
 
+#include "main.h"
+
 struct SPos {
     int x, y;
 };

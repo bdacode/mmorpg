@@ -78,16 +78,9 @@ int main(int argc, char ** argv){
                 break;
 
                 case ENET_EVENT_TYPE_RECEIVE:{
-                    printf ("\nDOSTANO: '%s', client [%s], kanal [%u].", //event.packet -> dataLength,
-                            event.packet -> data, event.peer -> data, event.channelID);
+                    //printf ("\nDOSTANO: '%s', client [%s], kanal [%u].", //event.packet -> dataLength,
+                    //        event.packet -> data, event.peer -> data, event.channelID);
 
-                    if(receive(event.packet->data, "UP")) {
-                        char message[] = "Klient nacisnal klawisz 'UP'!\n";
-                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-
-                        enet_host_broadcast(server, 0, p);
-                        cout << "\nWYSLANO";
-                    }
                     if(receive(event.packet->data, "CLICK")) {
                         char message[] = "Klient nacisnal przycisk!\n";
                         ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
@@ -97,11 +90,35 @@ int main(int argc, char ** argv){
                     }
 
                     if(receive(event.packet->data, "sendMeMap")) {
-                        //char message[mapa.size()] = mapa.c_str();
                         ENetPacket *p = enet_packet_create(mapa.c_str(), mapa.size()+1, ENET_PACKET_FLAG_RELIABLE);
 
                         enet_host_broadcast(server, 0, p);
                         cout << "\nWYSLANO MAPE";
+                    }
+
+                    if(receive(event.packet->data, "key_W")) {
+                        // .... TODO
+                        char message[] = "can_go_up";
+                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                        enet_host_broadcast(server, 0, p);
+                    }
+                    if(receive(event.packet->data, "key_S")) {
+                        // .... TODO
+                        char message[] = "can_go_down";
+                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                        enet_host_broadcast(server, 0, p);
+                    }
+                    if(receive(event.packet->data, "key_A")) {
+                        // .... TODO
+                        char message[] = "can_go_left";
+                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                        enet_host_broadcast(server, 0, p);
+                    }
+                    if(receive(event.packet->data, "key_D")) {
+                        // .... TODO
+                        char message[] = "can_go_right";
+                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                        enet_host_broadcast(server, 0, p);
                     }
 
                     /// wiadomosc do wszystkich:
