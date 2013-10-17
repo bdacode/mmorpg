@@ -14,9 +14,9 @@ CMap::CMap(int w, int h)
         map[i] = new CTile[h];
 
     // DEBUG
-    for(int x = 0; x < w; ++x)
-        for(int y = 0; y < h; ++y)
-            map[x][y].setID(0);
+    //for(int x = 0; x < w; ++x)
+    //    for(int y = 0; y < h; ++y)
+    //        map[x][y].setID(0);
 }
 
 CMap::~CMap() {
@@ -26,9 +26,25 @@ CMap::~CMap() {
     delete[] map;
 }
 
-void CMap::getMap(string file)
+void CMap::getMapFromString(string file)
 {
-    cout << "\nFILE: " << file;
+    string tile = "";
+    int index = 0, x = 0, y = 0;
+    for(int i = 0; i < file.size(); ++i)
+        if(file[i] != ' ') {
+            tile.resize(tile.size()+1);
+            tile[index] = file[i];
+            ++index;
+        }
+        else {
+            map[x][y].setID(atoi(tile.c_str()));
+            ++x;
+            if(x >= w) {
+                x = 0;
+                ++y;
+            }
+            index = 0;
+        }
 }
 
 ALLEGRO_BITMAP* TILE_terrain[2];

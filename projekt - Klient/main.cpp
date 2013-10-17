@@ -172,7 +172,7 @@ int main(int argc, char * argv[]){
         map_file.resize(map_file.size()+1);
         map_file[i-end] = event.packet->data[i];
     }
-    map->getMap(map_file);
+    map->getMapFromString(map_file);
     map->load();
 
     logger << "START: Game Loop";
