@@ -795,49 +795,197 @@ START: Game Loop
 LOAD: allegro5
 INIT: allegro5
 INIT: ENet
+<<<<<<< HEAD
 Polaczono do serwera [ 192.168.0.102 ]
+=======
+ERROR: Nie mozna polaczyc sie z serwerem.
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
 START: Allegro5
 INIT: map
 START: Game Loop
 LOAD: allegro5
 INIT: allegro5
 INIT: ENet
-Polaczono do serwera [ 192.168.0.102 ]
+Polaczono do serwera [ 25.56.234.57 ]
 START: Allegro5
 INIT: map
 START: Game Loop
 LOAD: allegro5
 INIT: allegro5
 INIT: ENet
-Polaczono do serwera [ 192.168.0.102 ]
+Polaczono do serwera [ 25.56.234.57 ]
 START: Allegro5
 INIT: map
 START: Game Loop
 LOAD: allegro5
 INIT: allegro5
 INIT: ENet
-Polaczono do serwera [ 192.168.0.102 ]
+Polaczono do serwera [ 25.56.234.57 ]
 START: Allegro5
 INIT: map
 START: Game Loop
 LOAD: allegro5
 INIT: allegro5
 INIT: ENet
-Polaczono do serwera [ 192.168.0.102 ]
+Polaczono do serwera [ 25.56.234.57 ]
 START: Allegro5
 INIT: map
 START: Game Loop
 LOAD: allegro5
 INIT: allegro5
 INIT: ENet
-Polaczono do serwera [ 192.168.0.102 ]
+Polaczono do serwera [ 25.56.234.57 ]
 START: Allegro5
 INIT: map
 START: Game Loop
 LOAD: allegro5
 INIT: allegro5
 INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+>>>>>>> rughailon
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+<<<<<<< HEAD
 Polaczono do serwera [ 192.168.0.102 ]
+=======
+Polaczono do serwera [ 25.56.234.57 ]
+>>>>>>> rughailon
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+<<<<<<< HEAD
+Polaczono do serwera [ 192.168.0.102 ]
+=======
+Polaczono do serwera [ 25.56.234.57 ]
+>>>>>>> rughailon
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+<<<<<<< HEAD
+Polaczono do serwera [ 192.168.0.102 ]
+=======
+Polaczono do serwera [ 25.56.234.57 ]
+>>>>>>> rughailon
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+<<<<<<< HEAD
+Polaczono do serwera [ 192.168.0.102 ]
+=======
+Polaczono do serwera [ 25.56.234.57 ]
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+ERROR: Nie mozna polaczyc sie z serwerem.
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+Polaczono do serwera [ 25.56.234.57 ]
+>>>>>>> rughailon
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+<<<<<<< HEAD
+Polaczono do serwera [ 192.168.0.102 ]
+=======
+Polaczono do serwera [ 25.56.234.57 ]
+>>>>>>> rughailon
+START: Allegro5
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+<<<<<<< HEAD
+Polaczono do serwera [ 192.168.0.102 ]
+=======
+Polaczono do serwera [ 25.56.234.57 ]
+>>>>>>> rughailon
 START: Allegro5
 INIT: map
 START: Game Loop
