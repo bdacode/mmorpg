@@ -1,0 +1,10 @@
+http://forum.warsztat.gd/index.php?topic=22375.0
+http://gafferongames.com/networking-for-game-programmers/
+http://gafferongames.com/2013/01/09/why-theres-no-lag-in-god-of-war-ascension/
+
+POLECANE:
+https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking
+
+
+Ogl:
+pozycja wysy³ana co 1/3 sekundy, gdy pakiet od serwera nie doszed³ w jakimœ czasie (np 1 sekundy po wys³aniu), to postaæ wraca na poprzedni¹ pozycjê.
