@@ -88,6 +88,13 @@ int main(int argc, char ** argv){
                         enet_host_broadcast(server, 0, p);
                         cout << "\nWYSLANO";
                     }
+                    if(receive(event.packet->data, "CLICK")) {
+                        char message[] = "Klient nacisnal przycisk!\n";
+                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+
+                        enet_host_broadcast(server, 0, p);
+                        cout << "\nWYSLANO";
+                    }
 
                     if(receive(event.packet->data, "sendMeMap")) {
                         //char message[mapa.size()] = mapa.c_str();

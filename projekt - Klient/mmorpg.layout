@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="gui.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="708" topLine="13" />
+	<File name="gui.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="550" topLine="13" />
+	</File>
+	<File name="gui.hpp" open="1" top="0" tabpos="2">
+		<Cursor position="226" topLine="0" />
 	</File>
 	<File name="main.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="271" topLine="0" />
+		<Cursor position="141" topLine="0" />
 	</File>
-	<File name="map.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
+	<File name="map.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="379" topLine="26" />
 	</File>
-	<File name="tile.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
+	<File name="player.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="126" topLine="0" />
+	</File>
+	<File name="player.h" open="0" top="0" tabpos="0">
+		<Cursor position="302" topLine="0" />
+	</File>
+	<File name="tile.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="58" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
