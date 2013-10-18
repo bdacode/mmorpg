@@ -1591,3 +1591,55 @@ START: Game Loop
 Polaczono do serwera [ 25.193.13.94 ]
 INIT: map
 START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+ERROR: Nie mozna polaczyc sie z serwerem.
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+ERROR: Nie mozna polaczyc sie z serwerem.
