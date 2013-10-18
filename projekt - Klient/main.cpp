@@ -16,61 +16,21 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-//string serverIP = "25.56.234.57"; // Rhagui
-string serverIP = "25.193.13.94"; // SeaMonster131
+string serverIP = "25.56.234.57"; // Rhagui
+//string serverIP = "25.193.13.94"; // SeaMonster131
 //string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
-/*
-wysylanie np:
-
-char message[1024];
-
-if(strlen(message) > 0) {
-          ENetPacket *packet = enet_packet_create (message, strlen
- (message) + 1, ENET_PACKET_FLAG_RELIABLE);
-           enet_peer_send (peer, 0, packet);
-       }
-*/
-
-/*client = enet_host_create(NULL // create a client host //,
-                1 // only allow 1 outgoing connection //,
-                2 // allow up 2 channels to be used, 0 and 1 //,
-                57600 / 8 /* 56K modem with 56 Kbps downstream bandwidth //,
-                14400 / 8 /* 56K modem with 14 Kbps upstream bandwidth //);
-*/
-
-/*
-    ENetPeer* peer = enet_host_connect(client,
-                            &address,    // address to connect to //
-                             2,           // number of channels //
-                             0);          // user data supplied to the receiving host //
-*/
-
-
-/// globalne funkcje, zebym nie musial ich dawac jako argumenty funkcji sendToServer()
+/***GlobalVariables&Functions***/
 int serviceResult=1;
-//char* message="Hello server! :)";
 
 ENetHost * client;
 ENetEvent event;
 ENetPeer* peer;
 
-void sendToServer(char* message) {
-    ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-    enet_peer_send(peer, 0, p);
-    enet_host_flush(client);
-    serviceResult = enet_host_service(client, &event, 100);
-}
-
-bool receive(enet_uint8* wiad, char* wiad2) {
-    for(int i = 0; i < strlen(wiad2); ++i)
-        if(wiad[i] != wiad2[i])
-            return false;
-    return true;
-}
-
+void sendToServer(char* message);
+bool receive(enet_uint8* wiad, char* wiad2);
 void updateFPS(bool);
-enum gameMode{gm_gameplay = 0, gm_menu = 1} GameMode;
+enum gameMode{gm_menu=0, gm_gameplay=1} GameMode;
 
 int main(int argc, char * argv[]){
     logger.start("log.txt");
@@ -92,11 +52,18 @@ int main(int argc, char * argv[]){
     /***variables***/
     ENetAddress address;
 
-    /*variables game*/
-    cButton test(100, 50, "Wyslij");
+    string map_w="", map_h="";
+    string map_file = "";
+    int end=0, index=0;
+    int map_wInt, map_hInt;
+    bool byloX=false;
+
+    /*object*/
+    CPlayer player;
+    cButton test(0, 500, 100, 100, "send");
+    cButton quit(110, 570, 180, 30, "send", "quit");
 
     /***over variables***/
-
     client = enet_host_create(NULL, 1, 2, 57600/8, 14400/8);
     if(client == NULL){
         logger << "ERROR: Create ENet client host.";
@@ -139,25 +106,16 @@ int main(int argc, char * argv[]){
     al_start_timer(timer);
 
     logger << "INIT: map";
-
     sendToServer("sendMeMap");
 
-    string map_w="", map_h="";
-    int end = 0;
-    int index = 0;
-    if(event.type == ENET_EVENT_TYPE_RECEIVE)
-    {
-        bool byloX = false;
-        for(int i = 0; i < event.packet->dataLength-1; ++i)
-        {
-            if(event.packet->data[i] == ' ')
-            {
+    if(event.type == ENET_EVENT_TYPE_RECEIVE) {
+        for(int i = 0; i < event.packet->dataLength-1; ++i) {
+            if(event.packet->data[i] == ' ') {
                 end = i;
                 break;
             }
 
-            if(event.packet->data[i] != 'x')
-            {
+            if(event.packet->data[i] != 'x') {
                 if(!byloX) {
                     map_w.resize(map_w.size()+1);
                     map_w[index] = event.packet->data[i];
@@ -170,18 +128,15 @@ int main(int argc, char * argv[]){
                 }
             }
             else {
-                index = 0;
-                byloX = true;
+                index=0;
+                byloX=true;
             }
         }
     }
 
-    int map_wInt = atoi(map_w.c_str()),
-        map_hInt = atoi(map_h.c_str());
-
+    map_wInt = atoi(map_w.c_str()),
+    map_hInt = atoi(map_h.c_str());
     CMap* map = new CMap(map_wInt, map_hInt);
-
-    string map_file = "";
 
     for(int i = end; i < event.packet->dataLength-1; ++i) {
         map_file.resize(map_file.size()+1);
@@ -190,13 +145,10 @@ int main(int argc, char * argv[]){
     map->getMapFromString(map_file);
     map->load();
 
-    CPlayer player;
-
     logger << "START: Game Loop";
 
     GameMode = gm_gameplay;
-    while(1)
-    {
+    while(1) {
         al_wait_for_event(event_queue, &ev);
         al_get_keyboard_state(&klawiatura);
         al_get_mouse_state(&myszka);
@@ -214,17 +166,10 @@ int main(int argc, char * argv[]){
                     break;
 
                 case ENET_EVENT_TYPE_RECEIVE:
-                    //printf("\nA packet of length %u containing '%s' was received from %s on channel %u.\n",
-                    //    event.packet -> dataLength,
-                    //    event.packet -> data,
-                    //    event.peer -> data,
-                    //    event.channelID);
-
                     if(receive(event.packet->data, "can_go_up")) player.pos.y--;
                     if(receive(event.packet->data, "can_go_down")) player.pos.y++;
                     if(receive(event.packet->data, "can_go_left")) player.pos.x--;
                     if(receive(event.packet->data, "can_go_right")) player.pos.x++;
-
                     serviceResult = 0;
 
                     enet_packet_destroy (event.packet);
@@ -244,36 +189,28 @@ int main(int argc, char * argv[]){
             if(GameMode==gm_menu){
                 cout << "menu\n";
             }
-
-            if(GameMode==gm_gameplay){
+            else if(GameMode==gm_gameplay){
                 /***UPDATE***/
                 map->render();
                 player.render();
 
                 test.update();
+                quit.update();
 
                 /***PLAYER_INSTRUCTION***/
-                if(key.Press(ALLEGRO_KEY_ESCAPE))
-                    break;
+                if(key.Press(ALLEGRO_KEY_ESCAPE)) break;
 
                 if(key.Press(ALLEGRO_KEY_W)) sendToServer("key_W");
                 if(key.Press(ALLEGRO_KEY_S)) sendToServer("key_S");
                 if(key.Press(ALLEGRO_KEY_A)) sendToServer("key_A");
                 if(key.Press(ALLEGRO_KEY_D)) sendToServer("key_D");
 
-
-                if(test.get_click()){
-                    /*message="CLICK";
-                    ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                    enet_peer_send(peer, 0, p);
-                    enet_host_flush(client);
-
-                    serviceResult = enet_host_service(client, &event, 100);*/
-                    sendToServer("klikniecie buttona");
-                }
+                if(test.get_click()) sendToServer("klikniecie buttona");
+                if(quit.get_click()) break;
             }
             /***DRAW***/
             test.draw();
+            quit.draw();
 
             al_flip_display();
         }
@@ -294,10 +231,23 @@ int main(int argc, char * argv[]){
     return 0;
 }
 
-
 int _time(clock());
 int cfps(0), FPS(0);
 int amount = 0;
+
+void sendToServer(char* message) {
+    ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+    enet_peer_send(peer, 0, p);
+    enet_host_flush(client);
+    serviceResult = enet_host_service(client, &event, 100);
+}
+
+bool receive(enet_uint8* wiad, char* wiad2) {
+    for(int i = 0; i < strlen(wiad2); ++i)
+        if(wiad[i] != wiad2[i])
+            return false;
+    return true;
+}
 
 void updateFPS(bool write){
     if(_time+1000<clock()){

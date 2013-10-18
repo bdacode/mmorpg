@@ -8,9 +8,11 @@
 extern CKeyboard key;
 extern CMouse mouse;
 
+/***button***/
 class cButton{
     public:
-        cButton(int, int, string);
+        cButton(int, int, int, int, string);
+        cButton(int, int, int, int, string, string);
 
         inline bool get_click(){return click;}
 
@@ -18,23 +20,19 @@ class cButton{
         void draw();
     private:
         int x, y;
+        int centerX, centerY;
         int w, h;
         bool click;
         string name;
 
         bool orWait; int waiting;
         bool pressed;
+        string path;
 
+        ALLEGRO_BITMAP* background;
         ALLEGRO_FONT* font_button;
 };
 
-class cBool{
-    public:
-        cBool(int, int);
-    private:
-        int x, y;
-        int w, h;
-        bool click;
-};
+/***message box***/
 
 #endif // GUI_HPP_INCLUDED
