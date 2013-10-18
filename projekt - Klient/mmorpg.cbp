@@ -50,8 +50,12 @@
 		<Unit filename="CMain.h" />
 		<Unit filename="bitmap.cpp" />
 		<Unit filename="bitmap.h" />
+		<Unit filename="client.cpp" />
+		<Unit filename="client.h" />
 		<Unit filename="gui.cpp" />
 		<Unit filename="gui.hpp" />
+		<Unit filename="init.cpp" />
+		<Unit filename="init.h" />
 		<Unit filename="input.cpp" />
 		<Unit filename="input.h" />
 		<Unit filename="logger.cpp" />
