@@ -56,12 +56,13 @@ int main(int argc, char * argv[]){
     string map_file = "";
     int end=0, index=0;
     int map_wInt, map_hInt;
-    bool byloX=false;
+    bool byloX=false, sentBasicData=false;
 
     /*object*/
     CPlayer player;
     cButton test(0, 500, 100, 100, "send");
     cButton quit(110, 570, 180, 30, "send", "quit");
+    cButton start(300, 200, 200, 200, "send", "start");
 
     /***over variables***/
     client = enet_host_create(NULL, 1, 2, 57600/8, 14400/8);
@@ -79,7 +80,7 @@ int main(int argc, char * argv[]){
         exit(EXIT_FAILURE);
     }
 
-    if(enet_host_service(client, &event, 5000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT){
+    /*if(enet_host_service(client, &event, 5000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT){
         string mes = "Polaczono do serwera [ "+serverIP+" ]";
         logger << mes;
     }else{
@@ -87,7 +88,7 @@ int main(int argc, char * argv[]){
 
         logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
         exit (EXIT_FAILURE);
-    }
+    }*/
 
     logger << "START: Allegro5";
     al_set_app_name(WIN_NAME.c_str());
@@ -105,10 +106,10 @@ int main(int argc, char * argv[]){
 
     al_start_timer(timer);
 
-    logger << "INIT: map";
-    sendToServer("sendMeMap");
+    //logger << "INIT: map";
+    //sendToServer("sendMeMap");
 
-    if(event.type == ENET_EVENT_TYPE_RECEIVE) {
+    /*if(event.type == ENET_EVENT_TYPE_RECEIVE) {
         for(int i = 0; i < event.packet->dataLength-1; ++i) {
             if(event.packet->data[i] == ' ') {
                 end = i;
@@ -132,9 +133,9 @@ int main(int argc, char * argv[]){
                 byloX=true;
             }
         }
-    }
+    }*/
 
-    map_wInt = atoi(map_w.c_str()),
+    /*map_wInt = atoi(map_w.c_str()),
     map_hInt = atoi(map_h.c_str());
     CMap* map = new CMap(map_wInt, map_hInt);
 
@@ -145,9 +146,11 @@ int main(int argc, char * argv[]){
     map->getMapFromString(map_file);
     map->load();
 
-    logger << "START: Game Loop";
+    logger << "START: Game Loop";*/
 
-    GameMode = gm_gameplay;
+    CMap* map = new CMap(map_wInt, map_hInt);
+    delete map;
+    GameMode = gm_menu;
     while(1) {
         al_wait_for_event(event_queue, &ev);
         al_get_keyboard_state(&klawiatura);
@@ -156,7 +159,7 @@ int main(int argc, char * argv[]){
         key.Get(klawiatura);
         mouse.Get(myszka);
 
-        if(serviceResult>0){
+        /*if(serviceResult>0){
             switch(event.type){
                 case ENET_EVENT_TYPE_CONNECT:
                     if(event.peer->address.host != address.host){
@@ -179,7 +182,7 @@ int main(int argc, char * argv[]){
                     printf("%s disconected.\n", event.peer -> data);
                     break;
             }
-        }
+        }*/
 
         if(ev.type == ALLEGRO_EVENT_TIMER){
             /***UPDATE***/
@@ -187,10 +190,91 @@ int main(int argc, char * argv[]){
             updateFPS(0);
 
             if(GameMode==gm_menu){
-                cout << "menu\n";
+                start.update();
+                start.draw();
+                if(start.get_click()) {
+                    byloX=false;
+                    if(enet_host_service(client, &event, 5000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT){
+                        string mes = "Polaczono do serwera [ "+serverIP+" ]";
+                        logger << mes;
+                    }else{
+                        enet_peer_reset(peer);
+
+                        logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
+                        break;
+                    }
+                    logger << "INIT: map";
+                    sendToServer("sendMeMap");
+                    if(event.type == ENET_EVENT_TYPE_RECEIVE) {
+                        for(int i = 0; i < event.packet->dataLength-1; ++i) {
+                            if(event.packet->data[i] == ' ') {
+                                end = i;
+                                break;
+                            }
+
+                        if(event.packet->data[i] != 'x') {
+                            if(!byloX) {
+                                map_w.resize(map_w.size()+1);
+                                map_w[index] = event.packet->data[i];
+                                ++index;
+                            }
+                            else {
+                                    map_h.resize(map_h.size()+1);
+                                    map_h[index] = event.packet->data[i];
+                                    ++index;
+                                }
+                            }
+                            else {
+                                index=0;
+                                byloX=true;
+                            }
+                        }
+                    }
+                    map_wInt = atoi(map_w.c_str()),
+                    map_hInt = atoi(map_h.c_str());
+                    CMap* map = new CMap(map_wInt, map_hInt);
+
+                    for(int i = end; i < event.packet->dataLength-1; ++i) {
+                        map_file.resize(map_file.size()+1);
+                        map_file[i-end] = event.packet->data[i];
+                    }
+                    map->getMapFromString(map_file);
+                    //map->load();
+
+                    logger << "START: Game Loop";
+
+                    GameMode = gm_gameplay;
+                }
             }
+
+
             else if(GameMode==gm_gameplay){
                 /***UPDATE***/
+                map->load();
+                if(serviceResult>0){
+                    switch(event.type){
+                        case ENET_EVENT_TYPE_CONNECT:
+                        if(event.peer->address.host != address.host){
+                            printf("A new client connected from %x:%u.\n", event.peer -> address.host, event.peer -> address.port);
+                            event.peer->data = (void*)"New User";
+                        }
+                        break;
+
+                        case ENET_EVENT_TYPE_RECEIVE:
+                            if(receive(event.packet->data, "can_go_up")) player.pos.y--;
+                            if(receive(event.packet->data, "can_go_down")) player.pos.y++;
+                            if(receive(event.packet->data, "can_go_left")) player.pos.x--;
+                            if(receive(event.packet->data, "can_go_right")) player.pos.x++;
+                            serviceResult = 0;
+
+                            enet_packet_destroy (event.packet);
+                        break;
+
+                        case ENET_EVENT_TYPE_DISCONNECT:
+                            printf("%s disconected.\n", event.peer -> data);
+                        break;
+                    }
+                }
                 map->render();
                 player.render();
 
@@ -206,11 +290,28 @@ int main(int argc, char * argv[]){
                 if(key.Press(ALLEGRO_KEY_D)) sendToServer("key_D");
 
                 if(test.get_click()) sendToServer("klikniecie buttona");
-                if(quit.get_click()) break;
+                if(quit.get_click()) {
+                    string map_w="", map_h="";
+                    string map_file = "";
+                    end=0; index=0;
+                    map_wInt; map_hInt;
+                    byloX=false; sentBasicData=false;
+
+                    //al_destroy_timer(timer);
+                    //al_destroy_display(display);
+                    //al_destroy_event_queue(event_queue);
+
+                    enet_peer_disconnect(peer, 0);
+                    //atexit(enet_deinitialize);
+                    //enet_host_destroy(client);
+
+                    GameMode=gm_menu;
+                }
+
+                /***DRAW***/
+                test.draw();
+                quit.draw();
             }
-            /***DRAW***/
-            test.draw();
-            quit.draw();
 
             al_flip_display();
         }
