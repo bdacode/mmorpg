@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="account.cpp" open="1" top="1" tabpos="13">
+		<Cursor position="92" topLine="0" />
+	</File>
+	<File name="account.hpp" open="1" top="0" tabpos="12">
+		<Cursor position="189" topLine="0" />
+	</File>
 	<File name="client.cpp" open="1" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
@@ -11,13 +17,13 @@
 		<Cursor position="54" topLine="0" />
 	</File>
 	<File name="init.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="542" topLine="0" />
 	</File>
 	<File name="init.h" open="1" top="0" tabpos="9">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="246" topLine="11" />
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="379" topLine="9" />
 	</File>
 	<File name="main.h" open="1" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
@@ -29,10 +35,10 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="player.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="206" topLine="0" />
 	</File>
 	<File name="player.h" open="1" top="0" tabpos="7">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="130" topLine="0" />
 	</File>
 	<File name="tile.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
