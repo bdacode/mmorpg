@@ -1829,3 +1829,59 @@ Polaczono do serwera [ 25.56.234.57 ]
 INIT: map
 START: Game Loop
 >>>>>>> rhagui
+
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map

@@ -29,6 +29,10 @@ int main(int argc, char ** argv){
     int serviceResult = 1;
     int ID=1;
 
+    int amount; string name; string password;
+    bool busy_account=false;
+    char* gh;
+
     ENetAddress address;
     ENetHost * server;
 
@@ -81,40 +85,39 @@ int main(int argc, char ** argv){
                     //printf ("\nDOSTANO: '%s', client [%s], kanal [%u].", //event.packet -> dataLength,
                     //        event.packet -> data, event.peer -> data, event.channelID);
 
-                    cout << "\n$$$ OTRZYMANO OD [" << event.peer->address.host << "] dane: '" << event.packet->data << "'";
+                    //cout << "\n$$$ OTRZYMANO OD [" << event.peer->address.host << "] dane: '" << event.packet->data << "'";
 
-                    if(receive(event.packet->data, "rejestration")) {
-                        int amount; string name; string password;
-                        bool busy_account=false;
-                        char* gh;
-                        ifstream file;
+                    if(receive(event.packet->data, "register")) {
+                        cout << "odebrano prosbe o rejestracje!\n";
+                        fstream file;
                         file.open("data.txt");
                         if(file){
-                            file >> amount;
-                            for(int i=0; i<amount; ++i){
-                                if(busy_account) break;
+                            if(!file.eof()){
+                                if(busy_account){ cout << "ERROR!" << endl; break; }
                                 file>>name>>password;
                                 cout << name << " " << password << endl;
-                                name=name[i]+password[i];
                                 strcat(gh, name.c_str());
-                                //gh=name[i].c_str();
+
                                 if(!receive(event.packet->data, gh))
                                     busy_account=false;
-                                    else busy_account=true;
-                                //file>>"\n";
+                                else busy_account=true;
+                                file.close();
                             }
-                            if(busy_account==false){
-                                char message[] = "GOOD\n";
-                                ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                                enet_host_broadcast(server, 0, p);
-                                cout << "\nWyslano radosna wiesc.";
-                            } else {
-                                char message[] = "FAIL\n";
-                                ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                                enet_host_broadcast(server, 0, p);
-                                cout << "\nWyslano smutna wiesc";
-                            }
+                        } else busy_account=true;
+                        if(busy_account==false){
+                            file.open("data.txt", ios::app);
+                            file<<" "<<name<<" "<<password;
+                            char message[] = "GOOD\n";
+                            ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                            enet_host_broadcast(server, 0, p);
+                            cout << "\nWyslano radosna wiesc.";
+                        } else {
+                            char message[] = "FAIL\n";
+                            ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                            enet_host_broadcast(server, 0, p);
+                            cout << "\nWyslano smutna wiesc";
                         }
+                        file.close();
 
                         //enet_host_broadcast(server, 0, p);
                         //cout << "\nWYSLANO MAPE";

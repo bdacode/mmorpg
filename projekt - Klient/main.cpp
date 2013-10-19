@@ -45,7 +45,7 @@ int main(int argc, char * argv[]){
     cButton quit(110, 570, 180, 30, "send", "quit");
     cButton start(300, 200, 200, 200, "send", "start");
 
-    string name; string password;
+    string name=""; string password="";
     /***over variables***/
 
     logger << "START: Allegro5";
@@ -87,9 +87,9 @@ int main(int argc, char * argv[]){
                 start.update();
                 start.draw();
                 if(start.get_click()) {
+                    cout << "Podaj nazwe i haslo!\n";
                     cin >> name >> password;
-                    if(registration(name, password)){
-                        if(!connectToServer(serverIP, PORT))
+                    if(!connectToServer(serverIP, PORT))
                             break;
 
                         if(enet_host_service(client, &event, 5000) > 0) {
@@ -102,6 +102,7 @@ int main(int argc, char * argv[]){
 
                             // TODO : messagebox
                         }
+                    if(registration(name, password)){
                         logger << "INIT: map";
                         sendToServer("sendMeMap");
                         if(event.type == ENET_EVENT_TYPE_RECEIVE) {

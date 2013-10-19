@@ -2,16 +2,16 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="account.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="246" topLine="0" />
+		<Cursor position="194" topLine="0" />
 	</File>
 	<File name="account.hpp" open="1" top="0" tabpos="5">
 		<Cursor position="141" topLine="0" />
 	</File>
 	<File name="client.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="265" topLine="6" />
 	</File>
 	<File name="gui.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="1333" topLine="34" />
 	</File>
 	<File name="gui.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
@@ -22,8 +22,8 @@
 	<File name="init.h" open="0" top="0" tabpos="9">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="192" topLine="0" />
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="2364" topLine="81" />
 	</File>
 	<File name="main.h" open="1" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />

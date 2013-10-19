@@ -1,23 +1,28 @@
 #include "account.hpp"
 
 bool registration(string name, string password){
-    char wiad[64];
-    char buf[10];
-    char buf2[10];
-    //itoa(name, buf, 10);
-    //itoa(password.y, buf2, 10);
-    sprintf(wiad, "%sx%s", buf, buf2);
-    sendToServer(wiad);
-    sendToServer("rejestration");
+    char wiad[49];
 
-    if(event.type == ENET_EVENT_TYPE_RECEIVE) {
-        if(receive(event.packet->data, "GOOD")) {
-            cout << "REJESTRACJA ZAKONCZONA POMYSLNIE!" << endl;
-            return true;
-        }
-        else if(receive(event.packet->data, "FAIL")) {
-            cout << "REJESTRACJA ZAKONCZONA NEGATYWNIE!" << endl;
-            return false;
+    if(name.length()>20){ cout << "Nazwa za dluga!\n"; return false; }
+    if(password.length()>20){ cout << "Haslo za dlugie!\n"; return false; }
+
+    string whole="register"+name+":"+password;
+    strcat(wiad, whole.c_str());
+    sendToServer(wiad);
+    cout << "Wyslano\n";
+
+    while(1){
+        if(event.type == ENET_EVENT_TYPE_RECEIVE) {
+            if(receive(event.packet->data, "GOOD")) {
+                cout << "REJESTRACJA ZAKONCZONA POMYSLNIE!" << endl;
+                return true;
+                break;
+            }
+            else if(receive(event.packet->data, "FAIL")) {
+                cout << "REJESTRACJA ZAKONCZONA NEGATYWNIE!" << endl;
+                return false;
+                break;
+            }
         }
     }
 }
