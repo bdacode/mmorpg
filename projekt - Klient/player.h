@@ -2,6 +2,8 @@
 #define PLAYER_H_INCLUDED
 
 #include "main.h"
+#include "input.h"
+#include "client.h"
 
 struct SPos {
     int x, y;
@@ -13,11 +15,15 @@ public:
     CPlayer();
     ~CPlayer();
 
-    SPos pos;
+    SPos newPos;
+    SPos oldPos;
+
+    int timeToSend;
 
     //czesci ciala (same ID tylko potrzebne. Obrazek ladowany przy tworzeniu bohatera etc.)
     int hair, head, body, leg, boots;
 
+    void update(CKeyboard);
     void render();
 };
 

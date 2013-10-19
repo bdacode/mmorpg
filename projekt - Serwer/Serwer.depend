@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1381871321 source:c:\users\jakub\documents\github\mmorpg\projekt - serwer\main.cpp
+1382179439 source:c:\users\jakub\documents\github\mmorpg\projekt - serwer\main.cpp
 	<iostream>
 	<cstdio>
 	<enet/enet.h>
+	<fstream>
 
 1376885136 c:\users\jakub\documents\github\enet-1.3.9\include\enet\enet.h
 	<stdlib.h>

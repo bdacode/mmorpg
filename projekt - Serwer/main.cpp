@@ -81,6 +81,8 @@ int main(int argc, char ** argv){
                     //printf ("\nDOSTANO: '%s', client [%s], kanal [%u].", //event.packet -> dataLength,
                     //        event.packet -> data, event.peer -> data, event.channelID);
 
+                    cout << "\n$$$ OTRZYMANO OD [" << event.peer->address.host << "] dane: '" << event.packet->data << "'";
+
                     if(receive(event.packet->data, "CLICK")) {
                         char message[] = "Klient nacisnal przycisk!\n";
                         ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
@@ -89,35 +91,20 @@ int main(int argc, char ** argv){
                         cout << "\nWYSLANO";
                     }
 
-                    if(receive(event.packet->data, "sendMeMap")) {
+                    else if(receive(event.packet->data, "sendMeMap")) {
                         ENetPacket *p = enet_packet_create(mapa.c_str(), mapa.size()+1, ENET_PACKET_FLAG_RELIABLE);
 
                         enet_host_broadcast(server, 0, p);
                         cout << "\nWYSLANO MAPE";
                     }
 
-                    if(receive(event.packet->data, "key_W")) {
-                        // .... TODO
-                        char message[] = "can_go_up";
-                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                        enet_host_broadcast(server, 0, p);
-                    }
-                    if(receive(event.packet->data, "key_S")) {
-                        // .... TODO
-                        char message[] = "can_go_down";
-                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                        enet_host_broadcast(server, 0, p);
-                    }
-                    if(receive(event.packet->data, "key_A")) {
-                        // .... TODO
-                        char message[] = "can_go_left";
-                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                        enet_host_broadcast(server, 0, p);
-                    }
-                    if(receive(event.packet->data, "key_D")) {
-                        // .... TODO
-                        char message[] = "can_go_right";
-                        ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                    else {
+                        char mess[event.packet->dataLength];
+
+                        for(int i = 0; i < event.packet->dataLength; ++i)
+                            mess[i] = event.packet->data[i];
+
+                        ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
                         enet_host_broadcast(server, 0, p);
                     }
 

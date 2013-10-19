@@ -36,15 +36,10 @@ int main(int argc, char * argv[]){
 
     /***variables***/
 
-    CMap* map;
-    string map_w = "", map_h = "";
-    string map_file = "";
-    int end = 0, index = 0;
-    int map_wInt, map_hInt;
-    bool byloX = false, sentBasicData = false;
+    CMap* map = new CMap();
+    CPlayer* player = new CPlayer();
 
     /*object*/
-    CPlayer player;
     cButton test(0, 500, 100, 100, "send");
     cButton quit(110, 570, 180, 30, "send", "quit");
     cButton start(300, 200, 200, 200, "send", "start");
@@ -67,6 +62,9 @@ int main(int argc, char * argv[]){
 
     GameMode = gm_menu;
 
+    map->resize(10,10);
+
+    logger << "START: Game Loop";
     while(1) {
         al_wait_for_event(event_queue, &ev);
         al_get_keyboard_state(&klawiatura);
@@ -89,10 +87,6 @@ int main(int argc, char * argv[]){
                     if(!connectToServer(serverIP, PORT))
                         break;
 
-                    map_w = map_h = map_file = "";
-                    end = index = 0;
-                    byloX = sentBasicData = false;
-
                     if(enet_host_service(client, &event, 5000) > 0) {
                         if(event.type == ENET_EVENT_TYPE_CONNECT) {
                             string mes = "Polaczono do serwera [ "+serverIP+" ]";
@@ -101,56 +95,22 @@ int main(int argc, char * argv[]){
                     }
                     else {
                         logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
-                        break;
+
+                        // TODO : messagebox
                     }
                     logger << "INIT: map";
                     sendToServer("sendMeMap");
                     if(event.type == ENET_EVENT_TYPE_RECEIVE) {
-                        for(int i = 0; i < event.packet->dataLength-1; ++i) {
-                            if(event.packet->data[i] == ' ') {
-                                end = i;
-                                break;
-                            }
-
-                        if(event.packet->data[i] != 'x') {
-                            if(!byloX) {
-                                map_w.resize(map_w.size()+1);
-                                map_w[index] = event.packet->data[i];
-                                ++index;
-                            }
-                            else {
-                                    map_h.resize(map_h.size()+1);
-                                    map_h[index] = event.packet->data[i];
-                                    ++index;
-                                }
-                            }
-                            else {
-                                index = 0;
-                                byloX = true;
-                            }
-                        }
+                        map->createMap(event.packet);
+                        map->load();
+                        GameMode = gm_gameplay;
                     }
-                    map_wInt = atoi(map_w.c_str()),
-                    map_hInt = atoi(map_h.c_str());
-
-                    map = new CMap(map_wInt, map_hInt);
-
-                    for(int i = end; i < event.packet->dataLength-1; ++i) {
-                        map_file.resize(map_file.size()+1);
-                        map_file[i-end] = event.packet->data[i];
-                    }
-                    map->getMapFromString(map_file);
-                    map->load();
-
-                    logger << "START: Game Loop";
-
-                    GameMode = gm_gameplay;
                 }
             }
 
 /*** GAMEPLAY ***/
             else if(GameMode == gm_gameplay){
-                /***UPDATE***/
+                /*** CONNECTION ***/
                 if(serviceResult > 0) {
                     switch(event.type) {
                         case ENET_EVENT_TYPE_CONNECT:
@@ -161,10 +121,10 @@ int main(int argc, char * argv[]){
                         break;
 
                         case ENET_EVENT_TYPE_RECEIVE:
-                            if(receive(event.packet->data, "can_go_up")) player.pos.y--;
-                            if(receive(event.packet->data, "can_go_down")) player.pos.y++;
-                            if(receive(event.packet->data, "can_go_left")) player.pos.x--;
-                            if(receive(event.packet->data, "can_go_right")) player.pos.x++;
+                            //if(receive(event.packet->data, "can_go_up")) player->pos.y--;
+                            //if(receive(event.packet->data, "can_go_down")) player->pos.y++;
+                            //if(receive(event.packet->data, "can_go_left")) player->pos.x--;
+                            //if(receive(event.packet->data, "can_go_right")) player->pos.x++;
                             serviceResult = 0;
 
                             enet_packet_destroy (event.packet);
@@ -175,19 +135,14 @@ int main(int argc, char * argv[]){
                         break;
                     }
                 }
-                map->render();
-                player.render();
 
+                /*** LOGIC ***/
                 test.update();
                 quit.update();
 
-                /***PLAYER_INSTRUCTION***/
-                if(key.Press(ALLEGRO_KEY_ESCAPE)) break;
+                player->update(key);
 
-                if(key.Press(ALLEGRO_KEY_W)) sendToServer("key_W");
-                if(key.Press(ALLEGRO_KEY_S)) sendToServer("key_S");
-                if(key.Press(ALLEGRO_KEY_A)) sendToServer("key_A");
-                if(key.Press(ALLEGRO_KEY_D)) sendToServer("key_D");
+                if(key.Press(ALLEGRO_KEY_ESCAPE)) break;
 
                 if(test.get_click()) sendToServer("klikniecie buttona");
                 if(quit.get_click()) {
@@ -197,7 +152,10 @@ int main(int argc, char * argv[]){
                     GameMode = gm_menu;
                 }
 
-                /***DRAW***/
+                /*** DRAW ***/
+                map->render();
+                player->render();
+
                 test.draw();
                 quit.draw();
             }

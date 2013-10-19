@@ -24,10 +24,11 @@
 
 using namespace std;
 
-ALLEGRO_BITMAP* loadBmp(char* path);
+//template <typename T>
+//ALLEGRO_BITMAP* loadBmp(T);
+ALLEGRO_BITMAP* loadBmp(char*);
 
 int getBmpW(ALLEGRO_BITMAP* bmp);
 int getBmpH(ALLEGRO_BITMAP* bmp);
-
 
 #endif // BITMAP_H_INCLUDED

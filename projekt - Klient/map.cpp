@@ -12,11 +12,6 @@ CMap::CMap(int w, int h)
     map = new CTile*[w];
     for(int i = 0; i < w; ++i)
         map[i] = new CTile[h];
-
-    // DEBUG
-    //for(int x = 0; x < w; ++x)
-    //    for(int y = 0; y < h; ++y)
-    //        map[x][y].setID(0);
 }
 
 CMap::~CMap() {
@@ -26,8 +21,58 @@ CMap::~CMap() {
     delete[] map;
 }
 
-void CMap::getMapFromString(string file)
-{
+void CMap::resize(int w2, int h2) {
+    this->w = w2;
+    this->h = h2;
+
+    map = new CTile*[w];
+    for(int i = 0; i < w; ++i)
+        map[i] = new CTile[h];
+}
+
+void CMap::createMap(ENetPacket* packet) {
+    int end = 0, index = 0;
+    bool byloX = false;
+    string map_w = "", map_h = "", map_file = "";
+
+    for(int i = 0; i < packet->dataLength-1; ++i) {
+        if(packet->data[i] == ' ') {
+            end = i;
+            break;
+        }
+
+        if(packet->data[i] != 'x') {
+            if(!byloX) {
+                map_w.resize(map_w.size()+1);
+                map_w[index] = packet->data[i];
+                ++index;
+            }
+            else {
+                map_h.resize(map_h.size()+1);
+                map_h[index] = packet->data[i];
+                ++index;
+            }
+        }
+        else {
+            index = 0;
+            byloX = true;
+        }
+    }
+
+    int map_wInt = atoi(map_w.c_str());
+    int map_hInt = atoi(map_h.c_str());
+
+    for(int i = end; i < packet->dataLength-1; ++i) {
+        map_file.resize(map_file.size()+1);
+        map_file[i-end] = packet->data[i];
+    }
+
+    resize(map_wInt, map_hInt);
+
+    getMapFromString(map_file);
+}
+
+void CMap::getMapFromString(string file) {
     string tile = "";
     int index = 0, x = 0, y = 0;
     for(int i = 0; i < file.size(); ++i)

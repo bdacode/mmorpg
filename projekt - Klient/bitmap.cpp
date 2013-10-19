@@ -1,5 +1,7 @@
 #include "bitmap.h"
 
+//template <typename T>
+//ALLEGRO_BITMAP* loadBmp(T path)
 ALLEGRO_BITMAP* loadBmp(char* path)
 {
     ALLEGRO_BITMAP* bmp = al_load_bitmap(path);

@@ -20,6 +20,8 @@ class CMap {
     inline int getTileID(int x, int y) { return map[x][y].getID(); }
     inline void setTileID(int x, int y, int id) { return map[x][y].setID(id); }
 
+    void resize(int, int);
+    void createMap(ENetPacket*);
     void getMapFromString(string);
     void load();
     void render();
