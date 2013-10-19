@@ -83,7 +83,50 @@ int main(int argc, char ** argv){
 
                     cout << "\n$$$ OTRZYMANO OD [" << event.peer->address.host << "] dane: '" << event.packet->data << "'";
 
-                    if(receive(event.packet->data, "CLICK")) {
+                    if(receive(event.packet->data, "rejestration")) {
+                        int amount; string name; string password;
+                        bool busy_account=false;
+                        char* gh;
+                        ifstream file;
+                        file.open("data.txt");
+                        if(file){
+                            file >> amount;
+                            for(int i=0; i<amount; ++i){
+                                if(busy_account) break;
+                                file>>name>>password;
+                                cout << name << " " << password << endl;
+                                name=name[i]+password[i];
+                                strcat(gh, name.c_str());
+                                //gh=name[i].c_str();
+                                if(!receive(event.packet->data, gh))
+                                    busy_account=false;
+                                    else busy_account=true;
+                                //file>>"\n";
+                            }
+                            if(busy_account==false){
+                                char message[] = "GOOD\n";
+                                ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                                enet_host_broadcast(server, 0, p);
+                                cout << "\nWyslano radosna wiesc.";
+                            } else {
+                                char message[] = "FAIL\n";
+                                ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                                enet_host_broadcast(server, 0, p);
+                                cout << "\nWyslano smutna wiesc";
+                            }
+                        }
+
+                        //enet_host_broadcast(server, 0, p);
+                        //cout << "\nWYSLANO MAPE";
+                    }
+                    else if(receive(event.packet->data, "login")) {
+                        ifstream file;
+
+                        //enet_host_broadcast(server, 0, p);
+                        cout << "\nWYSLANO MAPE";
+                    }
+
+                    else if(receive(event.packet->data, "CLICK")) {
                         char message[] = "Klient nacisnal przycisk!\n";
                         ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
 

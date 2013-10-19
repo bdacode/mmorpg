@@ -8,6 +8,7 @@
 #include "player.h"
 #include "init.h"
 #include "client.h"
+#include "account.hpp"
 
 CKeyboard key;
 CMouse mouse;
@@ -18,8 +19,8 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-//string serverIP = "25.56.234.57"; // Rhagui
-string serverIP = "25.193.13.94"; // SeaMonster131
+string serverIP = "25.56.234.57"; // Rhagui
+//string serverIP = "25.193.13.94"; // SeaMonster131
 //string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /***GlobalVariables&Functions***/
@@ -43,6 +44,9 @@ int main(int argc, char * argv[]){
     cButton test(0, 500, 100, 100, "send");
     cButton quit(110, 570, 180, 30, "send", "quit");
     cButton start(300, 200, 200, 200, "send", "start");
+
+    string name; string password;
+    /***over variables***/
 
     logger << "START: Allegro5";
     al_set_app_name(WIN_NAME.c_str());
@@ -78,37 +82,38 @@ int main(int argc, char * argv[]){
             al_clear_to_color(al_map_rgb(200,200,255));
             updateFPS(0);
 
-/*** MENU ***/
+            /*** MENU ***/
             if(GameMode == gm_menu) {
                 start.update();
                 start.draw();
                 if(start.get_click()) {
+                    cin >> name >> password;
+                    if(registration(name, password)){
+                        if(!connectToServer(serverIP, PORT))
+                            break;
 
-                    if(!connectToServer(serverIP, PORT))
-                        break;
+                        if(enet_host_service(client, &event, 5000) > 0) {
+                            if(event.type == ENET_EVENT_TYPE_CONNECT) {
+                                string mes = "Polaczono do serwera [ "+serverIP+" ]";
+                                logger << mes;
+                            }
+                        } else {
+                            logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
 
-                    if(enet_host_service(client, &event, 5000) > 0) {
-                        if(event.type == ENET_EVENT_TYPE_CONNECT) {
-                            string mes = "Polaczono do serwera [ "+serverIP+" ]";
-                            logger << mes;
+                            // TODO : messagebox
                         }
-                    }
-                    else {
-                        logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
-
-                        // TODO : messagebox
-                    }
-                    logger << "INIT: map";
-                    sendToServer("sendMeMap");
-                    if(event.type == ENET_EVENT_TYPE_RECEIVE) {
-                        map->createMap(event.packet);
-                        map->load();
-                        GameMode = gm_gameplay;
+                        logger << "INIT: map";
+                        sendToServer("sendMeMap");
+                        if(event.type == ENET_EVENT_TYPE_RECEIVE) {
+                            map->createMap(event.packet);
+                            map->load();
+                            GameMode = gm_gameplay;
+                        }
                     }
                 }
             }
 
-/*** GAMEPLAY ***/
+            /*** GAMEPLAY ***/
             else if(GameMode == gm_gameplay){
                 /*** CONNECTION ***/
                 if(serviceResult > 0) {
