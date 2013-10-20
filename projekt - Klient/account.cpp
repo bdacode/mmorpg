@@ -12,6 +12,7 @@ bool registration(string name, string password){
     cout << "Wyslano\n";
 
     while(1){
+        cout << "Oczekiwanie na info od serwera!\n";
         if(event.type == ENET_EVENT_TYPE_RECEIVE) {
             if(receive(event.packet->data, "GOOD")) {
                 cout << "REJESTRACJA ZAKONCZONA POMYSLNIE!" << endl;

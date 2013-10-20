@@ -20,8 +20,8 @@ class cButton{
         void draw();
     private:
         int x, y;
-        int centerX, centerY;
         int w, h;
+        int centerX, centerY;
         bool click;
         string name;
 
@@ -34,5 +34,22 @@ class cButton{
 };
 
 /***message box***/
+class cMessageBox{
+    public:
+        cMessageBox(int, int, int, int, string, string);
+
+        void update();
+        void draw();
+    private:
+        int x, y;
+        int w, h;
+        int centerX, centerY;
+        int life;
+        string text;
+        string path;
+
+        ALLEGRO_BITMAP* background;
+        ALLEGRO_FONT* font_button;
+};
 
 #endif // GUI_HPP_INCLUDED

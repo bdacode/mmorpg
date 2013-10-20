@@ -1,5 +1,6 @@
 #include "gui.hpp"
 
+/***button***/
 cButton::cButton(int x, int y, int w, int h, string path)
     : click(0)
     , waiting(0){
@@ -28,7 +29,7 @@ cButton::cButton(int x, int y, int w, int h, string path, string name)
     click=pressed=false;
     //char* path2=path;
 
-    background=al_load_bitmap(this->path.c_str());
+    background = al_load_bitmap(this->path.c_str());
     font_button = al_load_font("media/font.ttf", 20, 0);
 }
 
@@ -51,4 +52,22 @@ void cButton::draw(){
     else al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,120,0));
     al_draw_scaled_bitmap(background, 0, 0, 100, 100, x+4, y+4, w-x-8, h-y-8, 0);
     al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, name.c_str());
+}
+
+/***message box***/
+cMessageBox::cMessageBox(int x, int y, int w, int h, string text, string path)
+    : life(0){
+    this->x=x; this->y=y;
+    this->w=w; this->h=h;
+
+    centerX=x+w/2; centerY=this->h-30;
+
+    background = al_load_bitmap(this->path.c_str());
+    font_button = al_load_font("media/font.ttf", 20, 0);
+}
+
+void cMessageBox::draw(){
+    al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
+    al_draw_scaled_bitmap(background, 0, 0, 100, 100, x+4, y+4, w-x-8, h-y-8, 0);
+    al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, text.c_str());
 }

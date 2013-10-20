@@ -941,15 +941,15 @@
 1382180145 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\bitmap.cpp
 	"bitmap.h"
 
-1382101243 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.cpp
+1382214829 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.cpp
 	"gui.hpp"
 
-1382099116 c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.hpp
+1382214842 c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.hpp
 	"main.h"
 	"bitmap.h"
 	"input.h"
 
-1382198079 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\main.cpp
+1382265604 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\main.cpp
 	"main.h"
 	"input.h"
 	"logger.h"
@@ -1036,7 +1036,7 @@
 1382127265 c:\users\marcin\documents\github\mmorpg\projekt - klient\init.h
 	"main.h"
 
-1382199598 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\account.cpp
+1382262148 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\account.cpp
 	"account.hpp"
 
 1382185186 c:\users\marcin\documents\github\mmorpg\projekt - klient\account.hpp

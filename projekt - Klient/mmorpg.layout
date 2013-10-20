@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="account.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="194" topLine="0" />
+	<File name="account.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="295" topLine="0" />
 	</File>
-	<File name="account.hpp" open="1" top="0" tabpos="5">
+	<File name="account.hpp" open="1" top="0" tabpos="3">
 		<Cursor position="141" topLine="0" />
 	</File>
-	<File name="client.cpp" open="1" top="0" tabpos="4">
+	<File name="client.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="265" topLine="6" />
 	</File>
-	<File name="gui.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="1333" topLine="34" />
+	<File name="gui.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="2454" topLine="53" />
 	</File>
-	<File name="gui.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
+	<File name="gui.hpp" open="1" top="0" tabpos="5">
+		<Cursor position="977" topLine="32" />
 	</File>
-	<File name="init.cpp" open="1" top="0" tabpos="3">
+	<File name="init.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="542" topLine="0" />
 	</File>
 	<File name="init.h" open="0" top="0" tabpos="9">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="2364" topLine="81" />
+	<File name="main.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="2370" topLine="78" />
 	</File>
-	<File name="main.h" open="1" top="0" tabpos="2">
+	<File name="main.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="map.cpp" open="1" top="0" tabpos="7">
+	<File name="map.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="1795" topLine="0" />
 	</File>
-	<File name="player.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="33" topLine="0" />
+	<File name="player.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="229" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

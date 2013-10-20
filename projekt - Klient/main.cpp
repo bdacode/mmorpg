@@ -87,7 +87,7 @@ int main(int argc, char * argv[]){
                 start.update();
                 start.draw();
                 if(start.get_click()) {
-                    cout << "Podaj nazwe i haslo!\n";
+                    cout << "\n\nPodaj nazwe i haslo!\n";
                     cin >> name >> password;
                     if(!connectToServer(serverIP, PORT))
                             break;
