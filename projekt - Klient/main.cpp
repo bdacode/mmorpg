@@ -19,8 +19,8 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-//string serverIP = "25.56.234.57"; // Rhagui
-string serverIP = "25.193.13.94"; // SeaMonster131
+string serverIP = "25.56.234.57"; // Rhagui
+//string serverIP = "25.193.13.94"; // SeaMonster131
 //string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /***GlobalVariables&Functions***/
@@ -43,8 +43,8 @@ int main(int argc, char * argv[]){
     /*object*/
     cButton test(0, 500, 100, 100, "send");
     cButton quit(110, 570, 180, 30, "send", "quit");
-    cButton b_register(100,200, 200,100, "button", "Register");
-    cButton b_login(100,350, 200, 100, "button", "Login");
+    cButton b_register(100,200, 200,100, "send", "Register");
+    cButton b_login(100,350, 200, 100, "send", "Login");
 
     string name=""; string password="";
     /***over variables***/
@@ -85,11 +85,8 @@ int main(int argc, char * argv[]){
 
             /*** MENU ***/
             if(GameMode == gm_menu) {
-                b_register.update();
-                b_register.draw();
-
-                b_login.update();
-                b_login.draw();
+                b_register.render();
+                b_login.render();
 
                 if(b_register.get_click()) {
                     cout << "\n\nPodaj nazwe i haslo do rejestracji:\n";
@@ -182,8 +179,6 @@ int main(int argc, char * argv[]){
                 }
 
                 /*** LOGIC ***/
-                test.update();
-                quit.update();
 
                 player->update(key);
 
@@ -201,8 +196,8 @@ int main(int argc, char * argv[]){
                 map->render();
                 player->render();
 
-                test.draw();
-                quit.draw();
+                test.render();
+                quit.render();
             }
 
             al_flip_display();

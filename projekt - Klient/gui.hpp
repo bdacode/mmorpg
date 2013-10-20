@@ -16,8 +16,7 @@ class cButton{
 
         inline bool get_click(){return click;}
 
-        void update();
-        void draw();
+        void render();
     private:
         int x, y;
         int w, h;
@@ -38,8 +37,7 @@ class cMessageBox{
     public:
         cMessageBox(int, int, int, int, string, string);
 
-        void update();
-        void draw();
+        void render();
     private:
         int x, y;
         int w, h;

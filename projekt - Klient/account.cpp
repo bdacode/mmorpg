@@ -1,7 +1,7 @@
 #include "account.hpp"
 
 bool registration(string name, string password){
-    char wiad[49];
+    char wiad[49]="";
 
     if(name.length()>20){ cout << "Nazwa za dluga!\n"; return false; }
     if(password.length()>20){ cout << "Haslo za dlugie!\n"; return false; }
@@ -29,21 +29,20 @@ bool registration(string name, string password){
 }
 
 bool login(string name, string password, CPlayer* player){
-    char wiad[49];
+    char wiad[49]="";
 
-    if(name.length()>20){ cout << "Nazwa za dluga!\n"; return false; }
-    if(password.length()>20){ cout << "Haslo za dlugie!\n"; return false; }
+    if(name.length()>20){ cout << "Name too long!\n"; return false; }
+    if(password.length()>20){ cout << "Password too long!\n"; return false; }
 
     string whole="login"+name+":"+password;
     strcat(wiad, whole.c_str());
     sendToServer(wiad);
-    cout << "Wyslano\n";
+    cout << "Sent!\n";
 
-    //while(1) {
-        cout << "Oczekiwanie na info od serwera!\n";
+    while(1) {
         if(event.type == ENET_EVENT_TYPE_RECEIVE) {
             if(receive(event.packet->data, "GOOD")) {
-                cout << "Zalogowano!" << endl;
+                cout << "\nLogged!\n" << endl;
 
                 string wiad = getPacket(event.packet->data);
 
@@ -70,15 +69,15 @@ bool login(string name, string password, CPlayer* player){
                 }
 
                 return true;
-                //break;
+                break;
             }
             else if(receive(event.packet->data, "FAIL")) {
-                cout << "Blad podczas logowania!" << endl;
+                cout << "\nError when logging!\n" << endl;
                 return false;
-                //break;
+                break;
             }
         }
-    //}
+    }
 }
 
 /*if(!file){

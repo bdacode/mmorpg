@@ -32,7 +32,7 @@ cButton::cButton(int x, int y, int w, int h, string path, string name)
     font_button = al_load_font("media/font.ttf", 20, 0);
 }
 
-void cButton::update(){
+void cButton::render(){
     if(click) click=false;
     if(orWait) waiting++;
     if(waiting>=20){waiting=0; orWait=false;}
@@ -44,12 +44,11 @@ void cButton::update(){
     if(mouse.Press(1)==false&&pressed) {
         click=true; orWait=true; pressed=false;
     }
-}
-void cButton::draw(){
+    /***draw***/
     if(pressed) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
     else if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
     else al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,120,0));
-    al_draw_scaled_bitmap(background, 0, 0, 100, 100, x+4, y+4, w-x-8, h-y-8, 0);
+    al_draw_scaled_bitmap(background, 0, 0, getBmpW(background), getBmpH(background), x+4, y+4, w-x-8, h-y-8, 0);
     al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, name.c_str());
 }
 
@@ -65,7 +64,7 @@ cMessageBox::cMessageBox(int x, int y, int w, int h, string text, string path)
     font_button = al_load_font("media/font.ttf", 20, 0);
 }
 
-void cMessageBox::draw(){
+void cMessageBox::render(){
     al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
     al_draw_scaled_bitmap(background, 0, 0, 100, 100, x+4, y+4, w-x-8, h-y-8, 0);
     al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, text.c_str());
