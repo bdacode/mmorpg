@@ -36,7 +36,9 @@ bool login(string name, string password, CPlayer* player){
 
     string whole="login"+name+":"+password;
     strcat(wiad, whole.c_str());
+    player->nick = name;
     sendToServer(wiad);
+
     cout << "Sent!\n";
 
     while(1) {

@@ -19,8 +19,8 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-string serverIP = "25.56.234.57"; // Rhagui
-//string serverIP = "25.193.13.94"; // SeaMonster131
+//string serverIP = "25.56.234.57"; // Rhagui
+string serverIP = "25.193.13.94"; // SeaMonster131
 //string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /***GlobalVariables&Functions***/
@@ -142,6 +142,9 @@ int main(int argc, char * argv[]){
                         if(event.type == ENET_EVENT_TYPE_RECEIVE) {
                             map->createMap(event.packet);
                             map->load();
+                            //string mess = "newPlayer"+player->nick;
+                            //ENetPacket *p = enet_packet_create(mess.c_str(), mess.length(), ENET_PACKET_FLAG_RELIABLE);
+                            //enet_host_broadcast(client, 0, p);
                             GameMode = gm_gameplay;
                         }
                     }
@@ -163,10 +166,17 @@ int main(int argc, char * argv[]){
                         break;
 
                         case ENET_EVENT_TYPE_RECEIVE:
-                            //if(receive(event.packet->data, "can_go_up")) player->pos.y--;
-                            //if(receive(event.packet->data, "can_go_down")) player->pos.y++;
-                            //if(receive(event.packet->data, "can_go_left")) player->pos.x--;
-                            //if(receive(event.packet->data, "can_go_right")) player->pos.x++;
+                            /*if(event.packet->dataLength >= 9) {
+                                if(receive(event.packet->data, "newPlayer")) {
+                                    cout << "\nDo gry dolaczyl nowy gracz";
+                                    string mes = getPacket(event.packet->data);
+                                    mes.erase(0,9);
+                                    if(mes != player->nick) {
+                                        v_otherPlayers.push_back(COtherPlayer(mes));
+                                    }
+                                }
+                            }*/
+
                             serviceResult = 0;
 
                             enet_packet_destroy (event.packet);
@@ -195,6 +205,10 @@ int main(int argc, char * argv[]){
                 /*** DRAW ***/
                 map->render();
                 player->render();
+
+                for(int i = 0; i < v_otherPlayers.size(); ++i) {
+                    al_draw_bitmap(IMG_player, v_otherPlayers[i].pos.x, v_otherPlayers[i].pos.y, 0);
+                }
 
                 test.render();
                 quit.render();

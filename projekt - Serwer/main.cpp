@@ -77,8 +77,6 @@ int main(int argc, char ** argv){
                     printf ("\nA new client connected from %x:%u.\n", event.peer -> address.host, event.peer -> address.port);
                     event.peer -> data = (void*)"Client information";
                     //event.peer->data = (void*)ID;
-
-                    //++ID;
                 }
                 break;
 
@@ -131,14 +129,16 @@ int main(int argc, char ** argv){
 
                             char message[] = "GOOD";
                             ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                            enet_host_broadcast(server, 0, p);
+                            //enet_host_broadcast(server, 0, p);
+                            enet_peer_send(event.peer, 0, p);
                             cout << "\nZarejestrowano nowego uzytkownika!";
                         }
                         else
                         {
                             char message[] = "FAIL";
                             ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                            enet_host_broadcast(server, 0, p);
+                            //enet_host_broadcast(server, 0, p);
+                            enet_peer_send(event.peer, 0, p);
                         }
                         file.close();
                     }
@@ -181,34 +181,39 @@ int main(int argc, char ** argv){
 
                             string wiad = "GOOD "+hair+" "+head+" "+body+" "+leg+" "+boots+" "+posX+" "+posY;
 
-                            //char message[] = "GOOD";
-                            //ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
                             ENetPacket *p = enet_packet_create(wiad.c_str(), wiad.size()+1, ENET_PACKET_FLAG_RELIABLE);
-                            enet_host_broadcast(server, 0, p);
+                            //enet_host_broadcast(server, 0, p);
+                            enet_peer_send(event.peer, 0, p);
+
+                            /*string newPlayer = "newPlayer"+packet_name;
+                            ENetPacket *p2 = enet_packet_create(newPlayer.c_str(), newPlayer.size()+1, ENET_PACKET_FLAG_RELIABLE);
+                            enet_host_broadcast(server, 0, p2);*/
                         }
                         else
                         {
                             char message[] = "FAIL";
                             ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
-                            enet_host_broadcast(server, 0, p);
+                            //enet_host_broadcast(server, 0, p);
+                            enet_peer_send(event.peer, 0, p);
                         }
                     }
                     else if(receive(event.packet->data, "CLICK")) {
                         char message[] = "Klient nacisnal przycisk!\n";
                         ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
 
-                        enet_host_broadcast(server, 0, p);
+                        //enet_host_broadcast(server, 0, p);
+                        enet_peer_send(event.peer, 0, p);
                         cout << "\nWYSLANO";
                     }
 
                     else if(receive(event.packet->data, "sendMeMap")) {
                         ENetPacket *p = enet_packet_create(mapa.c_str(), mapa.size()+1, ENET_PACKET_FLAG_RELIABLE);
 
-                        enet_host_broadcast(server, 0, p);
+                        //enet_host_broadcast(server, 0, p);
+                        enet_peer_send(event.peer, 0, p);
                         cout << "\nWYSLANO MAPE";
                     }
-
-                    else {
+                    else if(receive(event.packet->data, "POS")) {
                         char mess[event.packet->dataLength];
 
                         for(int i = 0; i < event.packet->dataLength; ++i)
@@ -216,7 +221,18 @@ int main(int argc, char ** argv){
 
                         ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
                         enet_host_broadcast(server, 0, p);
+                        //enet_peer_send(event.peer, 0, p);
                     }
+                    /*else {
+                        char mess[event.packet->dataLength];
+
+                        for(int i = 0; i < event.packet->dataLength; ++i)
+                            mess[i] = event.packet->data[i];
+
+                        ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
+                        //enet_host_broadcast(server, 0, p);
+                        enet_peer_send(event.peer, 0, p);
+                    }*/
 
                     /// wiadomosc do wszystkich:
                     //enet_host_broadcast(server, 0, event.packet);
