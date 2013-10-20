@@ -109,14 +109,16 @@ int main(int argc, char * argv[]){
                         // TODO : messagebox
                     }
                     if(registration(name, password)) {
-                        /*logger << "INIT: map";
-                        sendToServer("sendMeMap");
-                        if(event.type == ENET_EVENT_TYPE_RECEIVE) {
-                            map->createMap(event.packet);
-                            map->load();
-                            GameMode = gm_gameplay;
-                        }*/
-                        cout << "\nZAREJESTROWANO. Zaloguj sie, by grac!";
+                        if(login(name, password, player)) {
+                            logger << "INIT: map";
+                            sendToServer("sendMeMap");
+                            if(event.type == ENET_EVENT_TYPE_RECEIVE) {
+                                map->createMap(event.packet);
+                                map->load();
+                                GameMode = gm_gameplay;
+                            }
+                        }
+                        cout << "\nZarejestrowano i zalogowano!";
                     }
                 }
 
