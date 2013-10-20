@@ -5,9 +5,10 @@
 #include "bitmap.h"
 #include "input.h"
 #include "client.h"
+#include "player.h"
 
 bool registration(string, string);
-void login(string, string);
+bool login(string, string, CPlayer*);
 
 
 #endif // ACCOUNT_HPP_INCLUDED

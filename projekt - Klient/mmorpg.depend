@@ -579,7 +579,7 @@
 1363441998 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\logger.cpp
 	"logger.h"
 
-1382180106 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\main.cpp
+1382272304 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\main.cpp
 	"main.h"
 	"input.h"
 	"logger.h"
@@ -588,6 +588,7 @@
 	"player.h"
 	"init.h"
 	"client.h"
+	"account.hpp"
 
 1376885136 c:\users\jakub\documents\github\enet-1.3.9\include\enet\enet.h
 	<stdlib.h>
@@ -960,10 +961,10 @@
 	"client.h"
 	"account.hpp"
 
-1382116618 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\gui.cpp
+1382271248 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\gui.cpp
 	"gui.hpp"
 
-1382116618 c:\users\jakub\documents\github\mmorpg\projekt - klient\gui.hpp
+1382267107 c:\users\jakub\documents\github\mmorpg\projekt - klient\gui.hpp
 	"main.h"
 	"bitmap.h"
 	"input.h"
@@ -1018,10 +1019,10 @@
 1382126504 c:\users\jakub\documents\github\mmorpg\projekt - klient\init.h
 	"main.h"
 
-1382179084 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\client.cpp
+1382272304 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\client.cpp
 	"client.h"
 
-1382126728 c:\users\jakub\documents\github\mmorpg\projekt - klient\client.h
+1382272304 c:\users\jakub\documents\github\mmorpg\projekt - klient\client.h
 	"main.h"
 
 1382180145 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\client.cpp
@@ -1045,13 +1046,15 @@
 	"input.h"
 	"client.h"
 
-1382172013 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\account.cpp
+1382272918 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\account.cpp
 	"account.hpp"
 
-1382172013 c:\users\jakub\documents\github\mmorpg\projekt - klient\account.hpp
+1382272304 c:\users\jakub\documents\github\mmorpg\projekt - klient\account.hpp
 	"main.h"
 	"bitmap.h"
 	"input.h"
+	"client.h"
+	"player.h"
 
 1382177865 c:\users\jakub\documents\github\mmorpg\projekt - klient\bitmap.cpp
 	"bitmap.h"

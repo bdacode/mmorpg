@@ -12,5 +12,6 @@ extern ENetAddress address;
 void sendToServer(char*);
 bool receive(enet_uint8*, char*);
 bool connectToServer(string, int);
+string getPacket(enet_uint8*);
 
 #endif // CLIENT_H_INCLUDED

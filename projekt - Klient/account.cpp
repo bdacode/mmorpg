@@ -11,29 +11,74 @@ bool registration(string name, string password){
     sendToServer(wiad);
     cout << "Wyslano\n";
 
-    while(1){
+    //while(1) {
         cout << "Oczekiwanie na info od serwera!\n";
         if(event.type == ENET_EVENT_TYPE_RECEIVE) {
             if(receive(event.packet->data, "GOOD")) {
                 cout << "REJESTRACJA ZAKONCZONA POMYSLNIE!" << endl;
                 return true;
-                break;
+                //break;
             }
             else if(receive(event.packet->data, "FAIL")) {
                 cout << "REJESTRACJA ZAKONCZONA NEGATYWNIE!" << endl;
                 return false;
-                break;
+                //break;
             }
         }
-    }
+    //}
 }
 
-void login(string name, string password){
-    sendToServer("login");
-    if(event.type == ENET_EVENT_TYPE_RECEIVE) {
+bool login(string name, string password, CPlayer* player){
+    char wiad[49];
 
-    }
+    if(name.length()>20){ cout << "Nazwa za dluga!\n"; return false; }
+    if(password.length()>20){ cout << "Haslo za dlugie!\n"; return false; }
 
+    string whole="login"+name+":"+password;
+    strcat(wiad, whole.c_str());
+    sendToServer(wiad);
+    cout << "Wyslano\n";
+
+    //while(1) {
+        cout << "Oczekiwanie na info od serwera!\n";
+        if(event.type == ENET_EVENT_TYPE_RECEIVE) {
+            if(receive(event.packet->data, "GOOD")) {
+                cout << "Zalogowano!" << endl;
+
+                string wiad = getPacket(event.packet->data);
+
+                string var = "";
+                int index = 0, what = 0;
+                for(int i = 5; i < wiad.size()+2; ++i) {
+                    if(wiad[i] != ' ') {
+                        var.resize(var.size()+1);
+                        var[index] = wiad[i];
+                        ++index;
+                    }
+                    else {
+                        index = 0;
+                        ++what;
+                        if(what == 1) player->hair = atoi(var.c_str());
+                        if(what == 2) player->head = atoi(var.c_str());
+                        if(what == 3) player->body = atoi(var.c_str());
+                        if(what == 4) player->leg = atoi(var.c_str());
+                        if(what == 5) player->boots = atoi(var.c_str());
+                        if(what == 6) player->newPos.x = atoi(var.c_str());
+                        if(what == 7) player->newPos.y = atoi(var.c_str());
+                        var = "";
+                    }
+                }
+
+                return true;
+                //break;
+            }
+            else if(receive(event.packet->data, "FAIL")) {
+                cout << "Blad podczas logowania!" << endl;
+                return false;
+                //break;
+            }
+        }
+    //}
 }
 
 /*if(!file){

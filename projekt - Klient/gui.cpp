@@ -23,7 +23,6 @@ cButton::cButton(int x, int y, int w, int h, string path, string name)
     this->w=this->x+w; this->h=this->y+h;
     this->path="media/gui/"+path+".png";
     this->name=name;
-    cout << this->h << endl;
 
     centerX=x+w/2; centerY=this->h-30;
     click=pressed=false;

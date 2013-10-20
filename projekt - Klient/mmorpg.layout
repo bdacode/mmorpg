@@ -1,37 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="account.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="295" topLine="0" />
+	<File name="client.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1180" topLine="20" />
+		</Cursor>
 	</File>
-	<File name="account.hpp" open="1" top="0" tabpos="3">
-		<Cursor position="141" topLine="0" />
+	<File name="account.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1980" topLine="41" />
+		</Cursor>
 	</File>
-	<File name="client.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="265" topLine="6" />
+	<File name="client.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="339" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="gui.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="2454" topLine="53" />
+	<File name="account.hpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="237" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="gui.hpp" open="1" top="0" tabpos="5">
-		<Cursor position="977" topLine="32" />
+	<File name="gui.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="326" topLine="7" />
+		</Cursor>
 	</File>
-	<File name="init.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="542" topLine="0" />
+	<File name="gui.hpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="init.h" open="0" top="0" tabpos="9">
-		<Cursor position="0" topLine="0" />
+	<File name="init.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="2370" topLine="78" />
+	<File name="init.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="main.h" open="0" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3051" topLine="184" />
+		</Cursor>
 	</File>
-	<File name="map.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="1795" topLine="0" />
+	<File name="main.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="player.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="229" topLine="0" />
+	<File name="map.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="player.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="528" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="player.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="389" topLine="0" />
+		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

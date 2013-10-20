@@ -52,16 +52,6 @@ int main(int argc, char ** argv){
     if(!file.good())
         cout << "\nI can't find map!";
     else {
-        /*string size_map="", size_w, size_h;
-        file >> size_map;
-        size_t pos = size_map.find('x');
-        if(pos != string::npos) {
-            size_w = size_map.substr(0, pos);
-            size_h = size_map.substr(pos);
-        }
-        pos = size_map.find(' ');
-        mapa = size_map.substr(pos);*/
-
         getline(file, mapa);
     }
     file.close();
@@ -99,58 +89,110 @@ int main(int argc, char ** argv){
                     //cout << "\n$$$ OTRZYMANO OD [" << event.peer->address.host << "] dane: '" << event.packet->data << "'";
 
                     if(receive(event.packet->data, "register")) {
-                        cout << "\nOdebrano prosbe o rejestracje!\n";
                         packet_name=getPacket(event.packet->data);
                         packet_password=getPacket(event.packet->data);
                         packet_name.erase( 0, 8 );
                         packet_password.erase( 0, 8 );
-                        cout << "NAZWA:" << packet_name << endl;
-                        cout << "HASLO:" << packet_password << endl;
                         size_t znalezionaPozycja = packet_name.find( ":" );
                         packet_name.erase( znalezionaPozycja, 20 );
                         packet_password.erase( 0, znalezionaPozycja+1 );
-                        cout << "POPRAWIOMA NAZWA:" << packet_name << endl;
-                        cout << "POPRAWIONE HASLO:" << packet_password << endl;
-                        file.open("data.txt");
-                        if(file){
-                            while(file.eof()){
-                                if(busy_account){ cout << "\nERROR!\n" << endl; break; }
-                                file>>name>>password;
-                                cout << name << " " << password << endl;
-                                //strcat(gh, name.c_str());
+                        busy_account = true;
 
-                                //if(!receive(event.packet->data, gh))
-                                if(packet_name!=name)
-                                    busy_account=false;
-                                else busy_account=true;
+                        file.open("nick.txt", ios::in);
+                        if(file.good())
+                        {
+                            while(!file.eof())
+                            {
+                                file >> name >> password;
+                                if(packet_name != name)
+                                    busy_account = false;
+                                else
+                                    busy_account = true;
+
+                                if(busy_account){ cout << "\nERROR!\n" << endl; break; }
                             }
                             file.close();
-                        } else busy_account=true;
-                        if(busy_account==false){
-                            file.open("data.txt", ios::app);
-                            file<<" "<<packet_name<<" "<<packet_password;
-                            char message[] = "GOOD\n";
+                        }
+                        else {
+                            cout << "\nERROR: I can't open nick.txt";
+                            busy_account=true;
+                        }
+
+                        if(!busy_account)
+                        {
+                            file.open("nick.txt", ios::out | ios::app);
+                            file << packet_name << " " << packet_password << "\n";
+                            file.close();
+
+                            string path = "users/"+packet_name+".txt";
+                            file.open(path.c_str(), ios::out);
+                            file << "1 1 1 1 1 0 0"; // hair, head, body, leg, boots, posX, posY
+                            file.close();
+
+                            char message[] = "GOOD";
                             ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
                             enet_host_broadcast(server, 0, p);
-                            cout << "\nWyslano radosna wiesc!";
-                        } else {
-                            char message[] = "FAIL\n";
+                            cout << "\nZarejestrowano nowego uzytkownika!";
+                        }
+                        else
+                        {
+                            char message[] = "FAIL";
                             ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
                             enet_host_broadcast(server, 0, p);
-                            cout << "\nWyslano smutna wiesc!";
                         }
                         file.close();
-
-                        //enet_host_broadcast(server, 0, p);
-                        //cout << "\nWYSLANO MAPE";
                     }
                     else if(receive(event.packet->data, "login")) {
-                        ifstream file;
+                        bool isLogin = false;
 
-                        //enet_host_broadcast(server, 0, p);
-                        cout << "\nWYSLANO MAPE";
+                        packet_name=getPacket(event.packet->data);
+                        packet_password=getPacket(event.packet->data);
+                        packet_name.erase( 0, 5 );
+                        packet_password.erase( 0, 5 );
+                        size_t znalezionaPozycja = packet_name.find( ":" );
+                        packet_name.erase( znalezionaPozycja, 20 );
+                        packet_password.erase( 0, znalezionaPozycja+1 );
+
+                        file.open("nick.txt", ios::in);
+                        if(file.good())
+                        {
+                            while(!file.eof())
+                            {
+                                file >> name >> password;
+                                if(packet_name == name && packet_password == password) {
+                                    isLogin = true;
+                                    break;
+                                }
+                            }
+                            file.close();
+                        }
+                        else {
+                            cout << "\nERROR: I can't open nick.txt";
+                            isLogin = false;
+                        }
+
+                        if(isLogin)
+                        {
+                            string path = "users/"+packet_name+".txt";
+                            file.open(path.c_str(), ios::in);
+                            string hair, head, body, leg, boots, posX, posY;
+                            file >> hair >> head >> body >> leg >> boots >> posX >> posY;
+                            file.close();
+
+                            string wiad = "GOOD "+hair+" "+head+" "+body+" "+leg+" "+boots+" "+posX+" "+posY;
+
+                            //char message[] = "GOOD";
+                            //ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                            ENetPacket *p = enet_packet_create(wiad.c_str(), wiad.size()+1, ENET_PACKET_FLAG_RELIABLE);
+                            enet_host_broadcast(server, 0, p);
+                        }
+                        else
+                        {
+                            char message[] = "FAIL";
+                            ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
+                            enet_host_broadcast(server, 0, p);
+                        }
                     }
-
                     else if(receive(event.packet->data, "CLICK")) {
                         char message[] = "Klient nacisnal przycisk!\n";
                         ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);

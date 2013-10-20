@@ -19,8 +19,8 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-string serverIP = "25.56.234.57"; // Rhagui
-//string serverIP = "25.193.13.94"; // SeaMonster131
+//string serverIP = "25.56.234.57"; // Rhagui
+string serverIP = "25.193.13.94"; // SeaMonster131
 //string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /***GlobalVariables&Functions***/
@@ -43,7 +43,8 @@ int main(int argc, char * argv[]){
     /*object*/
     cButton test(0, 500, 100, 100, "send");
     cButton quit(110, 570, 180, 30, "send", "quit");
-    cButton start(300, 200, 200, 200, "send", "start");
+    cButton b_register(100,200, 200,100, "button", "Register");
+    cButton b_login(100,350, 200, 100, "button", "Login");
 
     string name=""; string password="";
     /***over variables***/
@@ -84,25 +85,59 @@ int main(int argc, char * argv[]){
 
             /*** MENU ***/
             if(GameMode == gm_menu) {
-                start.update();
-                start.draw();
-                if(start.get_click()) {
-                    cout << "\n\nPodaj nazwe i haslo!\n";
+                b_register.update();
+                b_register.draw();
+
+                b_login.update();
+                b_login.draw();
+
+                if(b_register.get_click()) {
+                    cout << "\n\nPodaj nazwe i haslo do rejestracji:\n";
                     cin >> name >> password;
                     if(!connectToServer(serverIP, PORT))
                             break;
 
-                        if(enet_host_service(client, &event, 5000) > 0) {
-                            if(event.type == ENET_EVENT_TYPE_CONNECT) {
-                                string mes = "Polaczono do serwera [ "+serverIP+" ]";
-                                logger << mes;
-                            }
-                        } else {
-                            logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
-
-                            // TODO : messagebox
+                    if(enet_host_service(client, &event, 5000) > 0) {
+                        if(event.type == ENET_EVENT_TYPE_CONNECT) {
+                            string mes = "Polaczono do serwera [ "+serverIP+" ]";
+                            logger << mes;
                         }
-                    if(registration(name, password)){
+                    }
+                    else {
+                        logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
+
+                        // TODO : messagebox
+                    }
+                    if(registration(name, password)) {
+                        /*logger << "INIT: map";
+                        sendToServer("sendMeMap");
+                        if(event.type == ENET_EVENT_TYPE_RECEIVE) {
+                            map->createMap(event.packet);
+                            map->load();
+                            GameMode = gm_gameplay;
+                        }*/
+                        cout << "\nZAREJESTROWANO. Zaloguj sie, by grac!";
+                    }
+                }
+
+                if(b_login.get_click()) {
+                    cout << "\n\nPodaj nazwe i haslo do zalogowania:\n";
+                    cin >> name >> password;
+                    if(!connectToServer(serverIP, PORT))
+                            break;
+
+                    if(enet_host_service(client, &event, 5000) > 0) {
+                        if(event.type == ENET_EVENT_TYPE_CONNECT) {
+                            string mes = "Polaczono do serwera [ "+serverIP+" ]";
+                            logger << mes;
+                        }
+                    }
+                    else {
+                        logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
+
+                        // TODO : messagebox
+                    }
+                    if(login(name, password, player)) {
                         logger << "INIT: map";
                         sendToServer("sendMeMap");
                         if(event.type == ENET_EVENT_TYPE_RECEIVE) {
@@ -112,6 +147,8 @@ int main(int argc, char * argv[]){
                         }
                     }
                 }
+
+                if(key.Press(ALLEGRO_KEY_ESCAPE)) break;
             }
 
             /*** GAMEPLAY ***/
@@ -178,7 +215,7 @@ int main(int argc, char * argv[]){
     al_destroy_display(display);
     al_destroy_event_queue(event_queue);
 
-    enet_peer_disconnect(peer, 0);
+    //enet_peer_disconnect(peer, 0);
     atexit(enet_deinitialize);
     enet_host_destroy(client);
 
