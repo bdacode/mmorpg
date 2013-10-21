@@ -19,6 +19,7 @@
 #include <time.h>
 #include <math.h>
 #include <fstream>
+#include <process.h>
 
 #include "logger.h"
 

@@ -31,6 +31,8 @@ public:
     void render();
 };
 
+void player_updatePos(void*);
+
 class COtherPlayer {
 public:
     SPos pos;

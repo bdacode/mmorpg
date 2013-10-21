@@ -135,6 +135,7 @@ int main(int argc, char * argv[]){
                         logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
 
                         // TODO : messagebox
+                        continue;
                     }
                     if(login(name, password, player)) {
                         logger << "INIT: map";
@@ -145,6 +146,7 @@ int main(int argc, char * argv[]){
                             //string mess = "newPlayer"+player->nick;
                             //ENetPacket *p = enet_packet_create(mess.c_str(), mess.length(), ENET_PACKET_FLAG_RELIABLE);
                             //enet_host_broadcast(client, 0, p);
+
                             GameMode = gm_gameplay;
                         }
                     }
@@ -191,6 +193,7 @@ int main(int argc, char * argv[]){
                 /*** LOGIC ***/
 
                 player->update(key);
+                _beginthread(player_updatePos, 0, player); // watek na zarzadzanie pozycja graczy
 
                 if(key.Press(ALLEGRO_KEY_ESCAPE)) break;
 

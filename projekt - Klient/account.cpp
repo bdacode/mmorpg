@@ -43,6 +43,7 @@ bool login(string name, string password, CPlayer* player){
 
     while(1) {
         if(event.type == ENET_EVENT_TYPE_RECEIVE) {
+
             if(receive(event.packet->data, "GOOD")) {
                 cout << "\nLogged!\n" << endl;
 
@@ -71,12 +72,14 @@ bool login(string name, string password, CPlayer* player){
                 }
 
                 return true;
-                break;
             }
             else if(receive(event.packet->data, "FAIL")) {
                 cout << "\nError when logging!\n" << endl;
                 return false;
-                break;
+            }
+            else {
+                cout << "\nUuu smieci dostaje!\n" << endl;
+                return false;
             }
         }
     }

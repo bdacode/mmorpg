@@ -541,7 +541,7 @@
 1382177903 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\bitmap.cpp
 	"bitmap.h"
 
-1382177903 c:\users\jakub\documents\github\mmorpg\projekt - klient\bitmap.h
+1382378797 c:\users\jakub\documents\github\mmorpg\projekt - klient\bitmap.h
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
 	<allegro5/allegro_primitives.h>
@@ -557,6 +557,7 @@
 	<time.h>
 	<math.h>
 	<fstream>
+	<process.h>
 	"logger.h"
 
 1363291095 c:\users\jakub\documents\github\mmorpg\projekt - klient\logger.h
@@ -579,7 +580,7 @@
 1363441998 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\logger.cpp
 	"logger.h"
 
-1382304189 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\main.cpp
+1382386742 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\main.cpp
 	"main.h"
 	"input.h"
 	"logger.h"
@@ -1005,10 +1006,10 @@
 	"input.h"
 	"client.h"
 
-1382303322 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\player.cpp
+1382387704 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\player.cpp
 	"player.h"
 
-1382302140 c:\users\jakub\documents\github\mmorpg\projekt - klient\player.h
+1382382538 c:\users\jakub\documents\github\mmorpg\projekt - klient\player.h
 	"main.h"
 	"input.h"
 	"client.h"
@@ -1019,7 +1020,7 @@
 1382126504 c:\users\jakub\documents\github\mmorpg\projekt - klient\init.h
 	"main.h"
 
-1382300553 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\client.cpp
+1382388590 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\client.cpp
 	"client.h"
 
 1382272304 c:\users\jakub\documents\github\mmorpg\projekt - klient\client.h
@@ -1047,7 +1048,7 @@
 	"client.h"
 	"player.h"
 
-1382303968 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\account.cpp
+1382373153 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\account.cpp
 	"account.hpp"
 
 1382272304 c:\users\jakub\documents\github\mmorpg\projekt - klient\account.hpp

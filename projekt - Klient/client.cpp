@@ -10,7 +10,9 @@ void sendToServer(char* message) {
     ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
     enet_peer_send(peer, 0, p);
     enet_host_flush(client);
-    serviceResult = enet_host_service(client, &event, 10);
+    serviceResult = enet_host_service(client, &event, 5000);
+    //serviceResult = ENET_EVENT_TYPE_RECEIVE;
+    //event.type = ENET_EVENT_TYPE_RECEIVE;
     //serviceResult =  1;
 }
 

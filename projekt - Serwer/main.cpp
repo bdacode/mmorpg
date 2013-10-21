@@ -3,12 +3,14 @@
 #include <cstdio>
 #include <enet/enet.h>
 #include <fstream>
+#include <process.h>
 
 #define PORT 1234
 #define MAX_CLIENTS 32
 
 using namespace std;
 ENetEvent event;
+ENetHost * server;
 
 bool receive(enet_uint8* wiad, char* wiad2) {
     for(int i = 0; i < strlen(wiad2); ++i)
@@ -44,7 +46,6 @@ int main(int argc, char ** argv){
     fstream file;
 
     ENetAddress address;
-    ENetHost * server;
 
     string mapa;
 
@@ -220,9 +221,12 @@ int main(int argc, char ** argv){
                             mess[i] = event.packet->data[i];
 
                         ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
+
                         enet_host_broadcast(server, 0, p);
+
                         //enet_peer_send(event.peer, 0, p);
                     }
+
                     /*else {
                         char mess[event.packet->dataLength];
 
