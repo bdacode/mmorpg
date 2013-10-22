@@ -37,6 +37,7 @@ class cMessageBox{
     public:
         cMessageBox(int, int, int, int, string, string);
 
+        void setText(string);
         void render();
     private:
         int x, y;

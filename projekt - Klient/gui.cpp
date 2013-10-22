@@ -34,15 +34,12 @@ cButton::cButton(int x, int y, int w, int h, string path, string name)
 
 void cButton::render(){
     if(click) click=false;
-    if(orWait) waiting++;
-    if(waiting>=20){waiting=0; orWait=false;}
-    if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h&&mouse.Press(1)&&waiting==0&&click==false) {
+    if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h&&mouse.Press(1)&&click==false)
         pressed=true;
-    }
     if(mouse.getX()<x||mouse.getY()<y||mouse.getX()>w||mouse.getY()>h&&mouse.Press(1)&&pressed)
         pressed=false;
     if(mouse.Press(1)==false&&pressed) {
-        click=true; orWait=true; pressed=false;
+        click=true; pressed=false;
     }
     /***draw***/
     if(pressed) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
@@ -53,10 +50,12 @@ void cButton::render(){
 }
 
 /***message box***/
-cMessageBox::cMessageBox(int x, int y, int w, int h, string text, string path)
+cMessageBox::cMessageBox(int x, int y, int w, int h, string path, string text)
     : life(0){
     this->x=x; this->y=y;
-    this->w=w; this->h=h;
+    this->w=this->x+w; this->h=this->y+h;
+    this->path="media/gui/"+path+".png";
+    this->text=text;
 
     centerX=x+w/2; centerY=this->h-30;
 
@@ -64,8 +63,16 @@ cMessageBox::cMessageBox(int x, int y, int w, int h, string text, string path)
     font_button = al_load_font("media/font.ttf", 20, 0);
 }
 
+void cMessageBox::setText(string text){
+    life=0;
+    this->text=text;
+}
+
 void cMessageBox::render(){
-    al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
-    al_draw_scaled_bitmap(background, 0, 0, 100, 100, x+4, y+4, w-x-8, h-y-8, 0);
-    al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, text.c_str());
+    if(life<60){ //20 ~=1 sec
+        life++;
+        al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
+        al_draw_scaled_bitmap(background, 0, 0, getBmpW(background), getBmpH(background), x+4, y+4, w-x-8, h-y-8, 0);
+        al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, text.c_str());
+    }
 }

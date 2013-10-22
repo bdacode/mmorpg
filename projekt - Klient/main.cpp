@@ -47,6 +47,8 @@ int main(int argc, char * argv[]){
     cButton b_register(100,200, 200,100, "send", "Register");
     cButton b_login(100,350, 200, 100, "send", "Login");
 
+    cMessageBox info_menu(400, 300, 200, 50, "dark", "This is message box!");
+
     string name=""; string password="";
     /***over variables***/
 
@@ -200,7 +202,7 @@ int main(int argc, char * argv[]){
 
                 if(key.Press(ALLEGRO_KEY_ESCAPE)) break;
 
-                if(test.get_click()){ newMusic(1); sendToServer("klikniecie buttona"); }
+                if(test.get_click()){ /*newMusic(1);*/ info_menu.setText("Click"); /*sendToServer("klikniecie buttona");*/ }
                 if(quit.get_click()) {
                     newMusic(0);
                     enet_peer_disconnect(peer, 0);
@@ -213,6 +215,7 @@ int main(int argc, char * argv[]){
                 updateMusic();
                 map->render();
                 player->render();
+                info_menu.render();
 
                 for(int i = 0; i < v_otherPlayers.size(); ++i) {
                     al_draw_bitmap(IMG_player, v_otherPlayers[i].pos.x, v_otherPlayers[i].pos.y, 0);

@@ -8,7 +8,13 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="audio.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="60" topLine="7" />
+		<Cursor position="500" topLine="0" />
+	</File>
+	<File name="audio.hpp" open="1" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="bitmap.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="519" topLine="6" />
 	</File>
 	<File name="client.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="100" topLine="0" />
@@ -16,11 +22,11 @@
 	<File name="client.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="gui.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="0" topLine="0" />
+	<File name="gui.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="2706" topLine="58" />
 	</File>
-	<File name="gui.hpp" open="0" top="0" tabpos="4">
-		<Cursor position="54" topLine="0" />
+	<File name="gui.hpp" open="1" top="0" tabpos="4">
+		<Cursor position="712" topLine="30" />
 	</File>
 	<File name="init.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
@@ -28,8 +34,8 @@
 	<File name="init.h" open="0" top="0" tabpos="9">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="6956" topLine="181" />
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="7743" topLine="203" />
 	</File>
 	<File name="main.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />

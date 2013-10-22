@@ -11,17 +11,13 @@ void loadMusic(){
             cout << "Nie udalo sie wczytac muzyki!\n";
         }
     }
-    al_reserve_samples[2];
+    al_reserve_samples(1);
 }
 void newMusic(int ID){
     id=ID;
     al_stop_sample(NULL);
-    al_play_sample(music[id], 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
+    al_play_sample(music[id], 1.0, 0.0, 1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
 }
-void stopMusic(){
-    al_stop_sample(NULL);
-}
-void updateMusic(){
-    //cout << id << endl;
-    al_play_sample(music[id], 2.0, 1.0, 1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
-}
+
+void stopMusic(){ al_stop_sample(NULL); }
+void updateMusic(){ al_play_sample(music[id], 1.0, 0.0, 1.0,ALLEGRO_PLAYMODE_LOOP,NULL); }
