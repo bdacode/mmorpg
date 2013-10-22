@@ -50,6 +50,8 @@
 		<Unit filename="CMain.h" />
 		<Unit filename="account.cpp" />
 		<Unit filename="account.hpp" />
+		<Unit filename="audio.cpp" />
+		<Unit filename="audio.hpp" />
 		<Unit filename="bitmap.cpp" />
 		<Unit filename="bitmap.h" />
 		<Unit filename="client.cpp" />

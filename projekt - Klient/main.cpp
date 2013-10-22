@@ -9,6 +9,7 @@
 #include "init.h"
 #include "client.h"
 #include "account.hpp"
+#include "audio.hpp"
 
 CKeyboard key;
 CMouse mouse;
@@ -19,8 +20,8 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-//string serverIP = "25.56.234.57"; // Rhagui
-string serverIP = "25.193.13.94"; // SeaMonster131
+string serverIP = "25.56.234.57"; // Rhagui
+//string serverIP = "25.193.13.94"; // SeaMonster131
 //string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /***GlobalVariables&Functions***/
@@ -64,6 +65,8 @@ int main(int argc, char * argv[]){
     al_register_event_source(event_queue, al_get_mouse_event_source());
 
     al_start_timer(timer);
+
+    loadMusic();
 
     GameMode = gm_menu;
 
@@ -197,8 +200,9 @@ int main(int argc, char * argv[]){
 
                 if(key.Press(ALLEGRO_KEY_ESCAPE)) break;
 
-                if(test.get_click()) sendToServer("klikniecie buttona");
+                if(test.get_click()){ newMusic(1); sendToServer("klikniecie buttona"); }
                 if(quit.get_click()) {
+                    newMusic(0);
                     enet_peer_disconnect(peer, 0);
                     enet_host_destroy(client);
 
@@ -206,6 +210,7 @@ int main(int argc, char * argv[]){
                 }
 
                 /*** DRAW ***/
+                updateMusic();
                 map->render();
                 player->render();
 
