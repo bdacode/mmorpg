@@ -58,14 +58,24 @@ cMessageBox::cMessageBox(int x, int y, int w, int h, string path, string text)
     this->text=text;
 
     centerX=x+w/2; centerY=this->h-30;
+    size_t position = text.find("\n");
+    while(position != std::string::npos){
+        cout << "Fraza zostala odnaleziona na pozycji " << position << endl;
+        position = text.find( "\n", position + 2 );
+    }
 
     background = al_load_bitmap(this->path.c_str());
-    font_button = al_load_font("media/font.ttf", 20, 0);
+    font_button = al_load_font("media/font.ttf", 14, 0);
 }
 
 void cMessageBox::setText(string text){
     life=0;
     this->text=text;
+    size_t position = text.find("\n");
+    while(position != string::npos){
+        cout << "Fraza zostala odnaleziona na pozycji " << position << endl;
+        position = text.find( "\n", position + 2 );
+    }
 }
 
 void cMessageBox::render(){
@@ -73,6 +83,9 @@ void cMessageBox::render(){
         life++;
         al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
         al_draw_scaled_bitmap(background, 0, 0, getBmpW(background), getBmpH(background), x+4, y+4, w-x-8, h-y-8, 0);
-        al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, text.c_str());
+        for(int i=0; i<5; i++){
+            //if(text=="\n")
+                al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), x+6, y+6+(i*15), ALLEGRO_ALIGN_LEFT, text.c_str());
+        }
     }
 }

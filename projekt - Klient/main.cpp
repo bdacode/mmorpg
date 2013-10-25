@@ -43,7 +43,7 @@ int main(int argc, char * argv[]){
 
     /*object*/
     cButton test(0, 500, 100, 100, "send");
-    cButton quit(110, 570, 180, 30, "send", "quit");
+    cButton logout(110, 570, 180, 30, "send", "logout");
     cButton b_register(100,200, 200,100, "send", "Register");
     cButton b_login(100,350, 200, 100, "send", "Login");
 
@@ -69,6 +69,7 @@ int main(int argc, char * argv[]){
     al_start_timer(timer);
 
     loadMusic();
+    newMusic(0);
 
     GameMode = gm_menu;
 
@@ -117,6 +118,7 @@ int main(int argc, char * argv[]){
                             if(event.type == ENET_EVENT_TYPE_RECEIVE) {
                                 map->createMap(event.packet);
                                 map->load();
+                                newMusic(1);
                                 GameMode = gm_gameplay;
                             }
                         }
@@ -152,6 +154,7 @@ int main(int argc, char * argv[]){
                             //ENetPacket *p = enet_packet_create(mess.c_str(), mess.length(), ENET_PACKET_FLAG_RELIABLE);
                             //enet_host_broadcast(client, 0, p);
 
+                            newMusic(1);
                             GameMode = gm_gameplay;
                         }
                     }
@@ -202,8 +205,8 @@ int main(int argc, char * argv[]){
 
                 if(key.Press(ALLEGRO_KEY_ESCAPE)) break;
 
-                if(test.get_click()){ /*newMusic(1);*/ info_menu.setText("Click"); /*sendToServer("klikniecie buttona");*/ }
-                if(quit.get_click()) {
+                if(test.get_click()){ newMusic(2); info_menu.setText("This is \n SPARTA!"); /*sendToServer("klikniecie buttona");*/ }
+                if(logout.get_click()) {
                     newMusic(0);
                     enet_peer_disconnect(peer, 0);
                     enet_host_destroy(client);
@@ -222,7 +225,7 @@ int main(int argc, char * argv[]){
                 }
 
                 test.render();
-                quit.render();
+                logout.render();
             }
 
             al_flip_display();
