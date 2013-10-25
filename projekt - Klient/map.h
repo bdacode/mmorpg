@@ -24,7 +24,7 @@ class CMap {
     void createMap(ENetPacket*);
     void getMapFromString(string);
     void load();
-    void render();
+    void render(CCamera*);
 };
 
 

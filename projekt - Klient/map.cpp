@@ -99,7 +99,9 @@ void CMap::load() {
     TILE_terrain[1] = loadBmp("media/map/dirt.png");
 }
 
-void CMap::render() {
+void CMap::render(CCamera* camera) {
+    camera->update();
+
     for(int x = 0; x < w; ++x)
         for(int y = 0; y < h; ++y) {
             if(map[x][y].getID() == 0)
@@ -109,4 +111,6 @@ void CMap::render() {
                 al_draw_scaled_bitmap(TILE_terrain[1], 0,0, getBmpW(TILE_terrain[1]),getBmpW(TILE_terrain[1]),
                                       x*SIZE_TILE_W,y*SIZE_TILE_H, SIZE_TILE_W,SIZE_TILE_H, 0);
         }
+
+    camera->reset();
 }

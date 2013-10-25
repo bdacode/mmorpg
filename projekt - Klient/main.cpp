@@ -2,6 +2,7 @@
 #include "main.h"
 #include "input.h"
 #include "logger.h"
+#include "camera.h"
 
 #include "gui.hpp"
 #include "map.h"
@@ -20,8 +21,8 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-string serverIP = "25.56.234.57"; // Rhagui
-//string serverIP = "25.193.13.94"; // SeaMonster131
+//string serverIP = "25.56.234.57"; // Rhagui
+string serverIP = "25.193.13.94"; // SeaMonster131
 //string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /***GlobalVariables&Functions***/
@@ -40,6 +41,7 @@ int main(int argc, char * argv[]){
 
     CMap* map = new CMap();
     CPlayer* player = new CPlayer();
+    CCamera* camera = new CCamera();
 
     /*object*/
     cButton test(0, 500, 100, 100, "send");
@@ -84,6 +86,8 @@ int main(int argc, char * argv[]){
         key.Get(klawiatura);
         mouse.Get(myszka);
 
+
+
         if(ev.type == ALLEGRO_EVENT_TIMER){
             /***UPDATE***/
             al_clear_to_color(al_map_rgb(200,200,255));
@@ -112,7 +116,7 @@ int main(int argc, char * argv[]){
                         // TODO : messagebox
                     }
                     if(registration(name, password)) {
-                        if(login(name, password, player)) {
+                        if(login(name, password, player, camera)) {
                             logger << "INIT: map";
                             sendToServer("sendMeMap");
                             if(event.type == ENET_EVENT_TYPE_RECEIVE) {
@@ -144,7 +148,7 @@ int main(int argc, char * argv[]){
                         // TODO : messagebox
                         continue;
                     }
-                    if(login(name, password, player)) {
+                    if(login(name, password, player, camera)) {
                         logger << "INIT: map";
                         sendToServer("sendMeMap");
                         if(event.type == ENET_EVENT_TYPE_RECEIVE) {
@@ -166,6 +170,7 @@ int main(int argc, char * argv[]){
             /*** GAMEPLAY ***/
             else if(GameMode == gm_gameplay){
                 /*** CONNECTION ***/
+
                 if(serviceResult > 0) {
                     switch(event.type) {
                         case ENET_EVENT_TYPE_CONNECT:
@@ -203,6 +208,8 @@ int main(int argc, char * argv[]){
                 player->update(key);
                 _beginthread(player_updatePos, 0, player); // watek na zarzadzanie pozycja graczy
 
+                camera->follow(player);
+
                 if(key.Press(ALLEGRO_KEY_ESCAPE)) break;
 
                 if(test.get_click()){ newMusic(2); info_menu.setText("This is \n SPARTA!"); /*sendToServer("klikniecie buttona");*/ }
@@ -216,12 +223,18 @@ int main(int argc, char * argv[]){
 
                 /*** DRAW ***/
                 updateMusic();
-                map->render();
+                map->render(camera);
                 player->render();
                 info_menu.render();
 
                 for(int i = 0; i < v_otherPlayers.size(); ++i) {
+                    camera->update();
                     al_draw_bitmap(IMG_player, v_otherPlayers[i].pos.x, v_otherPlayers[i].pos.y, 0);
+                    camera->reset();
+
+                    ++v_otherPlayers[i].timeFromLastReceive;
+                    if(v_otherPlayers[i].timeFromLastReceive >= 100) // 60 -> ~1 sekunda bez odpowiedzi
+                        v_otherPlayers.erase(v_otherPlayers.begin()+i);
                 }
 
                 test.render();

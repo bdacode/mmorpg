@@ -28,7 +28,7 @@ bool registration(string name, string password){
     //}
 }
 
-bool login(string name, string password, CPlayer* player){
+bool login(string name, string password, CPlayer* player, CCamera* camera){
     char wiad[49]="";
 
     if(name.length()>20){ cout << "Name too long!\n"; return false; }
@@ -65,11 +65,13 @@ bool login(string name, string password, CPlayer* player){
                         if(what == 3) player->body = atoi(var.c_str());
                         if(what == 4) player->leg = atoi(var.c_str());
                         if(what == 5) player->boots = atoi(var.c_str());
-                        if(what == 6) player->newPos.x = atoi(var.c_str());
-                        if(what == 7) player->newPos.y = atoi(var.c_str());
+                        if(what == 6) player->pos.x = atoi(var.c_str());
+                        if(what == 7) player->pos.y = atoi(var.c_str());
                         var = "";
                     }
                 }
+
+                camera->setPos(player->pos.x, player->pos.y);
 
                 return true;
             }

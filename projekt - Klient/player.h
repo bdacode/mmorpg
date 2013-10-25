@@ -17,7 +17,8 @@ public:
     CPlayer();
     ~CPlayer();
 
-    SPos newPos;
+    int w, h;
+    SPos pos;
     SPos oldPos;
 
     string nick;
@@ -37,11 +38,13 @@ class COtherPlayer {
 public:
     SPos pos;
     string nick;
+    int timeFromLastReceive;
 
     COtherPlayer(string n)
         : nick(n)
     {
         pos.x = pos.y = 0;
+        timeFromLastReceive = 0;
     }
 };
 

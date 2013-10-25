@@ -22,6 +22,7 @@
 #include <process.h>
 
 #include "logger.h"
+#include "camera.h"
 
 using namespace std;
 

@@ -8,7 +8,7 @@
 #include "player.h"
 
 bool registration(string, string);
-bool login(string, string, CPlayer*);
+bool login(string, string, CPlayer*, CCamera*);
 
 
 #endif // ACCOUNT_HPP_INCLUDED
