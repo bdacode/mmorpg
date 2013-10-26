@@ -72,7 +72,7 @@ int main(int argc, char ** argv){
         serviceResult=1;
 
         while(serviceResult>0){
-            serviceResult = enet_host_service(server, &event, 1000); //1000 milisekund
+            serviceResult = enet_host_service(server, &event, 100); //1000 milisekund
             switch (event.type){
                 case ENET_EVENT_TYPE_CONNECT:{
                     printf ("\nA new client connected from %x:%u.\n", event.peer -> address.host, event.peer -> address.port);
@@ -220,7 +220,8 @@ int main(int argc, char ** argv){
                         for(int i = 0; i < event.packet->dataLength; ++i)
                             mess[i] = event.packet->data[i];
 
-                        ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
+                        //ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
+                        ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_UNSEQUENCED);
 
                         enet_host_broadcast(server, 0, p);
 

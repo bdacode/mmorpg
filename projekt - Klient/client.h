@@ -10,6 +10,7 @@ extern ENetPeer* peer;
 extern ENetAddress address;
 
 void sendToServer(char*);
+void sendToServerUnseq(char*);
 bool receive(enet_uint8*, char*);
 bool connectToServer(string, int);
 string getPacket(enet_uint8*);

@@ -21,6 +21,8 @@ public:
     SPos pos;
     SPos oldPos;
 
+    float speed;
+
     string nick;
 
     int timeToSend;

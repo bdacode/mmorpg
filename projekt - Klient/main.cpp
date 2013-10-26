@@ -22,10 +22,11 @@ string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
 //string serverIP = "25.56.234.57"; // Rhagui
-string serverIP = "25.193.13.94"; // SeaMonster131
-//string serverIP = "192.168.0.102"; // SeaMonster131 (2)
+//string serverIP = "25.193.13.94"; // SeaMonster131
+string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /***GlobalVariables&Functions***/
+ALLEGRO_FONT* font;
 
 void updateFPS(bool);
 enum gameMode { gm_menu = 0, gm_gameplay = 1 } GameMode;
@@ -72,6 +73,7 @@ int main(int argc, char * argv[]){
 
     loadMusic();
     newMusic(0);
+    font = al_load_font("media/font.ttf", 20, 0);
 
     GameMode = gm_menu;
 
@@ -230,6 +232,10 @@ int main(int argc, char * argv[]){
                 for(int i = 0; i < v_otherPlayers.size(); ++i) {
                     camera->update();
                     al_draw_bitmap(IMG_player, v_otherPlayers[i].pos.x, v_otherPlayers[i].pos.y, 0);
+                    al_draw_filled_rectangle(v_otherPlayers[i].pos.x+25-al_get_text_width(font, v_otherPlayers[i].nick.c_str())/2-10, v_otherPlayers[i].pos.y-25,
+                                             v_otherPlayers[i].pos.x+25+al_get_text_width(font, v_otherPlayers[i].nick.c_str())/2+10, v_otherPlayers[i].pos.y-5,
+                                             al_map_rgba(0,0,0, 100));
+                    al_draw_text(font, al_map_rgb(255,255,255), v_otherPlayers[i].pos.x+25, v_otherPlayers[i].pos.y-30, ALLEGRO_ALIGN_CENTER, v_otherPlayers[i].nick.c_str());
                     camera->reset();
 
                     ++v_otherPlayers[i].timeFromLastReceive;

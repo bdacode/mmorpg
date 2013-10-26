@@ -17,6 +17,15 @@ void sendToServer(char* message) {
     //serviceResult = enet_host_check_events(client, &event);
 }
 
+void sendToServerUnseq(char* message) {
+    ENetPacket *p = enet_packet_create((char*)message, strlen(message)+1, ENET_PACKET_FLAG_UNSEQUENCED);
+    enet_peer_send(peer, 0, p);
+
+    enet_host_flush(client);
+
+    serviceResult = enet_host_service(client, &event, 5000);
+}
+
 bool receive(enet_uint8* wiad, char* wiad2) {
     if(wiad == NULL)
         return false;
