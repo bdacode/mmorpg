@@ -26,6 +26,7 @@ class CMouse
     int getX() { return mysz.x; }
     int getY() { return mysz.y; }
     int getZ() { return mysz.z; }
+    bool bound(int,int,int,int);
 };
 
 

@@ -72,6 +72,8 @@
 		<Unit filename="map.h" />
 		<Unit filename="player.cpp" />
 		<Unit filename="player.h" />
+		<Unit filename="resource_manager.cpp" />
+		<Unit filename="resource_manager.h" />
 		<Unit filename="tile.cpp" />
 		<Unit filename="tile.h" />
 		<Extensions>

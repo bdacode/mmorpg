@@ -22,7 +22,6 @@ string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
 string serverIP = "25.56.234.57"; // Rhagui
-//string serverIP = "25.193.13.94"; // SeaMonster131
 //string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /***GlobalVariables&Functions***/
@@ -60,7 +59,8 @@ int main(int argc, char * argv[]){
     timer = al_create_timer(1.0 / WIN_FPS);
 
     //al_set_new_display_flags(ALLEGRO_FULLSCREEN);
-    al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
+    //al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
+
     display = al_create_display(WIN_W,WIN_H);
 
     event_queue = al_create_event_queue();
@@ -99,6 +99,19 @@ int main(int argc, char * argv[]){
             if(GameMode == gm_menu) {
                 b_register.render();
                 b_login.render();
+
+                // DEBUG - wybor IP serwera
+
+                if(serverIP == "25.56.234.57") al_draw_text(font, al_map_rgb(255,0,0), 10, 10, 0, "25.56.234.57 (Rhagui)");
+                else al_draw_text(font, al_map_rgb(255,255,255), 10, 10, 0, "25.56.234.57 (Rhagui)");
+
+                if(serverIP == "25.193.13.94") al_draw_text(font, al_map_rgb(255,0,0), 10, 40, 0, "25.193.13.94 (SeaMonster131)");
+                else al_draw_text(font, al_map_rgb(255,255,255), 10, 40, 0, "25.193.13.94 (SeaMonster131)");
+
+                if(mouse.bound(10,10, 200,30) && mouse.Press(1)) serverIP = "25.56.234.57";
+                if(mouse.bound(10,40, 200,70) && mouse.Press(1)) serverIP = "25.193.13.94";
+
+                // end DEBUG
 
                 if(b_register.get_click()) {
                     cout << "\n\nPodaj nazwe i haslo do rejestracji:\n";

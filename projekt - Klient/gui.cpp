@@ -45,7 +45,9 @@ void cButton::render(){
     if(pressed) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
     else if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
     else al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,120,0));
+
     al_draw_scaled_bitmap(background, 0, 0, getBmpW(background), getBmpH(background), x+4, y+4, w-x-8, h-y-8, 0);
+
     al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, name.c_str());
 }
 
@@ -114,7 +116,9 @@ void cMessageBox::render(){
         if(pressed) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,120,0));
         else if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
         else al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
+
         al_draw_scaled_bitmap(background, 0, 0, getBmpW(background), getBmpH(background), x+4, y+4, w-x-8, h-y-8, 0);
+
         for(int i=0; i<5; i++){
             al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), x+6, y+6+(i*15), ALLEGRO_ALIGN_LEFT, text.c_str());
         }

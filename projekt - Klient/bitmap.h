@@ -23,6 +23,7 @@
 
 #include "logger.h"
 #include "camera.h"
+#include "resource_manager.h"
 
 using namespace std;
 

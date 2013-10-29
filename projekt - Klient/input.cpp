@@ -26,3 +26,11 @@ bool CMouse::Press(int key)
 
     return false;
 }
+
+bool CMouse::bound(int x,int y, int x2,int y2)
+{
+    if(mysz.x >= x && mysz.x <= x2 && mysz.y >= y && mysz.y <= y2)
+        return true;
+
+    return false;
+}
