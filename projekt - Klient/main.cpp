@@ -21,9 +21,9 @@ int     WIN_W = 800, WIN_H = 600,
 string  WIN_NAME = "MMORPG Alpha 0.1";
 
 #define PORT 1234
-//string serverIP = "25.56.234.57"; // Rhagui
+string serverIP = "25.56.234.57"; // Rhagui
 //string serverIP = "25.193.13.94"; // SeaMonster131
-string serverIP = "192.168.0.102"; // SeaMonster131 (2)
+//string serverIP = "192.168.0.102"; // SeaMonster131 (2)
 
 /***GlobalVariables&Functions***/
 ALLEGRO_FONT* font;
@@ -50,7 +50,7 @@ int main(int argc, char * argv[]){
     cButton b_register(100,200, 200,100, "send", "Register");
     cButton b_login(100,350, 200, 100, "send", "Login");
 
-    cMessageBox info_menu(400, 300, 200, 50, "dark", "This is message box!");
+    cMessageBox info_menu(400, 300, 200, 50, "dark", "This \n is \n message box!"/*, GUI_MOVE*/);
 
     string name=""; string password="";
     /***over variables***/
@@ -93,7 +93,7 @@ int main(int argc, char * argv[]){
         if(ev.type == ALLEGRO_EVENT_TIMER){
             /***UPDATE***/
             al_clear_to_color(al_map_rgb(200,200,255));
-            updateFPS(0);
+            updateFPS(1);
 
             /*** MENU ***/
             if(GameMode == gm_menu) {
@@ -214,7 +214,7 @@ int main(int argc, char * argv[]){
 
                 if(key.Press(ALLEGRO_KEY_ESCAPE)) break;
 
-                if(test.get_click()){ newMusic(2); info_menu.setText("This is \n SPARTA!"); /*sendToServer("klikniecie buttona");*/ }
+                if(test.get_click()){ newMusic(2); info_menu.setText("This \n is \n SPARTA!"); /*sendToServer("klikniecie buttona");*/ }
                 if(logout.get_click()) {
                     newMusic(0);
                     enet_peer_disconnect(peer, 0);

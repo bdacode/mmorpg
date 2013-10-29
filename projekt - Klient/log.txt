@@ -3656,3 +3656,170 @@ START: Allegro5
 START: Game Loop
 Polaczono do serwera [ 192.168.0.102 ]
 INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+ERROR: Nie mozna polaczyc sie z serwerem.
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+ERROR: Nie mozna polaczyc sie z serwerem.
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map

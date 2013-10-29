@@ -50,42 +50,73 @@ void cButton::render(){
 }
 
 /***message box***/
-cMessageBox::cMessageBox(int x, int y, int w, int h, string path, string text)
-    : life(0){
+cMessageBox::cMessageBox(int x, int y, int w, int h, string path, string text/*, enum move argument*/)
+    : life(1){
     this->x=x; this->y=y;
     this->w=this->x+w; this->h=this->y+h;
+    wHelp=w; hHelp=h;
     this->path="media/gui/"+path+".png";
     this->text=text;
+    pressed=false;
+    modified=false;
+    //this->MOVE=argument;
+    //int how much=0;
 
     centerX=x+w/2; centerY=this->h-30;
     size_t position = text.find("\n");
     while(position != std::string::npos){
         cout << "Fraza zostala odnaleziona na pozycji " << position << endl;
         position = text.find( "\n", position + 2 );
+        //how much++;
     }
+    //string[how much];
 
     background = al_load_bitmap(this->path.c_str());
     font_button = al_load_font("media/font.ttf", 14, 0);
 }
 
 void cMessageBox::setText(string text){
-    life=0;
+    life=true;
+    pressed=false;
+    modified=false;
     this->text=text;
     size_t position = text.find("\n");
     while(position != string::npos){
-        cout << "Fraza zostala odnaleziona na pozycji " << position << endl;
+        cout << "\nFraza zostala odnaleziona na pozycji " << position;
         position = text.find( "\n", position + 2 );
     }
 }
 
 void cMessageBox::render(){
-    if(life<60){ //20 ~=1 sec
-        life++;
-        al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
+    if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h&&mouse.Press(1)&&life)
+        pressed=true;
+
+    if(mouse.Press(1)&&pressed/*&&MOVE==GUI_MOVE*/){
+        if(mouse.getX()<x||mouse.getY()<y||mouse.getX()>w||mouse.getY()>h)
+            modified=true;
+    }
+
+    if(modified){
+        x=mouse.getX();
+        y=mouse.getY();
+        w=x+wHelp; h=y+hHelp;
+    }
+
+    if(mouse.Press(1)==false&&pressed&&modified) {
+        pressed=false; modified=false;
+    }
+    else if(mouse.Press(1)==false&&pressed) {
+        life=false; pressed=false; modified=false;
+    }
+
+    /***draw***/
+    if(life){
+        if(pressed) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,120,0));
+        else if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
+        else al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
         al_draw_scaled_bitmap(background, 0, 0, getBmpW(background), getBmpH(background), x+4, y+4, w-x-8, h-y-8, 0);
         for(int i=0; i<5; i++){
-            //if(text=="\n")
-                al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), x+6, y+6+(i*15), ALLEGRO_ALIGN_LEFT, text.c_str());
+            al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), x+6, y+6+(i*15), ALLEGRO_ALIGN_LEFT, text.c_str());
         }
     }
 }

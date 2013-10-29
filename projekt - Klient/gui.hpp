@@ -35,17 +35,18 @@ class cButton{
 /***message box***/
 class cMessageBox{
     public:
-        cMessageBox(int, int, int, int, string, string);
+        cMessageBox(int, int, int, int, string, string/*, enum*/);
 
         void setText(string);
         void render();
     private:
         int x, y;
         int w, h;
+        int wHelp, hHelp;
         int centerX, centerY;
-        int life;
-        string text;
-        string path;
+        bool life, pressed, modified;
+        string text, path;
+        //enum move{GUI_STATIC, GUI_MOVE};
 
         ALLEGRO_BITMAP* background;
         ALLEGRO_FONT* font_button;
