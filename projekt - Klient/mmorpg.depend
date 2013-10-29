@@ -627,10 +627,10 @@
 1376602390 c:\users\jakub\documents\github\enet-1.3.9\include\enet\callbacks.h
 	<stdlib.h>
 
-1382445477 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\input.cpp
+1383062583 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\input.cpp
 	"input.h"
 
-1382445477 c:\users\marcin\documents\github\mmorpg\projekt - klient\input.h
+1383062583 c:\users\marcin\documents\github\mmorpg\projekt - klient\input.h
 	"main.h"
 
 1382445477 c:\users\marcin\documents\github\mmorpg\projekt - klient\main.h
@@ -639,7 +639,7 @@
 
 1382445475 c:\users\marcin\documents\github\mmorpg\projekt - klient\cmain.h
 
-1382772488 c:\users\marcin\documents\github\mmorpg\projekt - klient\bitmap.h
+1383062583 c:\users\marcin\documents\github\mmorpg\projekt - klient\bitmap.h
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
 	<allegro5/allegro_primitives.h>
@@ -658,6 +658,7 @@
 	<process.h>
 	"logger.h"
 	"camera.h"
+	"resource_manager.h"
 
 1372617532 c:\users\marcin\documents\github\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro.h
 	"allegro5/base.h"
@@ -949,15 +950,15 @@
 1382445476 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\bitmap.cpp
 	"bitmap.h"
 
-1383051318 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.cpp
+1383072531 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.cpp
 	"gui.hpp"
 
-1383051310 c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.hpp
+1383070863 c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.hpp
 	"main.h"
 	"bitmap.h"
 	"input.h"
 
-1382989512 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\main.cpp
+1383071844 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\main.cpp
 	"main.h"
 	"input.h"
 	"logger.h"
@@ -992,7 +993,7 @@
 	"input.h"
 	"tile.h"
 
-1382772488 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\map.cpp
+1383068469 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\map.cpp
 	"map.h"
 
 1382772488 c:\users\marcin\documents\github\mmorpg\projekt - klient\map.h
@@ -1006,7 +1007,7 @@
 1382445477 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\tile.cpp
 	"tile.h"
 
-1382812403 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\player.cpp
+1383066413 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\player.cpp
 	"player.h"
 
 1382812403 c:\users\marcin\documents\github\mmorpg\projekt - klient\player.h
@@ -1100,4 +1101,11 @@
 	<map>
 
 1383057833 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\resource_manager.cpp
+
+1383062583 c:\users\marcin\documents\github\mmorpg\projekt - klient\resource_manager.h
+	"main.h"
+	<map>
+
+1383062583 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\resource_manager.cpp
+	"resource_manager.h"
 

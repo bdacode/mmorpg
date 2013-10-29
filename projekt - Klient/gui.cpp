@@ -34,25 +34,25 @@ cButton::cButton(int x, int y, int w, int h, string path, string name)
 
 void cButton::render(){
     if(click) click=false;
-    if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h&&mouse.Press(1)&&click==false)
+    if(mouse.bound(x,y,w,h)&&mouse.Press(1)&&click==false)
         pressed=true;
-    if(mouse.getX()<x||mouse.getY()<y||mouse.getX()>w||mouse.getY()>h&&mouse.Press(1)&&pressed)
+    if(mouse.bound(x,y,w,h)==false&&mouse.Press(1)&&pressed)
         pressed=false;
     if(mouse.Press(1)==false&&pressed) {
         click=true; pressed=false;
     }
     /***draw***/
     if(pressed) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
-    else if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
+    else if(mouse.bound(x,y,w,h)) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
     else al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,120,0));
 
     al_draw_scaled_bitmap(background, 0, 0, getBmpW(background), getBmpH(background), x+4, y+4, w-x-8, h-y-8, 0);
-
+    //al_draw_bitmap(background, x+4, y+4, 0);
     al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, name.c_str());
 }
 
 /***message box***/
-cMessageBox::cMessageBox(int x, int y, int w, int h, string path, string text/*, enum move argument*/)
+cMessageBox::cMessageBox(int x, int y, int w, int h, string path, string text, GUI_DYNAMICS dynamics)
     : life(1){
     this->x=x; this->y=y;
     this->w=this->x+w; this->h=this->y+h;
@@ -61,7 +61,7 @@ cMessageBox::cMessageBox(int x, int y, int w, int h, string path, string text/*,
     this->text=text;
     pressed=false;
     modified=false;
-    //this->MOVE=argument;
+    this->dynamics=dynamics;
     //int how much=0;
 
     centerX=x+w/2; centerY=this->h-30;
@@ -90,34 +90,43 @@ void cMessageBox::setText(string text){
 }
 
 void cMessageBox::render(){
-    if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h&&mouse.Press(1)&&life)
-        pressed=true;
-
-    if(mouse.Press(1)&&pressed/*&&MOVE==GUI_MOVE*/){
-        if(mouse.getX()<x||mouse.getY()<y||mouse.getX()>w||mouse.getY()>h)
-            modified=true;
-    }
-
-    if(modified){
-        x=mouse.getX();
-        y=mouse.getY();
-        w=x+wHelp; h=y+hHelp;
-    }
-
-    if(mouse.Press(1)==false&&pressed&&modified) {
-        pressed=false; modified=false;
-    }
-    else if(mouse.Press(1)==false&&pressed) {
-        life=false; pressed=false; modified=false;
-    }
-
-    /***draw***/
     if(life){
+        if(mouse.bound(x,y,w,h)&&mouse.Press(1)) pressed=true;
+
+
+        if(dynamics==GUI_STATIC){
+            if(mouse.Press(1)&&!mouse.bound(x,y,w,h)&&pressed) pressed=false;
+
+            if(mouse.Press(1)==false&&pressed) {
+                life=false; pressed=false;
+            }
+        } else if(dynamics==GUI_MOVE){
+            if(mouseOldX!=mouse.getX()&&mouseOldY!=mouse.getY()&&mouse.Press(1)&&pressed&&modified==false){
+                mouseOldX=mouse.getX(); mouseOldY=mouse.getY();
+                distanceX=x-mouse.getX(); distanceY=y-mouse.getY();
+                modified=true;
+            }
+            if(modified){
+                x=mouse.getX()+distanceX;
+                y=mouse.getY()+distanceY;
+                w=x+wHelp; h=y+hHelp;
+            }
+            mouseOldX=mouse.getX();
+            mouseOldY=mouse.getY();
+
+            if(mouse.Press(1)==false&&pressed) {
+                if(modified==false) life=false;
+                pressed=false; modified=false;
+            }
+        }
+
+        /***DRAW***/
         if(pressed) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,120,0));
-        else if(mouse.getX()>=x&&mouse.getY()>=y&&mouse.getX()<=w&&mouse.getY()<=h) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
+        else if(mouse.bound(x,y,w,h)) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
         else al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
 
         al_draw_scaled_bitmap(background, 0, 0, getBmpW(background), getBmpH(background), x+4, y+4, w-x-8, h-y-8, 0);
+        //al_draw_bitmap(background, x, y, 0);
 
         for(int i=0; i<5; i++){
             al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), x+6, y+6+(i*15), ALLEGRO_ALIGN_LEFT, text.c_str());

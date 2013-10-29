@@ -33,21 +33,24 @@ class cButton{
 };
 
 /***message box***/
+enum GUI_DYNAMICS { GUI_STATIC, GUI_MOVE };
 class cMessageBox{
     public:
-        cMessageBox(int, int, int, int, string, string/*, enum*/);
+        cMessageBox(int, int, int, int, string, string, GUI_DYNAMICS);
 
         void setText(string);
         void render();
+        GUI_DYNAMICS dynamics;
+
     private:
         int x, y;
         int w, h;
         int wHelp, hHelp;
         int centerX, centerY;
+        int distanceX, distanceY;
+        int mouseOldX, mouseOldY;
         bool life, pressed, modified;
         string text, path;
-        //enum move{GUI_STATIC, GUI_MOVE};
-
         ALLEGRO_BITMAP* background;
         ALLEGRO_FONT* font_button;
 };

@@ -49,7 +49,7 @@ int main(int argc, char * argv[]){
     cButton b_register(100,200, 200,100, "send", "Register");
     cButton b_login(100,350, 200, 100, "send", "Login");
 
-    cMessageBox info_menu(400, 300, 200, 50, "dark", "This \n is \n message box!"/*, GUI_MOVE*/);
+    cMessageBox info_menu(400, 300, 200, 50, "dark", "This \n is \n message box!", GUI_MOVE);
 
     string name=""; string password="";
     /***over variables***/
