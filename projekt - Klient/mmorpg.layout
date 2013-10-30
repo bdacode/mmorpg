@@ -28,11 +28,11 @@
 	<File name="client.h" open="0" top="0" tabpos="6">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="gui.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="3652" topLine="94" />
+	<File name="gui.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="2681" topLine="142" />
 	</File>
-	<File name="gui.hpp" open="1" top="0" tabpos="2">
-		<Cursor position="922" topLine="29" />
+	<File name="gui.hpp" open="1" top="1" tabpos="2">
+		<Cursor position="1503" topLine="45" />
 	</File>
 	<File name="init.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
@@ -47,7 +47,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1245" topLine="41" />
+		<Cursor position="1194" topLine="35" />
 	</File>
 	<File name="main.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />

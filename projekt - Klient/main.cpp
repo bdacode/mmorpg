@@ -44,10 +44,10 @@ int main(int argc, char * argv[]){
     CCamera* camera = new CCamera();
 
     /*object*/
-    cButton test(0, 500, 100, 100, "send");
-    cButton logout(110, 570, 180, 30, "send", "logout");
-    cButton b_register(100,200, 200,100, "send", "Register");
-    cButton b_login(100,350, 200, 100, "send", "Login");
+    cButton test(0, 500, 100, 100, "send", GUI_MOVE);
+    cButton logout(110, 570, 180, 30, "send", "logout", GUI_STATIC);
+    cButton b_register(100,200, 200,100, "send", "Register", GUI_STATIC);
+    cButton b_login(100,350, 200, 100, "send", "Login", GUI_STATIC);
 
     cMessageBox info_menu(400, 300, 200, 50, "dark", "This \n is \n message box!", GUI_MOVE);
 

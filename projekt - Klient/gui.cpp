@@ -1,12 +1,15 @@
 #include "gui.hpp"
 
 /***button***/
-cButton::cButton(int x, int y, int w, int h, string path)
+cButton::cButton(int x, int y, int w, int h, string path, GUI_DYNAMICS dynamics)
     : click(0)
-    , waiting(0){
+    , waiting(0)
+    , life(1){
     this->x=x; this->y=y;
     this->w=this->x+w; this->h=this->y+h;
+    wStatic=w; hStatic=h;
     this->path="media/gui/"+path+".png";
+    this->dynamics=dynamics;
 
     centerX=x+w/2; centerY=y+h-10; //BAD
     click=pressed=false;
@@ -16,13 +19,16 @@ cButton::cButton(int x, int y, int w, int h, string path)
     background=al_load_bitmap(this->path.c_str());
     font_button=al_load_font("media/font.ttf", 20, 0);
 }
-cButton::cButton(int x, int y, int w, int h, string path, string name)
+cButton::cButton(int x, int y, int w, int h, string path, string name, GUI_DYNAMICS dynamics)
     : click(0)
-    , waiting(0){
+    , waiting(0)
+    , life(1){
     this->x=x; this->y=y;
     this->w=this->x+w; this->h=this->y+h;
+    wStatic=w; hStatic=h;
     this->path="media/gui/"+path+".png";
     this->name=name;
+    this->dynamics=dynamics;
 
     centerX=x+w/2; centerY=this->h-30;
     click=pressed=false;
@@ -33,22 +39,44 @@ cButton::cButton(int x, int y, int w, int h, string path, string name)
 }
 
 void cButton::render(){
-    if(click) click=false;
-    if(mouse.bound(x,y,w,h)&&mouse.Press(1)&&click==false)
-        pressed=true;
-    if(mouse.bound(x,y,w,h)==false&&mouse.Press(1)&&pressed)
-        pressed=false;
-    if(mouse.Press(1)==false&&pressed) {
-        click=true; pressed=false;
-    }
-    /***draw***/
-    if(pressed) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
-    else if(mouse.bound(x,y,w,h)) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
-    else al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,120,0));
+    if(life){
+        if(click) click=false;
+        if(mouse.bound(x,y,w,h)&&mouse.Press(1)&&click==false) pressed=true;
 
-    al_draw_scaled_bitmap(background, 0, 0, getBmpW(background), getBmpH(background), x+4, y+4, w-x-8, h-y-8, 0);
-    //al_draw_bitmap(background, x+4, y+4, 0);
-    al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, name.c_str());
+        if(dynamics==GUI_STATIC){
+            if(mouse.bound(x,y,w,h)==false&&mouse.Press(1)&&pressed) pressed=false;
+            if(mouse.Press(1)==false&&pressed) {
+                click=true; pressed=false;
+            }
+        } else if(dynamics==GUI_MOVE){
+            if(mouseOldX!=mouse.getX()&&mouseOldY!=mouse.getY()&&mouse.Press(1)&&pressed&&modified==false){
+                mouseOldX=mouse.getX(); mouseOldY=mouse.getY();
+                distanceX=x-mouse.getX(); distanceY=y-mouse.getY();
+                modified=true;
+            }
+            if(modified){
+                x=mouse.getX()+distanceX;
+                y=mouse.getY()+distanceY;
+                w=x+wStatic; h=y+hStatic;
+            }
+
+            mouseOldX=mouse.getX();
+            mouseOldY=mouse.getY();
+
+            if(mouse.Press(1)==false&&pressed) {
+                if(modified==false) click=true;
+                pressed=false; modified=false;
+            }
+        }
+        /***draw***/
+        if(pressed) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,20,0));
+        else if(mouse.bound(x,y,w,h)) al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,90,0));
+        else al_draw_filled_rectangle(x,y,w,h,al_map_rgb(20,120,0));
+
+        al_draw_scaled_bitmap(background, 0, 0, getBmpW(background), getBmpH(background), x+4, y+4, w-x-8, h-y-8, 0);
+        //al_draw_bitmap(background, x+4, y+4, 0);
+        al_draw_text(font_button, al_map_rgb( 255, 255, 0 ), centerX, centerY, ALLEGRO_ALIGN_CENTER, name.c_str());
+    }
 }
 
 /***message box***/
@@ -56,12 +84,12 @@ cMessageBox::cMessageBox(int x, int y, int w, int h, string path, string text, G
     : life(1){
     this->x=x; this->y=y;
     this->w=this->x+w; this->h=this->y+h;
-    wHelp=w; hHelp=h;
+    wStatic=w; hStatic=h;
     this->path="media/gui/"+path+".png";
     this->text=text;
+    this->dynamics=dynamics;
     pressed=false;
     modified=false;
-    this->dynamics=dynamics;
     //int how much=0;
 
     centerX=x+w/2; centerY=this->h-30;
@@ -109,7 +137,7 @@ void cMessageBox::render(){
             if(modified){
                 x=mouse.getX()+distanceX;
                 y=mouse.getY()+distanceY;
-                w=x+wHelp; h=y+hHelp;
+                w=x+wStatic; h=y+hStatic;
             }
             mouseOldX=mouse.getX();
             mouseOldY=mouse.getY();
