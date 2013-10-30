@@ -60,10 +60,11 @@ bool connectToServer(string serverIP, int PORT) {
 }
 
 string getPacket(enet_uint8* wiad){
-    string text="";
+    string text = "";
+
     for(int i=0; i < event.packet->dataLength; ++i) {
-        text.resize( text.size()+1);
-        text[i] = event.packet->data[i];
+        //text.resize( text.size()+1);
+        text += event.packet->data[i];
     }
     return text;
 }

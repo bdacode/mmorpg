@@ -1,14 +1,11 @@
 #include "resource_manager.h"
 
+CResourceManager res_manager;
+
 CResourceManager::CResourceManager()
 {
 }
 
 CResourceManager::~CResourceManager()
 {
-}
-
-void CResourceManager::load(RES_TYPE tp, string path)
-{
-    type = tp;
 }
