@@ -5,6 +5,7 @@
 
 class CCamera {
     float x, y, zoom;
+    float startX, startY;
     ALLEGRO_TRANSFORM coord;
 
 public:
@@ -17,6 +18,7 @@ public:
     inline float getZoom() { return zoom; }
 
     void setPos(float,float); // zmienia pozycje
+    void setStart(float,float); // pozycja poczatkowa
     void addPos(float,float); // dodaje polozenie do aktualnej pozycji
 
     void setZoom(float);

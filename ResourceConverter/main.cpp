@@ -37,13 +37,21 @@ int main()
             else {
                 fstream file(path2.c_str(), ios::out);
 
-                file << al_get_bitmap_width(img) << " " << al_get_bitmap_height(img) << " 1 ";
+                file << "1 " << char(al_get_bitmap_width(img)) << " " << char(al_get_bitmap_height(img)) << " ";
 
                 al_lock_bitmap(img, ALLEGRO_PIXEL_FORMAT_ANY, ALLEGRO_LOCK_READONLY);
                 for(int x = 0; x < al_get_bitmap_width(img); ++x) {
                     for(int y = 0; y < al_get_bitmap_height(img); ++y) {
                         color = al_get_pixel(img, x, y);
-                        file << int(color.r*255) << " " << int(color.g*255) << " " << int(color.b*255) << " " << int(color.a*255) << " ";
+                        int offset = 0;
+                        if(x%2 == 0) offset = 1;
+                        if(x%3 == 0) offset = 7;
+                        int cR = int(color.r*255)+offset;
+                        int cG = int(color.g*255)+offset;
+                        int cB = int(color.b*255)+offset;
+                        int cA = int(color.a*255)+offset;
+
+                        file << char(cR) << " " << char(cG) << " " << char(cB) << " " << char(cA) << " ";
                     }
                 }
                 al_unlock_bitmap(img);

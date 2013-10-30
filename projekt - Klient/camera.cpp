@@ -14,6 +14,11 @@ void CCamera::setPos(float i, float j) {
     y = j;
 }
 
+void CCamera::setStart(float i, float j) {
+    startX = i;
+    startY = j;
+}
+
 void CCamera::addPos(float i, float j) {
     x += i;
     y += j;
@@ -26,12 +31,12 @@ void CCamera::setZoom(float i) {
 
 void CCamera::update() {
     al_identity_transform(&coord);
-    al_translate_transform(&coord, -x, -y);
+    al_translate_transform(&coord, -x + startX, -y + startY);
     al_use_transform(&coord);
 }
 
 void CCamera::reset() {
     ALLEGRO_TRANSFORM current = coord;
-    al_translate_transform(&current, x, y);
+    al_translate_transform(&current, x - startX, y - startY);
     al_use_transform(&current);
 }

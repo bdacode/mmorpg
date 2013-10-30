@@ -79,6 +79,8 @@ int main(int argc, char * argv[]){
 
     map->resize(10,10);
 
+    camera->setStart(120,0);
+
     logger << "START: Game Loop";
     while(1) {
         al_wait_for_event(event_queue, &ev);

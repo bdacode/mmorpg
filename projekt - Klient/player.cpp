@@ -1,4 +1,6 @@
 #include "player.h"
+//#include "resource_manager.h"
+//using CResourceManager<Arg>::load;
 
 vector <COtherPlayer> v_otherPlayers;
 
@@ -10,10 +12,14 @@ CPlayer::CPlayer() {
 
     speed = 2;
 
-    IMG_player = loadBmp("media/player.png");
+    //IMG_player = loadBmp("media/player.png");
+
+    IMG_player = res_manager.load(IMG_player, "media/player");
 
     w = getBmpW(IMG_player);
     h = getBmpH(IMG_player);
+
+    cout << "\n WH : " << w << ", " << h;
 }
 
 CPlayer::~CPlayer() {
@@ -23,7 +29,6 @@ void __cdecl player_updatePos(void* arg) {
 
     CPlayer* player = static_cast<CPlayer*>(arg);
 
-    // receive position
     if(event.type == ENET_EVENT_TYPE_RECEIVE) {
 
         //cout << "\n\n# #OTRZYMANO: " << getPacket(event.packet->data);
@@ -78,7 +83,7 @@ void CPlayer::update(CKeyboard key) {
 
     ++timeToSend;
 
-    if(timeToSend >= 10 /*&& (oldPos.x != pos.x || oldPos.y != pos.y)*/) { //  [ 20 = 1/3 sekundy przy 60 FPS ]
+    if(timeToSend >= 1 /*&& (oldPos.x != pos.x || oldPos.y != pos.y)*/) { //  [ 20 = 1/3 sekundy przy 60 FPS ]
         timeToSend = 0;
 
         // send position
@@ -106,6 +111,7 @@ void CPlayer::update(CKeyboard key) {
 void CPlayer::render() {
     // ... TODO
     al_draw_bitmap(IMG_player, 400-w/2, 300-h/2, 0);
+
 
     al_draw_filled_rectangle(400-al_get_text_width(font, nick.c_str())/2-10, 300-h/2-25,
                              400+al_get_text_width(font, nick.c_str())/2+10, 300-h/2-5,
