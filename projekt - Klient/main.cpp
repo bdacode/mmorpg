@@ -51,6 +51,9 @@ int main(int argc, char * argv[]){
 
     cMessageBox info_menu(400, 300, 200, 50, "dark", "This \n is \n message box!", GUI_MOVE);
 
+    cTextBox menu_login(310, 400, 150, 40, "dark", GUI_STATIC);
+    cTextBox menu_password(610, 400, 150, 40, "dark", GUI_STATIC);
+
     string name=""; string password="";
     /***over variables***/
 
@@ -99,6 +102,8 @@ int main(int argc, char * argv[]){
             if(GameMode == gm_menu) {
                 b_register.render();
                 b_login.render();
+                menu_login.render();
+                menu_password.render();
 
                 // DEBUG - wybor IP serwera
 
@@ -114,8 +119,9 @@ int main(int argc, char * argv[]){
                 // end DEBUG
 
                 if(b_register.get_click()) {
-                    cout << "\n\nPodaj nazwe i haslo do rejestracji:\n";
-                    cin >> name >> password;
+                    name=menu_login.getText();
+                    password=menu_password.getText();
+
                     if(!connectToServer(serverIP, PORT))
                             break;
 
@@ -146,8 +152,9 @@ int main(int argc, char * argv[]){
                 }
 
                 if(b_login.get_click()) {
-                    cout << "\n\nPodaj nazwe i haslo do zalogowania:\n";
-                    cin >> name >> password;
+                    name=menu_login.getText();
+                    password=menu_password.getText();
+
                     if(!connectToServer(serverIP, PORT))
                             break;
 

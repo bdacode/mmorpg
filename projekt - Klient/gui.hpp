@@ -26,10 +26,8 @@ class cButton{
         int centerX, centerY;
         int distanceX, distanceY;
         int mouseOldX, mouseOldY;
-        bool click, pressed, life, modified;
+        bool click, pressed, life, modified, orWait;
         string name, path;
-
-        bool orWait; int waiting;
 
         GUI_DYNAMICS dynamics;
         ALLEGRO_BITMAP* background;
@@ -52,6 +50,7 @@ class cMessageBox{
         int distanceX, distanceY;
         int mouseOldX, mouseOldY;
         bool life, pressed, modified;
+        size_t position;
         string text, path;
 
         GUI_DYNAMICS dynamics;
@@ -61,6 +60,27 @@ class cMessageBox{
 
 /***text box***/
 class cTextBox{
+    public:
+        cTextBox(int, int, int, int, string, GUI_DYNAMICS);
+
+        inline void hide(bool){this->life=life;}
+        inline string getText(){ return text; }
+        void render();
+    private:
+        int x, y;
+        int w, h;
+        int wStatic, hStatic;
+        int centerX, centerY;
+        int distanceX, distanceY;
+        int mouseOldX, mouseOldY;
+        int block, wait;
+        bool life, pressed, modified, big;
+        char switchingHelp;
+        string text, path;
+
+        GUI_DYNAMICS dynamics;
+        ALLEGRO_BITMAP* background;
+        ALLEGRO_FONT* font_button;
 
 };
 

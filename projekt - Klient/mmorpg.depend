@@ -950,15 +950,15 @@
 1382445476 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\bitmap.cpp
 	"bitmap.h"
 
-1383162643 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.cpp
+1383425793 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.cpp
 	"gui.hpp"
 
-1383165677 c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.hpp
+1383426281 c:\users\marcin\documents\github\mmorpg\projekt - klient\gui.hpp
 	"main.h"
 	"bitmap.h"
 	"input.h"
 
-1383162643 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\main.cpp
+1383426031 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\main.cpp
 	"main.h"
 	"input.h"
 	"logger.h"
@@ -1007,7 +1007,7 @@
 1382445477 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\tile.cpp
 	"tile.h"
 
-1383066413 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\player.cpp
+1383234804 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\player.cpp
 	"player.h"
 
 1382812403 c:\users\marcin\documents\github\mmorpg\projekt - klient\player.h
@@ -1035,7 +1035,7 @@
 1382811206 c:\users\jakub\documents\github\mmorpg\projekt - klient\client.h
 	"main.h"
 
-1382812403 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\client.cpp
+1383234803 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\client.cpp
 	"client.h"
 
 1382812403 c:\users\marcin\documents\github\mmorpg\projekt - klient\client.h
@@ -1090,10 +1090,10 @@
 1383075458 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\camera.cpp
 	"camera.h"
 
-1382772488 c:\users\marcin\documents\github\mmorpg\projekt - klient\camera.h
+1383234803 c:\users\marcin\documents\github\mmorpg\projekt - klient\camera.h
 	"main.h"
 
-1382772488 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\camera.cpp
+1383234803 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\camera.cpp
 	"camera.h"
 
 1383169128 c:\users\jakub\documents\github\mmorpg\projekt - klient\resource_manager.h
@@ -1103,10 +1103,10 @@
 1383168692 source:c:\users\jakub\documents\github\mmorpg\projekt - klient\resource_manager.cpp
 	"resource_manager.h"
 
-1383062583 c:\users\marcin\documents\github\mmorpg\projekt - klient\resource_manager.h
+1383234804 c:\users\marcin\documents\github\mmorpg\projekt - klient\resource_manager.h
 	"main.h"
-	<map>
+	"init.h"
 
-1383062583 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\resource_manager.cpp
+1383234804 source:c:\users\marcin\documents\github\mmorpg\projekt - klient\resource_manager.cpp
 	"resource_manager.h"
 
