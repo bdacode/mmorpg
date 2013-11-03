@@ -12,9 +12,9 @@ CPlayer::CPlayer() {
 
     speed = 2;
 
-    //IMG_player = loadBmp("media/player.png");
+    IMG_player = loadBmp("media/player/player.png");
 
-    IMG_player = res_manager.load(IMG_player, "media/player");
+    //IMG_player = res_manager.load(IMG_player, "media/player");
 
     w = getBmpW(IMG_player);
     h = getBmpH(IMG_player);
@@ -76,10 +76,15 @@ void __cdecl player_updatePos(void* arg) {
 }
 
 void CPlayer::update(CKeyboard key) {
-    if(key.Press(ALLEGRO_KEY_W)) pos.y -= speed;
-    if(key.Press(ALLEGRO_KEY_S)) pos.y += speed;
-    if(key.Press(ALLEGRO_KEY_A)) pos.x -= speed;
-    if(key.Press(ALLEGRO_KEY_D)) pos.x += speed;
+    if(key.Press(ALLEGRO_KEY_W)) { pos.y -= speed; dir = 2; }
+    else if(key.Press(ALLEGRO_KEY_S)) { pos.y += speed; dir = 1; }
+    else if(key.Press(ALLEGRO_KEY_A)) { pos.x -= speed; dir = 3; }
+    else if(key.Press(ALLEGRO_KEY_D)) { pos.x += speed; dir = 4; }
+    else if(key.Press(ALLEGRO_KEY_W) && key.Press(ALLEGRO_KEY_D)) { pos.x += speed; pos.y += speed; dir = 5; }
+    else if(key.Press(ALLEGRO_KEY_W) && key.Press(ALLEGRO_KEY_A)) { pos.x -= speed; pos.y += speed; dir = 6; }
+    else if(key.Press(ALLEGRO_KEY_S) && key.Press(ALLEGRO_KEY_A)) { pos.x -= speed; pos.y -= speed; dir = 7; }
+    else if(key.Press(ALLEGRO_KEY_S) && key.Press(ALLEGRO_KEY_D)) { pos.x += speed; pos.y -= speed; dir = 8; }
+    else dir = 1;
 
     ++timeToSend;
 
@@ -110,7 +115,7 @@ void CPlayer::update(CKeyboard key) {
 
 void CPlayer::render() {
     // ... TODO
-    al_draw_bitmap(IMG_player, 400-w/2, 300-h/2, 0);
+    al_draw_bitmap_region(IMG_player, (dir-1)*50,0, 50,100, 400-50/2, 300-100/2, 0);
 
 
     al_draw_filled_rectangle(400-al_get_text_width(font, nick.c_str())/2-10, 300-h/2-25,

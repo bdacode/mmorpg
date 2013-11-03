@@ -92,11 +92,13 @@ void CMap::getMapFromString(string file) {
         }
 }
 
-ALLEGRO_BITMAP* TILE_terrain[2];
+ALLEGRO_BITMAP* TILE_terrain[3];
 
 void CMap::load() {
     TILE_terrain[0] = loadBmp("media/map/grass.png");
     TILE_terrain[1] = loadBmp("media/map/dirt.png");
+
+    TILE_terrain[2] = loadBmp("media/map/obj_grass.png");
 }
 
 void CMap::render(CCamera* camera) {
@@ -104,9 +106,13 @@ void CMap::render(CCamera* camera) {
 
     for(int x = 0; x < w; ++x)
         for(int y = 0; y < h; ++y) {
-            if(map[x][y].getID() == 0)
+            if(map[x][y].getID() == 0) {
                 al_draw_scaled_bitmap(TILE_terrain[0], 0,0, getBmpW(TILE_terrain[0]),getBmpW(TILE_terrain[0]),
                                       x*SIZE_TILE_W,y*SIZE_TILE_H, SIZE_TILE_W,SIZE_TILE_H, 0);
+
+                al_draw_scaled_bitmap(TILE_terrain[2], 0,0, getBmpW(TILE_terrain[2]),getBmpW(TILE_terrain[2]),
+                                      x*SIZE_TILE_W,y*SIZE_TILE_H, SIZE_TILE_W,SIZE_TILE_H, 0);
+            }
             if(map[x][y].getID() == 1)
                 al_draw_scaled_bitmap(TILE_terrain[1], 0,0, getBmpW(TILE_terrain[1]),getBmpW(TILE_terrain[1]),
                                       x*SIZE_TILE_W,y*SIZE_TILE_H, SIZE_TILE_W,SIZE_TILE_H, 0);

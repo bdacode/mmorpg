@@ -17,7 +17,7 @@ public:
     CPlayer();
     ~CPlayer();
 
-    int w, h;
+    int w, h, dir;
     SPos pos;
     SPos oldPos;
 
