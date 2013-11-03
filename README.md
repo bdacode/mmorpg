@@ -15,7 +15,8 @@ Libs: <b>Allegro5</b>, <b>ENet</b>
 We're friends and game developers for several years. We've a lot of experience in the gamedev, so we want to test itself and write a really fun game.
 <br/><br/>
 ### Screens
-[Alpha 0.1 (26.10.2013)](http://scr.hu/0ug/uv80z)
+[Alpha 0.1 (26.10.2013)](http://scr.hu/0ug/uv80z)<br/>
+[Alpha 0.1 (03.11.2013)](http://scr.hu/0ug/ih5gv)
 
 
 -
