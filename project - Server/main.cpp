@@ -4,6 +4,7 @@
 #include <enet/enet.h>
 #include <fstream>
 #include <process.h>
+#include <vector>
 
 #define PORT 1234
 #define MAX_CLIENTS 32
@@ -48,6 +49,8 @@ void __cdecl posFromClient(void* arg) {
 
     _endthread();
 }
+
+vector <string> v_posQueue;
 
 int main(int argc, char ** argv){
     system("title SERWER");
@@ -165,6 +168,8 @@ int main(int argc, char ** argv){
                             enet_peer_send(event.peer, 0, p);
                         }
                         file.close();
+
+                        continue;
                     }
                     else if(receive(event.packet->data, "login")) {
                         bool isLogin = false;
@@ -220,6 +225,8 @@ int main(int argc, char ** argv){
                             //enet_host_broadcast(server, 0, p);
                             enet_peer_send(event.peer, 0, p);
                         }
+
+                        continue;
                     }
                     else if(receive(event.packet->data, "CLICK")) {
                         char message[] = "Klient nacisnal przycisk!\n";
@@ -228,6 +235,8 @@ int main(int argc, char ** argv){
                         //enet_host_broadcast(server, 0, p);
                         enet_peer_send(event.peer, 0, p);
                         cout << "\nWYSLANO";
+
+                        //continue;
                     }
 
                     else if(receive(event.packet->data, "sendMeMap")) {
@@ -236,19 +245,23 @@ int main(int argc, char ** argv){
                         //enet_host_broadcast(server, 0, p);
                         enet_peer_send(event.peer, 0, p);
                         cout << "\nWYSLANO MAPE";
+
+                        continue;
                     }
 
                     if(receive(event.packet->data, "POS")) {
-                        char mess[event.packet->dataLength];
+                        //char mess[event.packet->dataLength];
+                        char* mess = new char[event.packet->dataLength];
 
                         for(int i = 0; i < event.packet->dataLength; ++i)
                             mess[i] = event.packet->data[i];
 
-                        //ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
-                        ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_UNSEQUENCED);
+                        /**ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_UNSEQUENCED);
 
                         enet_host_broadcast(server, 1, p);
-                        enet_host_flush(server);
+                        enet_host_flush(server);*/
+
+                        v_posQueue.push_back(string(mess));
 
                         //enet_peer_send(event.peer, 0, p);
                     }
@@ -264,8 +277,24 @@ int main(int argc, char ** argv){
                         enet_peer_send(event.peer, 0, p);
                     }*/
 
+
+                    for(int i = 0; i < v_posQueue.size(); ++i)
+                    {
+                        char* mess = new char[v_posQueue[i].size()+1];
+
+                        for(int j = 0; j < v_posQueue[i].size(); ++j)
+                            mess[j] = v_posQueue[i][j];
+
+                        ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_UNSEQUENCED);
+
+                        enet_host_broadcast(server, 1, p);
+                        enet_host_flush(server);
+
+                        v_posQueue.erase(v_posQueue.begin() + i);
+                    }
+
                     /// wiadomosc do wszystkich:
-                    //enet_host_broadcast(server, 0, event.packet);
+                    //enet_host_broadcast(server, 1, event.packet);
 
                     enet_packet_destroy (event.packet);
                 }

@@ -27,6 +27,7 @@ string serverIP = "25.56.234.57"; // Rhagui
 
 /***GlobalVariables&Functions***/
 ALLEGRO_FONT* font;
+int doThread = 60;
 
 void updateFPS(bool);
 enum gameMode { gm_menu = 0, gm_gameplay = 1 } GameMode;
@@ -236,7 +237,13 @@ int main(int argc, char * argv[]){
                 player->update(key);
                 //update_player_pos = true;
                 //if(update_player_pos)
-                _beginthread(player_updatePos, 0, player); // watek na zarzadzanie pozycja graczy
+
+                if(doThread <= 10)
+                    ++doThread;
+                else {
+                    player->oldPos = player->pos;
+                    _beginthread(player_updatePos, 0, player); // watek na zarzadzanie pozycja graczy
+                }
 
                 camera->follow(player);
 

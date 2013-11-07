@@ -68,11 +68,12 @@ void __cdecl player_updatePos(void* arg) {
                     v_otherPlayers.push_back(COtherPlayer(nickInnego));
                 }
             }
-            else
-                player->oldPos = player->pos;
+            //else
+            //    player->oldPos = player->pos;
         }
     }
 
+    doThread = 0;
     _endthread();
 }
 
@@ -89,7 +90,7 @@ void CPlayer::update(CKeyboard key) {
 
     ++timeToSend;
 
-    if(timeToSend >= 1/* && (oldPos.x != pos.x || oldPos.y != pos.y)*/) { //  [ 20 = 1/3 sekundy przy 60 FPS ]
+    if(timeToSend >= 5/* && (oldPos.x != pos.x || oldPos.y != pos.y)*/) { //  [ 20 = 1/3 sekundy przy 60 FPS ]
         timeToSend = 0;
 
         // send position

@@ -2,6 +2,7 @@
 #define RESOURCE_MANAGER_H_INCLUDED
 
 #include "main.h"
+
 #include "init.h"
 
 enum RES_TYPE { RES_BITMAP, RES_AUDIO };
@@ -49,7 +50,7 @@ Arg CResourceManager::load(Arg a, string path)
                     //al_draw_pixel(x,y, al_map_rgba(255,0,0, 100));
                 }
             }
-            al_set_target_bitmap(al_get_backbuffer(display));
+            //al_set_target_bitmap(al_get_backbuffer(display));
             al_unlock_bitmap(img);
 
             //al_save_bitmap("player nowy.png", img);

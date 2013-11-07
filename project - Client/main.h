@@ -15,4 +15,6 @@ extern string opisID[];
 extern bool mouseClick, pause;
 extern bool mouse2click;
 
+extern int doThread;
+
 #endif // MAIN_H_INCLUDED

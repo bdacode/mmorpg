@@ -1116,3 +1116,135 @@
 1383741367 c:\users\jakub\documents\github\mmorpg\projekt - klient\map_obj.h
 	"main.h"
 
+1382740452 source:c:\users\jakub\documents\github\mmorpg\project - client\account.cpp
+	"account.hpp"
+
+1382740452 c:\users\jakub\documents\github\mmorpg\project - client\account.hpp
+	"main.h"
+	"bitmap.h"
+	"input.h"
+	"client.h"
+	"player.h"
+
+1383846294 c:\users\jakub\documents\github\mmorpg\project - client\main.h
+	"CMain.h"
+	"bitmap.h"
+
+1354634161 c:\users\jakub\documents\github\mmorpg\project - client\cmain.h
+
+1383165544 c:\users\jakub\documents\github\mmorpg\project - client\bitmap.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_color.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<enet/enet.h>
+	<vector>
+	<cstdio>
+	<iostream>
+	<time.h>
+	<math.h>
+	<fstream>
+	<process.h>
+	"logger.h"
+	"camera.h"
+	"resource_manager.h"
+
+1363287495 c:\users\jakub\documents\github\mmorpg\project - client\logger.h
+	<iostream>
+	<time.h>
+	<fstream>
+
+1383169410 c:\users\jakub\documents\github\mmorpg\project - client\camera.h
+	"main.h"
+
+1383846312 c:\users\jakub\documents\github\mmorpg\project - client\resource_manager.h
+	"main.h"
+	"init.h"
+
+1382122904 c:\users\jakub\documents\github\mmorpg\project - client\init.h
+	"main.h"
+
+1383053293 c:\users\jakub\documents\github\mmorpg\project - client\input.h
+	"main.h"
+
+1383742452 c:\users\jakub\documents\github\mmorpg\project - client\client.h
+	"main.h"
+
+1383735618 c:\users\jakub\documents\github\mmorpg\project - client\player.h
+	"main.h"
+	"input.h"
+	"client.h"
+
+1382733377 source:c:\users\jakub\documents\github\mmorpg\project - client\audio.cpp
+	"audio.hpp"
+
+1382450661 c:\users\jakub\documents\github\mmorpg\project - client\audio.hpp
+	"main.h"
+	"bitmap.h"
+
+1382174303 source:c:\users\jakub\documents\github\mmorpg\project - client\bitmap.cpp
+	"bitmap.h"
+
+1383169410 source:c:\users\jakub\documents\github\mmorpg\project - client\camera.cpp
+	"camera.h"
+
+1383747109 source:c:\users\jakub\documents\github\mmorpg\project - client\client.cpp
+	"client.h"
+
+1383736550 source:c:\users\jakub\documents\github\mmorpg\project - client\gui.cpp
+	"gui.hpp"
+
+1383428332 c:\users\jakub\documents\github\mmorpg\project - client\gui.hpp
+	"main.h"
+	"bitmap.h"
+	"input.h"
+
+1382122942 source:c:\users\jakub\documents\github\mmorpg\project - client\init.cpp
+	"init.h"
+
+1383053293 source:c:\users\jakub\documents\github\mmorpg\project - client\input.cpp
+	"input.h"
+
+1363438398 source:c:\users\jakub\documents\github\mmorpg\project - client\logger.cpp
+	"logger.h"
+
+1383741332 source:c:\users\jakub\documents\github\mmorpg\project - client\map.cpp
+	"map.h"
+
+1382739927 c:\users\jakub\documents\github\mmorpg\project - client\map.h
+	"main.h"
+	"bitmap.h"
+	"input.h"
+	"tile.h"
+
+1381948092 c:\users\jakub\documents\github\mmorpg\project - client\tile.h
+
+1383741332 source:c:\users\jakub\documents\github\mmorpg\project - client\map_obj.cpp
+	"map_obj.h"
+
+1383741367 c:\users\jakub\documents\github\mmorpg\project - client\map_obj.h
+	"main.h"
+
+1383169410 source:c:\users\jakub\documents\github\mmorpg\project - client\resource_manager.cpp
+	"resource_manager.h"
+
+1381944396 source:c:\users\jakub\documents\github\mmorpg\project - client\tile.cpp
+	"tile.h"
+
+1383848659 source:c:\users\jakub\documents\github\mmorpg\project - client\main.cpp
+	"main.h"
+	"input.h"
+	"logger.h"
+	"camera.h"
+	"gui.hpp"
+	"map.h"
+	"player.h"
+	"init.h"
+	"client.h"
+	"account.hpp"
+	"audio.hpp"
+
