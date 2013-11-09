@@ -2,6 +2,9 @@
 //#include "resource_manager.h"
 //using CResourceManager<Arg>::load;
 
+#include <stdio.h>
+#include <stdlib.h>
+
 vector <COtherPlayer> v_otherPlayers;
 
 ALLEGRO_BITMAP* IMG_player;
@@ -46,14 +49,14 @@ void __cdecl player_updatePos(void* arg) {
 
             string nickInnego = mes.substr(0,ilZnakow);
 
-            int isFind = mes.find_last_of('=');
-
-            int isFindX = mes.find_last_of('x');
-            string posX = mes.substr(isFind+1,isFindX-isFind-1);
-            string posY = mes.substr(isFindX+1,mes.size());
-
             if(nickInnego != player->nick)
             {
+                int isFind = mes.find_last_of('=');
+
+                int isFindX = mes.find_last_of('x');
+                string posX = mes.substr(isFind+1,isFindX-isFind-1);
+                string posY = mes.substr(isFindX+1,mes.size());
+
                 bool finded = false;
                 for(int i = 0; i < v_otherPlayers.size(); ++i) {
                     if(v_otherPlayers[i].nick == nickInnego) {
@@ -68,8 +71,6 @@ void __cdecl player_updatePos(void* arg) {
                     v_otherPlayers.push_back(COtherPlayer(nickInnego));
                 }
             }
-            //else
-            //    player->oldPos = player->pos;
         }
     }
 
@@ -88,9 +89,12 @@ void CPlayer::update(CKeyboard key) {
     else if(key.Press(ALLEGRO_KEY_S) && key.Press(ALLEGRO_KEY_D)) { pos.x += speed; pos.y -= speed; dir = 8; }
     else dir = 1;
 
-    ++timeToSend;
+    if(oldPos.x != pos.x || oldPos.y != pos.y)
+        ++timeToSend;
 
-    if(timeToSend >= 5 /*&& (oldPos.x != pos.x || oldPos.y != pos.y)*/) { //  [ 20 = 1/3 sekundy przy 60 FPS ]
+    if(timeToSend >= 5) { //  [ 20 = 1/3 sekundy przy 60 FPS ]
+        oldPos.x = pos.x;
+        oldPos.y = pos.y;
         timeToSend = 0;
 
         // send position

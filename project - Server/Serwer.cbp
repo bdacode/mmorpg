@@ -38,6 +38,9 @@
 			<Add directory="../../enet-1.3.9/bin/Release" />
 		</Linker>
 		<Unit filename="main.cpp" />
+		<Unit filename="main.h" />
+		<Unit filename="players.cpp" />
+		<Unit filename="players.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

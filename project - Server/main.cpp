@@ -1,15 +1,6 @@
 //SERWER
-#include <iostream>
-#include <cstdio>
-#include <enet/enet.h>
-#include <fstream>
-#include <process.h>
-#include <vector>
+#include "players.h"
 
-#define PORT 1234
-#define MAX_CLIENTS 32
-
-using namespace std;
 ENetEvent event;
 ENetHost * server;
 
@@ -29,47 +20,33 @@ string getPacket(enet_uint8* wiad){
 }
 
 
-void __cdecl posFromClient(void* arg) {
-    if(event.type == ENET_EVENT_TYPE_RECEIVE) {
-        if(receive(event.packet->data, "POS")) {
-            char mess[event.packet->dataLength];
-
-            for(int i = 0; i < event.packet->dataLength; ++i)
-                mess[i] = event.packet->data[i];
-
-            //ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
-            ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_UNSEQUENCED);
-
-            enet_host_broadcast(server, 0, p);
-            enet_host_flush(server);
-
-            //enet_peer_send(event.peer, 0, p);
-        }
-    }
-
-    _endthread();
-}
-
-vector <string> v_posQueue;
 int updateTime = 0;
 
-void __cdecl update_queue(void* a)
+void __cdecl update_client(void* a)
 {
-    for(int i = 0; i < v_posQueue.size(); ++i)
+    for(int i = 0; i < v_clients.size(); ++i)
     {
-        char* mess = new char[v_posQueue[i].size()+1];
+        // POS il_znakow nick = pozycjaX x pozycjaY
 
-        for(int j = 0; j < v_posQueue[i].size(); ++j)
-            mess[j] = v_posQueue[i][j];
+        char buf1[10]; itoa(v_clients[i].nick.size(), buf1, 10);
+        char buf2[10]; itoa(v_clients[i].y, buf2, 10);
+        char buf3[10]; itoa(v_clients[i].y, buf3, 10);
 
-        ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_UNSEQUENCED);
+        string packet = "";
+        packet += "POS";
+        packet += buf1;
+        packet += v_clients[i].nick;
+        packet += "=";
+        packet += buf2;
+        packet += "x";
+        packet += buf3;
 
+        ENetPacket *p = enet_packet_create(packet.c_str(), packet.size()+1, ENET_PACKET_FLAG_UNSEQUENCED);
         enet_host_broadcast(server, 1, p);
         enet_host_flush(server);
-
-        v_posQueue.erase(v_posQueue.begin() + i);
     }
-    //updateTime = 0;
+
+    updateTime = 0;
 }
 
 int main(int argc, char ** argv){
@@ -237,6 +214,8 @@ int main(int argc, char ** argv){
                             /*string newPlayer = "newPlayer"+packet_name;
                             ENetPacket *p2 = enet_packet_create(newPlayer.c_str(), newPlayer.size()+1, ENET_PACKET_FLAG_RELIABLE);
                             enet_host_broadcast(server, 0, p2);*/
+
+                            v_clients.push_back(CClient(atoi(posX.c_str()), atoi(posY.c_str()), packet_name));
                         }
                         else
                         {
@@ -270,56 +249,44 @@ int main(int argc, char ** argv){
                     }
 
                     if(receive(event.packet->data, "POS")) {
-                        //char mess[event.packet->dataLength];
-                        char* mess = new char[event.packet->dataLength];
+                        string mes = getPacket(event.packet->data);
+                        mes.erase(0,3);
 
-                        for(int i = 0; i < event.packet->dataLength; ++i)
-                            mess[i] = event.packet->data[i];
+                        string num = "";
+                        num[0] = mes[0];
+                        int ilZnakow = atoi(num.c_str());
 
-                        /**ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_UNSEQUENCED);
+                        mes.erase(0,1);
 
-                        enet_host_broadcast(server, 1, p);
-                        enet_host_flush(server);*/
+                        string nick = mes.substr(0,ilZnakow);
 
-                        v_posQueue.push_back(string(mess));
+                        int isFind = mes.find_last_of('=');
 
-                        //enet_peer_send(event.peer, 0, p);
+                        int isFindX = mes.find_last_of('x');
+                        string posX = mes.substr(isFind+1,isFindX-isFind-1);
+                        string posY = mes.substr(isFindX+1,mes.size());
+
+                        /// wyrazenie lambda -> c++0x tylko
+                        /*std::find_if(CClient.begin(), CClient.end(), [nick](CClient const& n){
+                            return n.nick == nick;
+                        })
+                        {
+
+                        }*/
+
+                        for(int i = 0; i < v_clients.size(); ++i) {
+                            if(v_clients[i].nick == nick) {
+                                v_clients[i].x = atoi(posX.c_str());
+                                v_clients[i].y = atoi(posY.c_str());
+                                break;
+                            }
+                        }
                     }
 
-                    /*else {
-                        char mess[event.packet->dataLength];
-
-                        for(int i = 0; i < event.packet->dataLength; ++i)
-                            mess[i] = event.packet->data[i];
-
-                        ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_RELIABLE);
-                        //enet_host_broadcast(server, 0, p);
-                        enet_peer_send(event.peer, 0, p);
-                    }*/
-
-
-                    /**for(int i = 0; i < v_posQueue.size(); ++i)
-                    {
-                        char* mess = new char[v_posQueue[i].size()+1];
-
-                        for(int j = 0; j < v_posQueue[i].size(); ++j)
-                            mess[j] = v_posQueue[i][j];
-
-                        ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_UNSEQUENCED);
-
-                        enet_host_broadcast(server, 1, p);
-                        enet_host_flush(server);
-
-                        v_posQueue.erase(v_posQueue.begin() + i);
-                    }*/
-
-                    //if(updateTime <= 5)
-                    //    ++updateTime;
-                    //else
-                        _beginthread(update_queue, 0, 0);
-
-                    /// wiadomosc do wszystkich:
-                    //enet_host_broadcast(server, 1, event.packet);
+                    if(updateTime <= 5)
+                        ++updateTime;
+                    else
+                        _beginthread(update_client, 0, 0);
 
                     enet_packet_destroy (event.packet);
                 }
@@ -330,8 +297,6 @@ int main(int argc, char ** argv){
                     event.peer -> data = NULL;
                 break;
             }
-
-            //_beginthread(posFromClient, 0, 0);
         }
 
     //}//while(1)

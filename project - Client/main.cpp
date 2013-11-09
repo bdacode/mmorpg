@@ -48,13 +48,14 @@ int main(int argc, char * argv[]){
     /*object*/
     cButton test(0, 500, 100, 100, "send", GUI_MOVE);
     cButton logout(110, 570, 180, 30, "send", "logout", GUI_STATIC);
-    cButton b_register(100,200, 200,100, "send", "Register", GUI_STATIC);
-    cButton b_login(100,350, 200, 100, "send", "Login", GUI_STATIC);
+
+    cButton b_register(10,100, 200,50, "send", "Register", GUI_STATIC);
+    cButton b_login   (300,300, 200,50, "send", "Login", GUI_STATIC);
+
+    cTextBox menu_login   (250,250, 150,40, "dark", GUI_STATIC);
+    cTextBox menu_password(410,250, 150,40, "dark", GUI_STATIC);
 
     cMessageBox info_menu(400, 300, 200, 50, "dark", "This \n is \n message box!", GUI_MOVE);
-
-    cTextBox menu_login(310, 400, 150, 40, "dark", GUI_STATIC);
-    cTextBox menu_password(610, 400, 150, 40, "dark", GUI_STATIC);
 
     string name=""; string password="";
     bool update_player_pos = false;
@@ -241,7 +242,6 @@ int main(int argc, char * argv[]){
                 if(doThread <= 10)
                     ++doThread;
                 else {
-                    player->oldPos = player->pos;
                     _beginthread(player_updatePos, 0, player); // watek na zarzadzanie pozycja graczy
                 }
 

@@ -1195,7 +1195,7 @@
 1383747109 source:c:\users\jakub\documents\github\mmorpg\project - client\client.cpp
 	"client.h"
 
-1383736550 source:c:\users\jakub\documents\github\mmorpg\project - client\gui.cpp
+1383998863 source:c:\users\jakub\documents\github\mmorpg\project - client\gui.cpp
 	"gui.hpp"
 
 1383428332 c:\users\jakub\documents\github\mmorpg\project - client\gui.hpp
@@ -1235,7 +1235,7 @@
 1381944396 source:c:\users\jakub\documents\github\mmorpg\project - client\tile.cpp
 	"tile.h"
 
-1383848659 source:c:\users\jakub\documents\github\mmorpg\project - client\main.cpp
+1383998772 source:c:\users\jakub\documents\github\mmorpg\project - client\main.cpp
 	"main.h"
 	"input.h"
 	"logger.h"
@@ -1247,4 +1247,9 @@
 	"client.h"
 	"account.hpp"
 	"audio.hpp"
+
+1383998522 source:c:\users\jakub\documents\github\mmorpg\project - client\player.cpp
+	"player.h"
+	<stdio.h>
+	<stdlib.h>
 

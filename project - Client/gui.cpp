@@ -25,12 +25,13 @@ cButton::cButton(int x, int y, int w, int h, string path, string name, GUI_DYNAM
     this->dynamics=dynamics;
 
     wStatic=w; hStatic=h;
-    centerX=x+w/2; centerY=this->h-30;
     click=pressed=false;
     //char* path2=path;
 
     background = al_load_bitmap(this->path.c_str());
     font_button = al_load_font("media/font.ttf", 20, 0);
+
+    centerX=x+w/2; centerY=y/2+this->h/2 - al_get_font_line_height(font_button)/2;
 }
 
 void cButton::render(){
