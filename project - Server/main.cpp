@@ -88,7 +88,7 @@ int main(int argc, char ** argv){
         fprintf(stderr, "\nAn error occurred while trying to create an ENet server host.\n");
         exit(EXIT_FAILURE);
     }
-    printf("\nSERVER START\n");
+    printf("::SERVER START!\n\nEVENTS:\n");
 
    // while(1){
         //serviceResult=1;
@@ -98,7 +98,7 @@ int main(int argc, char ** argv){
             serviceResult = enet_host_service(server, &event, 1); //1000 milisekund
             switch (event.type){
                 case ENET_EVENT_TYPE_CONNECT:{
-                    printf ("\nA new client connected from %x:%u.\n", event.peer -> address.host, event.peer -> address.port);
+                    printf ("- A new client connected from %x:%u.\n", event.peer -> address.host, event.peer -> address.port);
                     event.peer -> data = (void*)"Client information";
                     //event.peer->data = (void*)ID;
                 }
@@ -136,7 +136,7 @@ int main(int argc, char ** argv){
                             file.close();
                         }
                         else {
-                            cout << "\nERROR: I can't open nick.txt";
+                            cout << "\nERROR: I can't open nick.txt\n";
                             busy_account=true;
                         }
 
@@ -155,7 +155,7 @@ int main(int argc, char ** argv){
                             ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
                             //enet_host_broadcast(server, 0, p);
                             enet_peer_send(event.peer, 0, p);
-                            cout << "\nZarejestrowano nowego uzytkownika!";
+                            cout << "- Zarejestrowano nowego uzytkownika!\n";
                         }
                         else
                         {
@@ -193,7 +193,7 @@ int main(int argc, char ** argv){
                             file.close();
                         }
                         else {
-                            cout << "\nERROR: I can't open nick.txt";
+                            cout << "\nERROR: I can't open nick.txt\n";
                             isLogin = false;
                         }
 
@@ -228,12 +228,12 @@ int main(int argc, char ** argv){
                         continue;
                     }
                     else if(receive(event.packet->data, "CLICK")) {
-                        char message[] = "Klient nacisnal przycisk!\n";
+                        char message[] = "::Klient nacisnal przycisk!\n";
                         ENetPacket *p = enet_packet_create(message, strlen(message)+1, ENET_PACKET_FLAG_RELIABLE);
 
                         //enet_host_broadcast(server, 0, p);
                         enet_peer_send(event.peer, 0, p);
-                        cout << "\nWYSLANO";
+                        cout << "::WYSLANO PAKIET\n";
 
                         //continue;
                     }
@@ -243,7 +243,7 @@ int main(int argc, char ** argv){
 
                         //enet_host_broadcast(server, 0, p);
                         enet_peer_send(event.peer, 0, p);
-                        cout << "\nWYSLANO MAPE";
+                        cout << "::WYSLANO MAPE\n";
 
                         continue;
                     }
@@ -293,7 +293,7 @@ int main(int argc, char ** argv){
                 break;
 
                 case ENET_EVENT_TYPE_DISCONNECT:
-                    printf ("\n%s disconected.\n", event.peer -> data);
+                    printf ("- %s disconected.\n", event.peer -> data);
                     event.peer -> data = NULL;
                 break;
             }

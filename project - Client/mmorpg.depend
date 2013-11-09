@@ -1253,3 +1253,140 @@
 	<stdio.h>
 	<stdlib.h>
 
+1384029764 source:c:\users\marcin\documents\github\mmorpg\project - client\account.cpp
+	"account.hpp"
+
+1383849604 c:\users\marcin\documents\github\mmorpg\project - client\account.hpp
+	"main.h"
+	"bitmap.h"
+	"input.h"
+	"client.h"
+	"player.h"
+
+1383849606 c:\users\marcin\documents\github\mmorpg\project - client\main.h
+	"CMain.h"
+	"bitmap.h"
+
+1383849604 c:\users\marcin\documents\github\mmorpg\project - client\cmain.h
+
+1383849606 c:\users\marcin\documents\github\mmorpg\project - client\bitmap.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_color.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<enet/enet.h>
+	<vector>
+	<cstdio>
+	<iostream>
+	<time.h>
+	<math.h>
+	<fstream>
+	<process.h>
+	"logger.h"
+	"camera.h"
+	"resource_manager.h"
+
+1383849606 c:\users\marcin\documents\github\mmorpg\project - client\logger.h
+	<iostream>
+	<time.h>
+	<fstream>
+
+1383849606 c:\users\marcin\documents\github\mmorpg\project - client\camera.h
+	"main.h"
+
+1383849607 c:\users\marcin\documents\github\mmorpg\project - client\resource_manager.h
+	"main.h"
+	"init.h"
+
+1383849606 c:\users\marcin\documents\github\mmorpg\project - client\init.h
+	"main.h"
+
+1383849606 c:\users\marcin\documents\github\mmorpg\project - client\input.h
+	"main.h"
+
+1383849606 c:\users\marcin\documents\github\mmorpg\project - client\client.h
+	"main.h"
+
+1383849607 c:\users\marcin\documents\github\mmorpg\project - client\player.h
+	"main.h"
+	"input.h"
+	"client.h"
+
+1383849604 source:c:\users\marcin\documents\github\mmorpg\project - client\audio.cpp
+	"audio.hpp"
+
+1383849604 c:\users\marcin\documents\github\mmorpg\project - client\audio.hpp
+	"main.h"
+	"bitmap.h"
+
+1383849606 source:c:\users\marcin\documents\github\mmorpg\project - client\bitmap.cpp
+	"bitmap.h"
+
+1383849606 source:c:\users\marcin\documents\github\mmorpg\project - client\camera.cpp
+	"camera.h"
+
+1383849606 source:c:\users\marcin\documents\github\mmorpg\project - client\client.cpp
+	"client.h"
+
+1384029820 source:c:\users\marcin\documents\github\mmorpg\project - client\gui.cpp
+	"gui.hpp"
+
+1383995105 c:\users\marcin\documents\github\mmorpg\project - client\gui.hpp
+	"main.h"
+	"bitmap.h"
+	"input.h"
+
+1383849606 source:c:\users\marcin\documents\github\mmorpg\project - client\init.cpp
+	"init.h"
+
+1383849606 source:c:\users\marcin\documents\github\mmorpg\project - client\input.cpp
+	"input.h"
+
+1383849606 source:c:\users\marcin\documents\github\mmorpg\project - client\logger.cpp
+	"logger.h"
+
+1384029967 source:c:\users\marcin\documents\github\mmorpg\project - client\main.cpp
+	"main.h"
+	"input.h"
+	"logger.h"
+	"camera.h"
+	"gui.hpp"
+	"map.h"
+	"player.h"
+	"init.h"
+	"client.h"
+	"account.hpp"
+	"audio.hpp"
+
+1383849606 c:\users\marcin\documents\github\mmorpg\project - client\map.h
+	"main.h"
+	"bitmap.h"
+	"input.h"
+	"tile.h"
+
+1383849607 c:\users\marcin\documents\github\mmorpg\project - client\tile.h
+
+1383849606 source:c:\users\marcin\documents\github\mmorpg\project - client\map.cpp
+	"map.h"
+
+1383849606 source:c:\users\marcin\documents\github\mmorpg\project - client\map_obj.cpp
+	"map_obj.h"
+
+1383849606 c:\users\marcin\documents\github\mmorpg\project - client\map_obj.h
+	"main.h"
+
+1383849607 source:c:\users\marcin\documents\github\mmorpg\project - client\resource_manager.cpp
+	"resource_manager.h"
+
+1383849607 source:c:\users\marcin\documents\github\mmorpg\project - client\tile.cpp
+	"tile.h"
+
+1384025892 source:c:\users\marcin\documents\github\mmorpg\project - client\player.cpp
+	"player.h"
+	<stdio.h>
+	<stdlib.h>
+

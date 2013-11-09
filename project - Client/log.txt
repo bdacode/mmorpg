@@ -6074,3 +6074,117 @@ INIT: ENet
 START: Allegro5
 START: Game Loop
 ERROR: Nie mozna polaczyc sie z serwerem.
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+ERROR: Nie mozna polaczyc sie z serwerem.
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Start gameplay
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Start gameplay
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Start gameplay
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Start gameplay
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Start gameplay
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Start gameplay
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Start gameplay
+Polaczono do serwera [ 25.56.234.57 ]
+Polaczono do serwera [ 25.56.234.57 ]
+Polaczono do serwera [ 25.56.234.57 ]
+Polaczono do serwera [ 25.56.234.57 ]
+Polaczono do serwera [ 25.56.234.57 ]
+Polaczono do serwera [ 25.56.234.57 ]
+Polaczono do serwera [ 25.56.234.57 ]
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Start gameplay
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+Polaczono do serwera [ 25.56.234.57 ]
+INIT: map
+Start gameplay
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+- Polaczono do serwera [ 25.56.234.57 ]
+
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+
+- Polaczono do serwera [ 25.56.234.57 ]
+
+- Polaczono do serwera [ 25.56.234.57 ]
+
+INIT: map
+Start gameplay
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+
+- Polaczono do serwera [ 25.56.234.57 ]
+
+INIT: map
+Start gameplay
+LOAD: allegro5
+INIT: allegro5
+INIT: ENet
+START: Allegro5
+START: Game Loop
+
+- Polaczono do serwera [ 25.56.234.57 ]
+
+INIT: map
+Start gameplay

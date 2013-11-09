@@ -3,8 +3,8 @@
 bool registration(string name, string password){
     char wiad[49]="";
 
-    if(name.length()>20){ cout << "Nazwa za dluga!\n"; return false; }
-    if(password.length()>20){ cout << "Haslo za dlugie!\n"; return false; }
+    if(name.length()>20){ cout << "- ERROR: Nazwa za dluga!\n"; return false; }
+    if(password.length()>20){ cout << "- ERROR: Haslo za dlugie!\n"; return false; }
 
     string whole="register"+name+":"+password;
     strcat(wiad, whole.c_str());
@@ -12,15 +12,15 @@ bool registration(string name, string password){
     cout << "Wyslano\n";
 
     //while(1) {
-        cout << "Oczekiwanie na info od serwera!\n";
+        cout << "- Oczekiwanie na info od serwera!\n";
         if(event.type == ENET_EVENT_TYPE_RECEIVE) {
             if(receive(event.packet->data, "GOOD")) {
-                cout << "REJESTRACJA ZAKONCZONA POMYSLNIE!" << endl;
+                cout << "::REJESTRACJA ZAKONCZONA POMYSLNIE!" << endl;
                 return true;
                 //break;
             }
             else if(receive(event.packet->data, "FAIL")) {
-                cout << "REJESTRACJA ZAKONCZONA NEGATYWNIE!" << endl;
+                cout << "::REJESTRACJA ZAKONCZONA NEGATYWNIE!" << endl;
                 return false;
                 //break;
             }
@@ -31,21 +31,21 @@ bool registration(string name, string password){
 bool login(string name, string password, CPlayer* player, CCamera* camera){
     char wiad[49]="";
 
-    if(name.length()>20){ cout << "Name too long!\n"; return false; }
-    if(password.length()>20){ cout << "Password too long!\n"; return false; }
+    if(name.length()>20){ cout << "- ERROR: Name too long!\n"; return false; }
+    if(password.length()>20){ cout << "- ERROR: Password too long!\n"; return false; }
 
     string whole="login"+name+":"+password;
     strcat(wiad, whole.c_str());
     player->nick = name;
     sendToServer(wiad);
 
-    cout << "Sent!\n";
+    cout << "::SENT!\n";
 
     while(1) {
         if(event.type == ENET_EVENT_TYPE_RECEIVE) {
 
             if(receive(event.packet->data, "GOOD")) {
-                cout << "\nLogged!\n" << endl;
+                cout << "- Logged!\n" << endl;
 
                 string wiad = getPacket(event.packet->data);
 
@@ -76,11 +76,11 @@ bool login(string name, string password, CPlayer* player, CCamera* camera){
                 return true;
             }
             else if(receive(event.packet->data, "FAIL")) {
-                cout << "\nError when logging!\n" << endl;
+                cout << "- Error: Failed login!\n" << endl;
                 return false;
             }
             else {
-                cout << "\nUuu smieci dostaje!\n" << endl;
+                cout << "- ALERT: Rubbish everywhere!\n" << endl;
                 return false;
             }
         }

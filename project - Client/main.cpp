@@ -29,6 +29,10 @@ string serverIP = "25.56.234.57"; // Rhagui
 ALLEGRO_FONT* font;
 int doThread = 60;
 
+int _time(clock());
+int cfps(0), FPS(0);
+int amount = 0;
+
 void updateFPS(bool);
 enum gameMode { gm_menu = 0, gm_gameplay = 1 } GameMode;
 
@@ -65,8 +69,7 @@ int main(int argc, char * argv[]){
     al_set_app_name(WIN_NAME.c_str());
     timer = al_create_timer(1.0 / WIN_FPS);
 
-    if(fullscreen)
-    {
+    if(fullscreen) {
         al_set_new_display_flags(ALLEGRO_FULLSCREEN);
         al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
     }
@@ -81,15 +84,16 @@ int main(int argc, char * argv[]){
 
     al_start_timer(timer);
 
+    font = al_load_font("media/font.ttf", 20, 0);
+
     loadMusic();
     newMusic(0);
-    font = al_load_font("media/font.ttf", 20, 0);
 
     GameMode = gm_menu;
 
     map->resize(10,10);
 
-    logger << "START: Game Loop";
+    logger << "START: Game Loop\n";
     while(1) {
         al_wait_for_event(event_queue, &ev);
         al_get_keyboard_state(&klawiatura);
@@ -132,12 +136,12 @@ int main(int argc, char * argv[]){
 
                     if(enet_host_service(client, &event, 5000) > 0) {
                         if(event.type == ENET_EVENT_TYPE_CONNECT) {
-                            string mes = "Polaczono do serwera [ "+serverIP+" ]";
+                            string mes = "- Polaczono do serwera [ "+serverIP+" ]\n";
                             logger << mes;
                         }
                     }
                     else {
-                        logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
+                        logger << "- ERROR: Nie mozna polaczyc sie z serwerem.\n";
 
                         // TODO : messagebox
                     }
@@ -152,7 +156,7 @@ int main(int argc, char * argv[]){
                                 GameMode = gm_gameplay;
                             }
                         }
-                        cout << "\nZarejestrowano i zalogowano!";
+                        cout << "- Zarejestrowano i zalogowano!\n";
                     }
                 }
 
@@ -165,12 +169,12 @@ int main(int argc, char * argv[]){
 
                     if(enet_host_service(client, &event, 5000) > 0) {
                         if(event.type == ENET_EVENT_TYPE_CONNECT) {
-                            string mes = "Polaczono do serwera [ "+serverIP+" ]";
+                            string mes = "- Polaczono do serwera [ "+serverIP+" ]\n";
                             logger << mes;
                         }
                     }
                     else {
-                        logger << "ERROR: Nie mozna polaczyc sie z serwerem.";
+                        logger << "- ERROR: Nie mozna polaczyc sie z serwerem.\n";
 
                         // TODO : messagebox
                         continue;
@@ -203,7 +207,7 @@ int main(int argc, char * argv[]){
                     switch(event.type) {
                         case ENET_EVENT_TYPE_CONNECT:
                         if(event.peer->address.host != address.host) {
-                            printf("A new client connected from %x:%u.\n", event.peer -> address.host, event.peer -> address.port);
+                            printf("- A new client connected from %x:%u.\n", event.peer -> address.host, event.peer -> address.port);
                             event.peer->data = (void*)"New User";
                         }
                         break;
@@ -261,13 +265,9 @@ int main(int argc, char * argv[]){
                 /*** DRAW ***/
                 updateMusic();
                 map->render(camera);
-                player->render();
-                info_menu.render();
-
                 for(int i = 0; i < v_otherPlayers.size(); ++i) {
                     camera->update();
                     al_draw_bitmap_region(IMG_player, (v_otherPlayers[i].dir-1)*50,0, 50,100, v_otherPlayers[i].pos.x+175, v_otherPlayers[i].pos.y, 0);
-
 
                     al_draw_filled_rectangle(v_otherPlayers[i].pos.x+25-al_get_text_width(font, v_otherPlayers[i].nick.c_str())/2-10+175, v_otherPlayers[i].pos.y-25,
                                              v_otherPlayers[i].pos.x+25+al_get_text_width(font, v_otherPlayers[i].nick.c_str())/2+10+175, v_otherPlayers[i].pos.y-5,
@@ -279,9 +279,12 @@ int main(int argc, char * argv[]){
                     //if(v_otherPlayers[i].timeFromLastReceive >= 100) // 60 -> ~1 sekunda bez odpowiedzi
                     //    v_otherPlayers.erase(v_otherPlayers.begin()+i);
                 }
-
+                player->render();
+                info_menu.render();
                 test.render();
                 logout.render();
+
+                al_draw_textf(font, al_map_rgb(255,255,255), 10, 10, 0, "FPS: %d", FPS);
             }
 
             al_flip_display();
@@ -306,10 +309,6 @@ int main(int argc, char * argv[]){
     return 0;
 }
 
-int _time(clock());
-int cfps(0), FPS(0);
-int amount = 0;
-
 void updateFPS(bool write){
     if(_time+1000<clock()){
         _time = clock();
@@ -318,11 +317,11 @@ void updateFPS(bool write){
     }
     cfps++;
 
-    if(write){
+    /*if(write){
         amount++;
         if(amount >= 100){
             cout << "\n#FPS: " << FPS;
             amount = 0;
         }
-    }
+    }*/
 }

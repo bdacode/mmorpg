@@ -9,12 +9,13 @@ cButton::cButton(int x, int y, int w, int h, string path, GUI_DYNAMICS dynamics)
     this->dynamics=dynamics;
 
     wStatic=w; hStatic=h;
-    centerX=x+w/2; centerY=y+h-10; //BAD
     click=pressed=false;
     name="";
 
     background=al_load_bitmap(this->path.c_str());
     font_button=al_load_font("media/font.ttf", 20, 0);
+
+    centerX=x+w/2; centerY=y/2+this->h/2 - al_get_font_line_height(font_button)/2; //BAD
 }
 cButton::cButton(int x, int y, int w, int h, string path, string name, GUI_DYNAMICS dynamics)
     : life(1){
@@ -87,11 +88,10 @@ cMessageBox::cMessageBox(int x, int y, int w, int h, string path, string text, G
     //int how much=0;
     wStatic=w; hStatic=h;
     pressed=modified=false;
-    centerX=x+w/2; centerY=this->h-30;
 
     position = text.find("\n"); ///TODO
     while(position != std::string::npos){
-        cout << "Fraza zostala odnaleziona na pozycji " << position << endl;
+        //cout << "Fraza zostala odnaleziona na pozycji " << position << endl;
         position = text.find( "\n", position + 2 );
         //how much++;
     }
@@ -99,6 +99,9 @@ cMessageBox::cMessageBox(int x, int y, int w, int h, string path, string text, G
 
     background = al_load_bitmap(this->path.c_str());
     font_button = al_load_font("media/font.ttf", 14, 0);
+
+    centerX=x+w/2; centerY=y/2+this->h/2 - al_get_font_line_height(font_button)/2;
+
 }
 
 void cMessageBox::setText(string text){
@@ -167,10 +170,11 @@ cTextBox::cTextBox(int x, int y, int w, int h, string path, GUI_DYNAMICS dynamic
     wStatic=w; hStatic=h;
     pressed=modified=big=false;
     text="";
-    centerX=x+w/2; centerY=this->h-30;
 
     background = al_load_bitmap(this->path.c_str());
     font_button = al_load_font("media/font.ttf", 14, 0);
+
+    centerX=x+w/2; centerY=y/2+this->h/2 - al_get_font_line_height(font_button)/2;
 }
 
 void cTextBox::render(){

@@ -12,6 +12,7 @@ ALLEGRO_BITMAP* IMG_player;
 CPlayer::CPlayer() {
     pos.x = pos.y = oldPos.x = oldPos.y = 0;
     timeToSend = 0;
+    dir=1;
 
     speed = 2;
 
@@ -79,15 +80,15 @@ void __cdecl player_updatePos(void* arg) {
 }
 
 void CPlayer::update(CKeyboard key) {
-    if(key.Press(ALLEGRO_KEY_W)) { pos.y -= speed; dir = 2; }
+    if(key.Press(ALLEGRO_KEY_W) && key.Press(ALLEGRO_KEY_D)) { pos.x += speed; pos.y -= speed; dir = 5; }
+    else if(key.Press(ALLEGRO_KEY_W) && key.Press(ALLEGRO_KEY_A)) { pos.x -= speed; pos.y -= speed; dir = 6; }
+    else if(key.Press(ALLEGRO_KEY_S) && key.Press(ALLEGRO_KEY_A)) { pos.x -= speed; pos.y += speed; dir = 7; }
+    else if(key.Press(ALLEGRO_KEY_S) && key.Press(ALLEGRO_KEY_D)) { pos.x += speed; pos.y += speed; dir = 8; }
+    else if(key.Press(ALLEGRO_KEY_W)) { pos.y -= speed; dir = 2; }
     else if(key.Press(ALLEGRO_KEY_S)) { pos.y += speed; dir = 1; }
     else if(key.Press(ALLEGRO_KEY_A)) { pos.x -= speed; dir = 3; }
     else if(key.Press(ALLEGRO_KEY_D)) { pos.x += speed; dir = 4; }
-    else if(key.Press(ALLEGRO_KEY_W) && key.Press(ALLEGRO_KEY_D)) { pos.x += speed; pos.y += speed; dir = 5; }
-    else if(key.Press(ALLEGRO_KEY_W) && key.Press(ALLEGRO_KEY_A)) { pos.x -= speed; pos.y += speed; dir = 6; }
-    else if(key.Press(ALLEGRO_KEY_S) && key.Press(ALLEGRO_KEY_A)) { pos.x -= speed; pos.y -= speed; dir = 7; }
-    else if(key.Press(ALLEGRO_KEY_S) && key.Press(ALLEGRO_KEY_D)) { pos.x += speed; pos.y -= speed; dir = 8; }
-    else dir = 1;
+    //else dir = 1;
 
     if(oldPos.x != pos.x || oldPos.y != pos.y)
         ++timeToSend;
