@@ -51,6 +51,26 @@ void __cdecl posFromClient(void* arg) {
 }
 
 vector <string> v_posQueue;
+int updateTime = 0;
+
+void __cdecl update_queue(void* a)
+{
+    for(int i = 0; i < v_posQueue.size(); ++i)
+    {
+        char* mess = new char[v_posQueue[i].size()+1];
+
+        for(int j = 0; j < v_posQueue[i].size(); ++j)
+            mess[j] = v_posQueue[i][j];
+
+        ENetPacket *p = enet_packet_create(mess, strlen(mess)+1, ENET_PACKET_FLAG_UNSEQUENCED);
+
+        enet_host_broadcast(server, 1, p);
+        enet_host_flush(server);
+
+        v_posQueue.erase(v_posQueue.begin() + i);
+    }
+    //updateTime = 0;
+}
 
 int main(int argc, char ** argv){
     system("title SERWER");
@@ -278,7 +298,7 @@ int main(int argc, char ** argv){
                     }*/
 
 
-                    for(int i = 0; i < v_posQueue.size(); ++i)
+                    /**for(int i = 0; i < v_posQueue.size(); ++i)
                     {
                         char* mess = new char[v_posQueue[i].size()+1];
 
@@ -291,7 +311,12 @@ int main(int argc, char ** argv){
                         enet_host_flush(server);
 
                         v_posQueue.erase(v_posQueue.begin() + i);
-                    }
+                    }*/
+
+                    //if(updateTime <= 5)
+                    //    ++updateTime;
+                    //else
+                        _beginthread(update_queue, 0, 0);
 
                     /// wiadomosc do wszystkich:
                     //enet_host_broadcast(server, 1, event.packet);

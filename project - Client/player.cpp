@@ -90,7 +90,7 @@ void CPlayer::update(CKeyboard key) {
 
     ++timeToSend;
 
-    if(timeToSend >= 5/* && (oldPos.x != pos.x || oldPos.y != pos.y)*/) { //  [ 20 = 1/3 sekundy przy 60 FPS ]
+    if(timeToSend >= 5 /*&& (oldPos.x != pos.x || oldPos.y != pos.y)*/) { //  [ 20 = 1/3 sekundy przy 60 FPS ]
         timeToSend = 0;
 
         // send position
